@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class Navbar extends Component {
+	state = {
+		open: false
+	};
+
+	onClick = () => {
+		this.setState({
+			open: !this.state.open
+		});
+	};
+
 	render() {
 		return (
 			<nav className="navbar" role="navigation" aria-label="main navigation">
@@ -12,10 +22,11 @@ export default class Navbar extends Component {
 
 					<a
 						role="button"
-						className="navbar-burger burger"
+						className={'navbar-burger burger' + (this.state.open ? ' is-active' : '')}
 						aria-label="menu"
 						aria-expanded="false"
-						data-target="navbarBasicExample"
+						data-target="mainNavbar"
+						onClick={this.onClick}
 					>
 						<span aria-hidden="true" />
 						<span aria-hidden="true" />
@@ -23,7 +34,7 @@ export default class Navbar extends Component {
 					</a>
 				</div>
 
-				<div className="navbar-menu">
+				<div id="mainNavbar" className={'navbar-menu' + (this.state.open ? ' is-active' : '')}>
 					<div className="navbar-start">
 						<Link to="/" className="navbar-item">
 							Domů
@@ -44,7 +55,7 @@ export default class Navbar extends Component {
 						<Link to="/starting-list" className="navbar-item">
 							Startovní listina
 						</Link>
-						<Link to="/registration" className="navbar-item has-text-success">
+						<Link to="/registration" className="navbar-item">
 							Přihláška
 						</Link>
 

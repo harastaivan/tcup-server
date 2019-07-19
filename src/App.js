@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import 'bulma/css/bulma.css';
+import 'bulma';
 import './App.css';
 
 import Navbar from './components/Navbar';
