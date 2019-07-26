@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
-import 'bulma';
 import './App.css';
 
-import Navbar from './components/Navbar';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import AppNavbar from './components/AppNavbar';
 import Home from './components/Home';
 import News from './components/News';
 import Registration from './components/Registration';
@@ -19,18 +21,20 @@ function App() {
 	return (
 		<Router>
 			<div className="App">
-				<Navbar />
-				<Switch>
-					<Route path="/" component={Home} exact />
-					<Route path="/news" component={News} />
-					<Route path="/registration" component={Registration} />
-					<Route path="/login" component={Login} />
-					<Route path="/statuses" component={Statuses} />
-					<Route path="/starting-list" component={StartingList} />
-					<Route path="/documents" component={Documents} />
-					<Route path="/contacts" component={Contacts} />
-					<Route path="/igc" component={SendIgc} />
-				</Switch>
+				<AppNavbar />
+				<Container>
+					<Switch>
+						<Route path="/" component={Home} exact />
+						<Route path="/news" component={News} />
+						<Route path="/registration" component={Registration} />
+						<Route path="/login" component={Login} />
+						<Route path="/statuses" component={Statuses} />
+						<Route path="/starting-list" component={StartingList} />
+						<Route path="/documents" component={Documents} />
+						<Route path="/contacts" component={Contacts} />
+						<Route path="/igc" component={SendIgc} />
+					</Switch>
+				</Container>
 			</div>
 		</Router>
 	);
