@@ -1,6 +1,7 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import users from './routes/api/users.js';
 
 const app = express();
 dotenv.config();
@@ -11,10 +12,10 @@ const db = process.env.MONGO_URI;
 
 mongoose
 	.connect(db, { useNewUrlParser: true, useCreateIndex: true })
-	.then(() => console.log('MongoDB connected'))
+	.then((m) => console.log(`MongoDB connected to ${m.connections[0].db.s.databaseName}`))
 	.catch((err) => console.log(err));
 
-app.use('/api/users', require('./routes/api/users'));
+app.use('/api/users', users);
 
 const port = process.env.PORT || 5000;
 

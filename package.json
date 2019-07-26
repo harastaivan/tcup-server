@@ -3,9 +3,10 @@
 	"version": "1.0.0",
 	"description": "Tcup soaring competition website",
 	"main": "server.js",
+	"type": "module",
 	"scripts": {
-		"start": "node src/server.js",
-		"server": "nodemon src/server.js --ignore client/",
+		"start": "node --experimental-modules src/server.js",
+		"server": "nodemon --experimental-modules --ignore client/ src/server.js ",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
