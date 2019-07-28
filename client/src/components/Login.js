@@ -1,12 +1,105 @@
-import React, { Component, Fragment } from 'react';
-import SignupForm from './SignupForm';
+import React, { Component } from 'react';
+import { Alert, Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../actions/auth';
+import { clearErrors } from '../actions/error';
 
-export default class Login extends Component {
+class Login extends Component {
+	state = {
+		modal: false,
+		email: '',
+		password: '',
+		msg: null
+	};
+
+	static propTypes = {
+		isAuthenticated: PropTypes.bool,
+		error: PropTypes.object.isRequired,
+		login: PropTypes.func.isRequired,
+		clearErrors: PropTypes.func.isRequired
+	};
+
+	toggle = () => {
+		this.props.clearErrors();
+		this.setState({
+			modal: !this.state.modal
+		});
+	};
+
+	onChange = (e) => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
+
+	onSubmit = (e) => {
+		e.preventDefault();
+		const { email, password } = this.state;
+		const user = { email, password };
+		this.props.login(user);
+		this.setState({
+			email: '',
+			password: ''
+		});
+	};
+
+	componentDidUpdate(previousProps) {
+		const { error, isAuthenticated } = this.props;
+		if (error !== previousProps.error) {
+			// Check for register error
+			if (error.id === 'LOGIN_FAIL') {
+				this.setState({ msg: error.msg.msg });
+			} else {
+				this.setState({ msg: null });
+			}
+		}
+		if (isAuthenticated) {
+			this.toggle();
+			this.props.history.push('/');
+		}
+	}
+
 	render() {
 		return (
-			<Fragment>
-				<SignupForm />
-			</Fragment>
+			<div>
+				{this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+				<h1>Přihlásit se</h1>
+				<Form onSubmit={this.onSubmit}>
+					<FormGroup>
+						<Label for="email">Email</Label>
+						<Input
+							type="email"
+							name="email"
+							id="email"
+							placeholder="Email"
+							value={this.state.email}
+							onChange={this.onChange}
+						/>
+					</FormGroup>
+					<FormGroup>
+						<Label for="Password">Heslo</Label>
+						<Input
+							type="password"
+							name="password"
+							id="Password"
+							placeholder="Heslo"
+							value={this.state.password}
+							onChange={this.onChange}
+						/>
+					</FormGroup>
+					<Button color="dark" style={{ marginTop: '2rem' }} block>
+						Přihlásit se
+					</Button>
+				</Form>
+			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state) => ({
+	isAuthenticated: state.auth.isAuthenticated,
+	error: state.error
+});
+
+export default connect(mapStateToProps, { login, clearErrors })(Login);

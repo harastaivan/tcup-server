@@ -1,10 +1,29 @@
 import React, { Component, Fragment } from 'react';
 import { NavLink as Link } from 'react-router-dom';
-import { Button, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {
+	Badge,
+	Collapse,
+	DropdownItem,
+	DropdownMenu,
+	DropdownToggle,
+	Navbar,
+	NavbarToggler,
+	NavbarBrand,
+	Nav,
+	NavItem,
+	NavLink,
+	UncontrolledDropdown
+} from 'reactstrap';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
-export default class AppNavbar extends Component {
+class AppNavbar extends Component {
 	state = {
 		open: false
+	};
+
+	static propTypes = {
+		auth: PropTypes.object.isRequired
 	};
 
 	toggle = () => {
@@ -14,9 +33,47 @@ export default class AppNavbar extends Component {
 	};
 
 	render() {
+		const { isAuthenticated, user } = this.props.auth;
+
+		const authLinks = (
+			<Fragment>
+				<NavItem>
+					<span className="navbar-text mr-3">
+						<strong>{user ? user.name : ''}</strong>
+						{user && user.admin ? (
+							<Badge color="danger" className="ml-2">
+								Admin
+							</Badge>
+						) : (
+							''
+						)}
+					</span>
+				</NavItem>
+				<NavItem>
+					<NavLink tag={Link} to="/logout" activeClassName="active">
+						Odhlásit se
+					</NavLink>
+				</NavItem>
+			</Fragment>
+		);
+
+		const guestLinks = (
+			<Fragment>
+				<NavItem>
+					<NavLink tag={Link} to="/login" activeClassName="active">
+						Přihlásit se
+					</NavLink>
+				</NavItem>
+				<NavItem>
+					<NavLink tag={Link} to="/signup" activeClassName="active">
+						Registrace
+					</NavLink>
+				</NavItem>
+			</Fragment>
+		);
 		return (
 			<Fragment>
-				<Navbar color="dark" dark expand="sm">
+				<Navbar color="dark" dark expand="lg">
 					<NavbarBrand>
 						<NavLink tag={Link} to="/">
 							tcup 2019
@@ -50,26 +107,33 @@ export default class AppNavbar extends Component {
 									Přihláška
 								</NavLink>
 							</NavItem>
-							<NavItem>
-								<NavLink tag={Link} to="/documents" activeClassName="active">
-									Dokumenty
-								</NavLink>
-							</NavItem>
+							<NavItem />
 							<NavItem>
 								<NavLink tag={Link} to="/igc" activeClassName="active">
 									Odeslat IGC
 								</NavLink>
 							</NavItem>
-							<NavItem>
-								<NavLink tag={Link} to="/contacts" activeClassName="active">
-									Kontakty
-								</NavLink>
-							</NavItem>
-							<NavItem>
-								<NavLink tag={Link} to="/login" activeClassName="active">
-									Přihlásit se
-								</NavLink>
-							</NavItem>
+							<UncontrolledDropdown nav inNavbar className="bg-dark">
+								<DropdownToggle nav caret>
+									Další
+								</DropdownToggle>
+								<DropdownMenu right className="bg-dark">
+									<DropdownItem className="bg-dark">
+										<NavLink tag={Link} to="/documents" activeClassName="active">
+											Dokumenty
+										</NavLink>
+									</DropdownItem>
+									<DropdownItem className="bg-dark">
+										<NavItem>
+											<NavLink tag={Link} to="/contacts" activeClassName="active">
+												Kontakty
+											</NavLink>
+										</NavItem>
+									</DropdownItem>
+								</DropdownMenu>
+							</UncontrolledDropdown>
+							<DropdownItem divider />
+							{isAuthenticated ? authLinks : guestLinks}
 						</Nav>
 					</Collapse>
 				</Navbar>
@@ -77,3 +141,11 @@ export default class AppNavbar extends Component {
 		);
 	}
 }
+
+const mapStateToProps = (state) => {
+	return {
+		auth: state.auth
+	};
+};
+
+export default connect(mapStateToProps, null)(AppNavbar);
