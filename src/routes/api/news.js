@@ -35,9 +35,7 @@ router.post('/', admin, async (req, res) => {
 // @access  Public
 router.get('/', async (req, res) => {
 	const news = await News.find({}).populate('author', '-password');
-	return res.json({
-		news
-	});
+	return res.json(news);
 });
 
 export default router;

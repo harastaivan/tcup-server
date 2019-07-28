@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
 		bcrypt.hash(newUser.password, salt, async (err, hash) => {
 			if (err) throw err;
 			newUser.password = hash;
-			const { id, name, surname, email } = await newUser.save();
+			const { id, name, surname, email, admin } = await newUser.save();
 			jwt.sign({ id }, config.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
 				if (err) throw err;
 				return res.status(201).json({
@@ -41,7 +41,8 @@ router.post('/', async (req, res) => {
 						id,
 						name,
 						surname,
-						email
+						email,
+						admin
 					}
 				});
 			});

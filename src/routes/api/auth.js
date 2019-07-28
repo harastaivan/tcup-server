@@ -23,7 +23,7 @@ router.post('/', (req, res) => {
 		// Validate password
 		bcrypt.compare(password, user.password).then((isMatch) => {
 			if (!isMatch) return res.status(400).json({ msg: 'Invalid credentials' });
-			const { id, name, surname, email } = user;
+			const { id, name, surname, email, admin } = user;
 			jwt.sign({ id }, config.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
 				if (err) throw err;
 				res.json({
@@ -32,7 +32,8 @@ router.post('/', (req, res) => {
 						id,
 						name,
 						surname,
-						email
+						email,
+						admin
 					}
 				});
 			});
