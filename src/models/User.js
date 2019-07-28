@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import timestamp from 'mongoose-timestamp';
 
 const Schema = mongoose.Schema;
 
@@ -6,26 +7,32 @@ const Schema = mongoose.Schema;
 const UserSchema = new Schema({
 	name: {
 		type: String,
-		required: true
+		required: true,
+		trim: true
 	},
 	surname: {
 		type: String,
-		required: true
+		required: true,
+		trim: true
 	},
 	email: {
 		type: String,
 		required: true,
-		unique: true
+		unique: true,
+		trim: true
 	},
 	password: {
 		type: String,
 		required: true
 	},
-	register_date: {
-		type: Date,
-		default: Date.now
+	admin: {
+		type: Boolean,
+		required: true,
+		default: false
 	}
 });
+
+UserSchema.plugin(timestamp);
 
 const User = mongoose.model('user', UserSchema);
 
