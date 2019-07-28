@@ -113,7 +113,7 @@ class AppNavbar extends Component {
 									Odeslat IGC
 								</NavLink>
 							</NavItem>
-							<UncontrolledDropdown nav inNavbar className="bg-dark">
+							<UncontrolledDropdown nav inNavbar className="bg-dark mr-4">
 								<DropdownToggle nav caret>
 									Další
 								</DropdownToggle>
@@ -132,7 +132,6 @@ class AppNavbar extends Component {
 									</DropdownItem>
 								</DropdownMenu>
 							</UncontrolledDropdown>
-							<DropdownItem divider />
 							{isAuthenticated ? authLinks : guestLinks}
 						</Nav>
 					</Collapse>

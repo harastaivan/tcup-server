@@ -20,13 +20,6 @@ class Login extends Component {
 		clearErrors: PropTypes.func.isRequired
 	};
 
-	toggle = () => {
-		this.props.clearErrors();
-		this.setState({
-			modal: !this.state.modal
-		});
-	};
-
 	onChange = (e) => {
 		this.setState({
 			[e.target.name]: e.target.value
@@ -39,7 +32,6 @@ class Login extends Component {
 		const user = { email, password };
 		this.props.login(user);
 		this.setState({
-			email: '',
 			password: ''
 		});
 	};
@@ -55,7 +47,7 @@ class Login extends Component {
 			}
 		}
 		if (isAuthenticated) {
-			this.toggle();
+			this.props.clearErrors();
 			this.props.history.push('/');
 		}
 	}
