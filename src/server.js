@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import config from '../config.js';
 import users from './routes/api/users.js';
 import auth from './routes/api/auth.js';
+import news from './routes/api/news.js';
 
 const app = express();
 
