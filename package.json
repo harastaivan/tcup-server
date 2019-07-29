@@ -5,8 +5,8 @@
 	"main": "src/server.js",
 	"type": "module",
 	"scripts": {
-		"start": "node --experimental-modules src/server.js",
-		"server": "nodemon --experimental-modules --ignore client/ src/server.js ",
+		"start": "node -r esm src/server.js",
+		"server": "nodemon -r esm --ignore client/ src/server.js ",
 		"client": "npm start --prefix client",
 		"dev": "concurrently \"npm run server\" \"npm run client\""
 	},
@@ -24,6 +24,7 @@
 		"bcryptjs": "^2.4.3",
 		"concurrently": "^4.1.1",
 		"dotenv": "^8.0.0",
+		"esm": "^3.2.25",
 		"express": "^4.17.1",
 		"jsonwebtoken": "^8.5.1",
 		"mongoose": "^5.6.6",

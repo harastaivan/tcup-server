@@ -64,7 +64,7 @@ class Signup extends Component {
 			<div>
 				{this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
 				<h1>Registrovat se</h1>
-				<Form onSubmit={this.onSubmit}>
+				<Form onSubmit={this.onSubmit} autoComplete={'off'}>
 					<Row form>
 						<Col md={6}>
 							<FormGroup>
