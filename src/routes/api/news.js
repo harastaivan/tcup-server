@@ -39,4 +39,16 @@ router.get('/', async (req, res) => {
 	return res.json(news);
 });
 
+// @route   DELETE api/news/:id
+// @desc    Delete a news
+// @access  Admin
+router.delete('/:id', admin, async (req, res) => {
+	try {
+		await News.findByIdAndDelete(req.params.id);
+		return res.json({ success: true });
+	} catch (err) {
+		res.status(404).json({ success: false });
+	}
+});
+
 export default router;
