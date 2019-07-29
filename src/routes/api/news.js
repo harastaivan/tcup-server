@@ -2,6 +2,7 @@ import express from 'express';
 
 import News from '../../models/News';
 import admin from '../../middleware/admin';
+import User from '../../models/User';
 
 const router = express.Router();
 
@@ -19,7 +20,7 @@ router.post('/', admin, async (req, res) => {
 	const newNews = new News({
 		title,
 		body,
-		author
+		author: await User.findById(author).select('-password')
 	});
 
 	const savedNews = await newNews.save();
@@ -35,7 +36,7 @@ router.post('/', admin, async (req, res) => {
 // @desc    Get all news
 // @access  Public
 router.get('/', async (req, res) => {
-	const news = await News.find({}).populate('author', '-password');
+	const news = await News.find({}).sort([ [ 'updatedAt', -1 ] ]).populate('author', '-password');
 	return res.json(news);
 });
 

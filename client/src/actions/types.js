@@ -8,3 +8,7 @@ export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 export const GET_ERRORS = 'GET_ERRORS';
 export const CLEAR_ERRORS = 'CLEAR_ERRORS';
+export const GET_NEWS = 'GET_NEWS';
+export const ADD_NEWS = 'ADD_NEWS';
+export const DELETE_NEWS = 'DELETE_NEWS';
+export const NEWS_LOADING = 'NEWS_LOADING';

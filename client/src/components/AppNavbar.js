@@ -74,10 +74,8 @@ class AppNavbar extends Component {
 		return (
 			<Fragment>
 				<Navbar color="dark" dark expand="lg">
-					<NavbarBrand>
-						<NavLink tag={Link} to="/">
-							tcup 2019
-						</NavLink>
+					<NavbarBrand tag={Link} to="/">
+						{process.env.REACT_APP_TITLE}
 					</NavbarBrand>
 					<NavbarToggler onClick={this.toggle} />
 					<Collapse isOpen={this.state.open} navbar>
