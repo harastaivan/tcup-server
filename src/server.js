@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 import express from 'express';
 import mongoose from 'mongoose';
-import morgan from 'morgan';
+// import morgan from 'morgan'; temporary fix https://github.com/expressjs/morgan/issues/190
+const morgan = require('morgan');
 
 import config from '../config';
 import users from './routes/api/users';
