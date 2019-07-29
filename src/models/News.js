@@ -1,6 +1,5 @@
 import mongoose from 'mongoose';
 import timestamp from 'mongoose-timestamp';
-import User from './User.js';
 
 const Schema = mongoose.Schema;
 

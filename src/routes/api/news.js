@@ -1,6 +1,7 @@
 import express from 'express';
-import admin from '../../middleware/admin.js';
-import News from '../../models/News.js';
+
+import News from '../../models/News';
+import admin from '../../middleware/admin';
 
 const router = express.Router();
 

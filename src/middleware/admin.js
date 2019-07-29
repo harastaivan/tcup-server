@@ -1,6 +1,7 @@
-import config from '../../config.js';
 import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
+
+import config from '../../config';
+import User from '../models/User';
 
 const admin = async (req, res, next) => {
 	const token = req.header('x-auth-token');

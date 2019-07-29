@@ -3,14 +3,14 @@ import express from 'express';
 import mongoose from 'mongoose';
 import morgan from 'morgan';
 
-import config from '../config.js';
-import users from './routes/api/users.js';
-import auth from './routes/api/auth.js';
-import news from './routes/api/news.js';
+import config from '../config';
+import users from './routes/api/users';
+import auth from './routes/api/auth';
+import news from './routes/api/news';
 
 const app = express();
 
-app.use(morgan('dev'));
+app.use(morgan('combined'));
 app.use(express.json());
 
 const db = config.MONGO_URI;

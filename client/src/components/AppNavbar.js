@@ -39,7 +39,7 @@ class AppNavbar extends Component {
 			<Fragment>
 				<NavItem>
 					<span className="navbar-text mr-3">
-						<strong>{user ? user.name : ''}</strong>
+						<strong>{user ? `${user.name} ${user.surname}` : ''}</strong>
 						{user && user.admin ? (
 							<Badge color="danger" className="ml-2">
 								Admin

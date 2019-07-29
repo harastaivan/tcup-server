@@ -1,9 +1,10 @@
 import express from 'express';
-import User from '../../models/User.js';
 import bcrypt from 'bcryptjs';
-import config from '../../../config.js';
 import jwt from 'jsonwebtoken';
-import auth from '../../middleware/auth.js';
+
+import config from '../../../config';
+import User from '../../models/User';
+import auth from '../../middleware/auth';
 
 const router = express.Router();
 
