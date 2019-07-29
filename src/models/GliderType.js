@@ -14,6 +14,6 @@ const GliderTypeSchema = new Schema({
 	}
 });
 
-const GliderType = mongoose.model('glider_type', GliderTypeSchema);
+const GliderType = mongoose.model('gliderType', GliderTypeSchema);
 
 export default GliderType;
