@@ -11,6 +11,7 @@ import news from './routes/api/news';
 import registration from './routes/api/registration';
 import region from './routes/api/region';
 import competitionClass from './routes/api/competitionClass';
+import gliderType from './routes/api/gliderType';
 
 const app = express();
 
@@ -30,6 +31,7 @@ app.use('/api/news', news);
 app.use('/api/registration', registration);
 app.use('/api/region', region);
 app.use('/api/classes', competitionClass);
+app.use('/api/glidertypes', gliderType);
 
 const port = config.PORT || 5000;
 
