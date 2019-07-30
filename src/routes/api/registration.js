@@ -66,7 +66,7 @@ router.post('/', auth, async (req, res) => {
 router.get('/', auth, async (req, res) => {
 	const reg = await Registration.findOne({ user: req.user.id })
 		.populate('user', '-password')
-		.populate([ 'region', 'competitionClass', 'glider.gliderType' ]);
+		.populate([ 'region', 'competitionClass', 'glider.gliderType', 'accomodation.accomodationType' ]);
 	if (!reg) {
 		return res.status(404).json({ msg: 'Registration does not exist for this user' });
 	}
