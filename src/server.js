@@ -8,6 +8,7 @@ import config from '../config';
 import users from './routes/api/users';
 import auth from './routes/api/auth';
 import news from './routes/api/news';
+import registration from './routes/api/registration';
 
 const app = express();
 
@@ -24,6 +25,7 @@ mongoose
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/news', news);
+app.use('/api/registration', registration);
 
 const port = config.PORT || 5000;
 

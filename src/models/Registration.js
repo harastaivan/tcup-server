@@ -16,7 +16,7 @@ const RegistrationSchema = new Schema({
 		default: false
 	},
 	birthDate: {
-		type: Date,
+		type: String,
 		required: false
 	},
 	phone: {
@@ -64,12 +64,14 @@ const RegistrationSchema = new Schema({
 		},
 		quantity: {
 			type: Number,
-			required: true
+			required: false,
+			default: 0
 		}
 	},
 	meals: {
 		type: Number,
-		required: true
+		required: false,
+		default: 0
 	},
 	note: {
 		type: String,
