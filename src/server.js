@@ -9,6 +9,7 @@ import users from './routes/api/users';
 import auth from './routes/api/auth';
 import news from './routes/api/news';
 import registration from './routes/api/registration';
+import region from './routes/api/region';
 
 const app = express();
 
@@ -26,6 +27,7 @@ app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/news', news);
 app.use('/api/registration', registration);
+app.use('/api/region', region);
 
 const port = config.PORT || 5000;
 
