@@ -57,7 +57,13 @@ router.post('/', auth, async (req, res) => {
 
 	const savedReg = await newReg.save();
 
-	return res.status(201).json(savedReg);
+	return res
+		.status(201)
+		.json(
+			await Registration.findOne({ user: req.user.id })
+				.populate('user', '-password')
+				.populate([ 'region', 'competitionClass', 'glider.gliderType', 'accomodation.accomodationType' ])
+		);
 });
 
 // @route   GET api/registration
