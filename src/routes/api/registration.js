@@ -64,7 +64,7 @@ router.post('/', auth, async (req, res) => {
 // @desc    Get registration data of a user
 // @access  Private
 router.get('/', auth, async (req, res) => {
-	const reg = await Registration.findOne({ user: req.user.id }).populate('region', 'name');
+	const reg = await Registration.findOne({ user: req.user.id }).populate([ 'region', 'competitionClass' ]);
 	if (!reg) {
 		return res.status(404).json({ msg: 'Registration does not exist for this user' });
 	}
