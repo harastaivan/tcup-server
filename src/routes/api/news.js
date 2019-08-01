@@ -25,18 +25,16 @@ router.post('/', admin, async (req, res) => {
 
 	const savedNews = await newNews.save();
 
-	return res.status(201).json({
-		title: savedNews.title,
-		body: savedNews.body,
-		author: savedNews.author
-	});
+	return res.status(201).json(savedNews);
 });
 
 // @route   GET api/news
 // @desc    Get all news
 // @access  Public
 router.get('/', async (req, res) => {
-	const news = await News.find({}).sort([ [ 'updatedAt', -1 ] ]).populate('author', '-password');
+	const news = await News.find({})
+		.sort([['updatedAt', -1]])
+		.populate('author', '-password');
 	return res.json(news);
 });
 
