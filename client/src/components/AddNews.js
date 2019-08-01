@@ -15,13 +15,13 @@ class AddNews extends React.Component {
 		isAuthenticated: PropTypes.bool
 	};
 
-	onChange = (e) => {
+	onChange = e => {
 		this.setState({
 			[e.target.name]: e.target.value
 		});
 	};
 
-	onSubmit = (e) => {
+	onSubmit = e => {
 		e.preventDefault();
 		const newNews = {
 			title: this.state.title,
@@ -39,24 +39,29 @@ class AddNews extends React.Component {
 						<Form onSubmit={this.onSubmit}>
 							<FormGroup>
 								<Input
-									type="text"
-									name="title"
-									id="title"
-									placeholder="Nadpis"
+									type='text'
+									name='title'
+									id='title'
+									placeholder='Nadpis'
 									onChange={this.onChange}
 								/>
 							</FormGroup>
 							<FormGroup>
 								<Input
-									type="textarea"
-									name="body"
-									id="body"
-									placeholder="Novinka"
+									type='textarea'
+									name='body'
+									id='body'
+									placeholder='Novinka'
 									onChange={this.onChange}
 									style={{ height: '150px' }}
 								/>
 							</FormGroup>
-							<Button color="dark" style={{ marginTop: '2rem' }} block>
+							<Button
+								color='dark'
+								style={{ marginTop: '2rem' }}
+								disabled={!this.state.title || !this.state.body}
+								block
+							>
 								Přidat novinku
 							</Button>
 						</Form>
@@ -67,9 +72,12 @@ class AddNews extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	news: state.news,
 	isAuthenticated: state.auth.isAuthenticated
 });
 
-export default connect(mapStateToProps, { addNews })(AddNews);
+export default connect(
+	mapStateToProps,
+	{ addNews }
+)(AddNews);

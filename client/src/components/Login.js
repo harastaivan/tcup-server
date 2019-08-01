@@ -20,13 +20,13 @@ class Login extends Component {
 		clearErrors: PropTypes.func.isRequired
 	};
 
-	onChange = (e) => {
+	onChange = e => {
 		this.setState({
 			[e.target.name]: e.target.value
 		});
 	};
 
-	onSubmit = (e) => {
+	onSubmit = e => {
 		e.preventDefault();
 		const { email, password } = this.state;
 		const user = { email, password };
@@ -55,32 +55,39 @@ class Login extends Component {
 	render() {
 		return (
 			<div>
-				{this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+				{this.state.msg ? (
+					<Alert color='danger'>{this.state.msg}</Alert>
+				) : null}
 				<h1>Přihlásit se</h1>
 				<Form onSubmit={this.onSubmit}>
 					<FormGroup>
-						<Label for="email">Email</Label>
+						<Label for='email'>Email</Label>
 						<Input
-							type="email"
-							name="email"
-							id="email"
-							placeholder="Email"
+							type='email'
+							name='email'
+							id='email'
+							placeholder='Email'
 							value={this.state.email}
 							onChange={this.onChange}
 						/>
 					</FormGroup>
 					<FormGroup>
-						<Label for="Password">Heslo</Label>
+						<Label for='Password'>Heslo</Label>
 						<Input
-							type="password"
-							name="password"
-							id="Password"
-							placeholder="Heslo"
+							type='password'
+							name='password'
+							id='Password'
+							placeholder='Heslo'
 							value={this.state.password}
 							onChange={this.onChange}
 						/>
 					</FormGroup>
-					<Button color="dark" style={{ marginTop: '2rem' }} block>
+					<Button
+						color='dark'
+						style={{ marginTop: '2rem' }}
+						block
+						disabled={!this.state.email || !this.state.password}
+					>
 						Přihlásit se
 					</Button>
 				</Form>
@@ -89,9 +96,12 @@ class Login extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated,
 	error: state.error
 });
 
-export default connect(mapStateToProps, { login, clearErrors })(Login);
+export default connect(
+	mapStateToProps,
+	{ login, clearErrors }
+)(Login);

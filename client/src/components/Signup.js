@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Alert, Form, FormGroup, Label, Input, Button, Row, Col } from 'reactstrap';
+import {
+	Alert,
+	Form,
+	FormGroup,
+	Label,
+	Input,
+	Button,
+	Row,
+	Col
+} from 'reactstrap';
 import { connect } from 'react-redux';
 import { register } from '../actions/auth';
 import { clearErrors } from '../actions/error';
@@ -21,13 +30,13 @@ class Signup extends Component {
 		clearErrors: PropTypes.func.isRequired
 	};
 
-	onChange = (e) => {
+	onChange = e => {
 		this.setState({
 			[e.target.name]: e.target.value
 		});
 	};
 
-	onSubmit = (e) => {
+	onSubmit = e => {
 		e.preventDefault();
 		const { name, surname, email, password } = this.state;
 
@@ -62,18 +71,20 @@ class Signup extends Component {
 	render() {
 		return (
 			<div>
-				{this.state.msg ? <Alert color="danger">{this.state.msg}</Alert> : null}
+				{this.state.msg ? (
+					<Alert color='danger'>{this.state.msg}</Alert>
+				) : null}
 				<h1>Registrovat se</h1>
 				<Form onSubmit={this.onSubmit} autoComplete={'off'}>
 					<Row form>
 						<Col md={6}>
 							<FormGroup>
-								<Label for="name">Jméno</Label>
+								<Label for='name'>Jméno</Label>
 								<Input
-									type="text"
-									name="name"
-									id="name"
-									placeholder="Jméno"
+									type='text'
+									name='name'
+									id='name'
+									placeholder='Jméno'
 									value={this.state.name}
 									onChange={this.onChange}
 								/>
@@ -81,12 +92,12 @@ class Signup extends Component {
 						</Col>
 						<Col md={6}>
 							<FormGroup>
-								<Label for="surname">Příjmení</Label>
+								<Label for='surname'>Příjmení</Label>
 								<Input
-									type="text"
-									name="surname"
-									id="surname"
-									placeholder="Příjmení"
+									type='text'
+									name='surname'
+									id='surname'
+									placeholder='Příjmení'
 									value={this.state.surname}
 									onChange={this.onChange}
 								/>
@@ -94,28 +105,38 @@ class Signup extends Component {
 						</Col>
 					</Row>
 					<FormGroup>
-						<Label for="email">Email</Label>
+						<Label for='email'>Email</Label>
 						<Input
-							type="email"
-							name="email"
-							id="email"
-							placeholder="Email"
+							type='email'
+							name='email'
+							id='email'
+							placeholder='Email'
 							value={this.state.email}
 							onChange={this.onChange}
 						/>
 					</FormGroup>
 					<FormGroup>
-						<Label for="password">Heslo</Label>
+						<Label for='password'>Heslo</Label>
 						<Input
-							type="password"
-							name="password"
-							id="password"
-							placeholder="Heslo"
+							type='password'
+							name='password'
+							id='password'
+							placeholder='Heslo'
 							value={this.state.password}
 							onChange={this.onChange}
 						/>
 					</FormGroup>
-					<Button color="dark" style={{ marginTop: '2rem' }} block>
+					<Button
+						color='dark'
+						style={{ marginTop: '2rem' }}
+						disabled={
+							!this.state.name ||
+							!this.state.surname ||
+							!this.state.email ||
+							!this.state.password
+						}
+						block
+					>
 						Registrovat se
 					</Button>
 				</Form>
@@ -124,9 +145,12 @@ class Signup extends Component {
 	}
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
 	isAuthenticated: state.auth.isAuthenticated,
 	error: state.error
 });
 
-export default connect(mapStateToProps, { register, clearErrors })(Signup);
+export default connect(
+	mapStateToProps,
+	{ register, clearErrors }
+)(Signup);
