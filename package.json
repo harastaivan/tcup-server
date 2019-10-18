@@ -1,37 +1,37 @@
 {
-	"name": "tcup",
-	"version": "1.0.0",
-	"description": "Tcup soaring competition website",
-	"main": "src/server.js",
-	"type": "module",
-	"scripts": {
-		"start": "node -r esm src/server.js",
-		"server": "nodemon -r esm --ignore client/ src/server.js ",
-		"client": "npm start --prefix client",
-		"dev": "concurrently \"npm run server\" \"npm run client\""
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/harastaivan/tcup.git"
-	},
-	"author": "Ivan Harasta",
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/harastaivan/tcup/issues"
-	},
-	"homepage": "https://github.com/harastaivan/tcup#readme",
-	"dependencies": {
-		"bcryptjs": "^2.4.3",
-		"concurrently": "^4.1.1",
-		"dotenv": "^8.0.0",
-		"esm": "^3.2.25",
-		"express": "^4.17.1",
-		"jsonwebtoken": "^8.5.1",
-		"mongoose": "^5.6.6",
-		"mongoose-timestamp": "^0.6.0",
-		"morgan": "^1.9.1"
-	},
-	"devDependencies": {
-		"nodemon": "^1.19.1"
-	}
+    "name": "tcup",
+    "version": "1.0.0",
+    "description": "Tcup soaring competition website",
+    "main": "src/server.js",
+    "type": "module",
+    "scripts": {
+        "start": "node -r esm src/server.js",
+        "server": "nodemon -r esm --ignore client/ src/server.js ",
+        "client": "npm start --prefix client",
+        "dev": "concurrently \"npm run server\" \"npm run client\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/harastaivan/tcup.git"
+    },
+    "author": "Ivan Harasta",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/harastaivan/tcup/issues"
+    },
+    "homepage": "https://github.com/harastaivan/tcup#readme",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "concurrently": "^4.1.1",
+        "dotenv": "^8.0.0",
+        "esm": "^3.2.25",
+        "express": "^4.17.1",
+        "jsonwebtoken": "^8.5.1",
+        "mongoose": "^5.6.6",
+        "mongoose-timestamp": "^0.6.0",
+        "morgan": "^1.9.1"
+    },
+    "devDependencies": {
+        "nodemon": "^1.19.1"
+    }
 }
