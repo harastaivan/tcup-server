@@ -23,7 +23,7 @@ jobs: # a collection of steps
                   name: test
                   command: yarn test
             - run:
-                  name: make-code-coverage-directory
+                  name: make-code-coverage-dir
                   command: mkdir .nyc_output
             - run: # run coverage report
                   name: code-coverage
