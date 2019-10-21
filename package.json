@@ -1,25 +1,23 @@
 {
-    "name": "tcup",
+    "name": "tcup-server",
     "version": "1.0.0",
-    "description": "Tcup soaring competition website",
+    "description": "Server for tcup soaring competition website",
     "main": "src/server.js",
     "type": "module",
     "scripts": {
         "start": "node -r esm src/server.js",
-        "server": "nodemon -r esm --ignore client/ src/server.js ",
-        "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
+        "dev": "nodemon -r esm src/server.js"
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/harastaivan/tcup.git"
+        "url": "git+https://github.com/harastaivan/tcup-server.git"
     },
     "author": "Ivan Harasta",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/harastaivan/tcup/issues"
+        "url": "https://github.com/harastaivan/tcup-server/issues"
     },
-    "homepage": "https://github.com/harastaivan/tcup#readme",
+    "homepage": "https://github.com/harastaivan/tcup-server#readme",
     "dependencies": {
         "bcryptjs": "^2.4.3",
         "concurrently": "^4.1.1",
