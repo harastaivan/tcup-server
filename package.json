@@ -6,7 +6,8 @@
     "type": "module",
     "scripts": {
         "start": "node -r esm src/server.js",
-        "dev": "nodemon -r esm src/server.js"
+        "dev": "nodemon -r esm src/server.js",
+        "test": "echo \"No tests specified\""
     },
     "repository": {
         "type": "git",
