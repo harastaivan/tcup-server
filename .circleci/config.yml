@@ -3,4 +3,5 @@ jobs:
     build:
         docker:
             - image: node
-        run: echo "A first hello"
+        steps:
+            - run: echo "A first hello"
