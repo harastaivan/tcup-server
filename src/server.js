@@ -13,18 +13,20 @@ import region from './routes/api/region';
 import competitionClass from './routes/api/competitionClass';
 import gliderType from './routes/api/gliderType';
 import accomodationType from './routes/api/accomodationType';
+import cors from 'cors';
 
 const app = express();
 
 app.use(morgan('combined'));
 app.use(express.json());
+app.use(cors());
 
 const db = config.MONGO_URI;
 
 mongoose
-	.connect(db, { useNewUrlParser: true, useCreateIndex: true })
-	.then((m) => console.log(`MongoDB connected to ${m.connections[0].db.s.databaseName}`))
-	.catch((err) => console.log(err));
+    .connect(db, { useNewUrlParser: true, useCreateIndex: true })
+    .then(m => console.log(`MongoDB connected to ${m.connections[0].db.s.databaseName}`))
+    .catch(err => console.log(err));
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);
