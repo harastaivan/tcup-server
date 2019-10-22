@@ -26,6 +26,7 @@ jobs: # a collection of steps
                   environment:
                       - NODE_ENV: test
                       - MONGO_URI_TEST: mongodb://localhost:27017/tcup_test
+                      - JWT_SECRET: myjwtsecretforencryption
 
             - run:
                   name: make-code-coverage-dir
