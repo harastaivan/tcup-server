@@ -4,7 +4,7 @@ jobs: # a collection of steps
         working_directory: ~/tcup-server # directory where steps will run
         docker: # run the steps with Docker
             - image: circleci/node # ...with this image as the primary container; this is where all `steps` will run
-            - image: cirlceci/mongo
+            - image: circleci/mongo
         steps: # a collection of executable commands
             - checkout # special step to check out source code to working directory
             - run:
