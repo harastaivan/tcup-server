@@ -7,7 +7,7 @@
     "scripts": {
         "start": "node -r esm src/server.js",
         "dev": "nodemon -r esm src/server.js",
-        "test": "echo \"No tests specified\"",
+        "test": "NODE_ENV=test mocha --timeout 10000 -r esm",
         "coverage": "nyc npm run test"
     },
     "repository": {
@@ -33,6 +33,9 @@
         "morgan": "^1.9.1"
     },
     "devDependencies": {
+        "chai": "^4.2.0",
+        "chai-http": "^4.3.0",
+        "mocha": "^6.2.2",
         "nodemon": "^1.19.1",
         "nyc": "^14.1.1"
     }
