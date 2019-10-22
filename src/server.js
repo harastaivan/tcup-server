@@ -24,9 +24,11 @@ app.use(cors());
 const db = config.MONGO_URI;
 
 mongoose
-    .connect(db, { useNewUrlParser: true, useCreateIndex: true })
-    .then(m => console.log(`MongoDB connected to ${m.connections[0].db.s.databaseName}`))
-    .catch(err => console.log(err));
+    .connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
+    .then(m => {
+        console.log(`MongoDB connected to ${m.connections[0].db.s.namespace.db}`);
+    })
+    .catch(err => console.error(err));
 
 app.use('/api/users', users);
 app.use('/api/auth', auth);
@@ -40,3 +42,5 @@ app.use('/api/accomodationtypes', accomodationType);
 const port = config.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
+export default app;
