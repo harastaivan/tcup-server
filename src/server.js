@@ -34,7 +34,7 @@ app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/news', news);
 app.use('/api/registration', registration);
-app.use('/api/region', region);
+app.use('/api/regions', region);
 app.use('/api/classes', competitionClass);
 app.use('/api/glidertypes', gliderType);
 app.use('/api/accomodationtypes', accomodationType);
