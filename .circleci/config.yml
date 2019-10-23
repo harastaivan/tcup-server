@@ -33,4 +33,4 @@ jobs: # a collection of steps
                   command: mkdir .nyc_output
             - run: # run coverage report
                   name: code-coverage
-                  command: './node_modules/.bin/nyc report --reporter=text-summary --reporter=text'
+                  command: 'yarn coverage'
