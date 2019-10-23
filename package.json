@@ -7,7 +7,7 @@
     "scripts": {
         "start": "node -r esm src/server.js",
         "dev": "nodemon -r esm src/server.js",
-        "test": "NODE_ENV=test mocha --timeout 10000 -r esm",
+        "test": "NODE_ENV=test mocha --timeout 10000 -r esm --exit",
         "coverage": "nyc npm run test"
     },
     "repository": {
