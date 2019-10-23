@@ -1,10 +1,9 @@
 import dotenv from 'dotenv';
-import { bigIntLiteral } from '@babel/types';
 
 dotenv.config();
 
-const mongoUri = () => {
-    switch (process.env.NODE_ENV) {
+const mongoUri = (environment = process.env.NODE_ENV) => {
+    switch (environment) {
         case 'production':
             return process.env.MONGO_URI_PROD;
         case 'test':
