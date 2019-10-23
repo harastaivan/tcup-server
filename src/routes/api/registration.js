@@ -21,7 +21,6 @@ const getUserById = async id => {
 // @access  Private
 router.post('/', auth, async (req, res) => {
     const {
-        isOnStartingList,
         birthDate,
         phone,
         aeroclub,
@@ -75,6 +74,18 @@ router.get('/', auth, async (req, res) => {
         return res.status(404).json({ msg: 'Registration does not exist for this user' });
     }
     return res.json(reg);
+});
+
+// @route   GET api/registration/form
+// @desc    Get data for registration form
+// @access  Public
+router.get('/form', async (req, res) => {
+    const accomodationTypes = await AccomodationType.find({}).sort('name');
+    const competitionClasses = await CompetitionClass.find({}).sort('name');
+    const gliderTypes = await GliderType.find({}).sort('name');
+    const regions = await Region.find({}).sort('name');
+
+    return res.json({ accomodationTypes, competitionClasses, gliderTypes, regions });
 });
 
 // @route   PUT api/registration

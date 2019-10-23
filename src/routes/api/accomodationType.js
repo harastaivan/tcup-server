@@ -9,28 +9,28 @@ const router = express.Router();
 // @desc    Create a accomodation type
 // @access  Admin
 router.post('/', admin, async (req, res) => {
-	const { name } = req.body;
-	// Simple validation
-	if (!name) {
-		return res.status(400).json({ msg: 'Please enter all fields' });
-	}
+    const { name } = req.body;
+    // Simple validation
+    if (!name) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
+    }
 
-	const newAccomodationType = new AccomodationType({
-		name
-	});
+    const newAccomodationType = new AccomodationType({
+        name
+    });
 
-	const savedAccomodationType = await newAccomodationType.save();
+    const savedAccomodationType = await newAccomodationType.save();
 
-	res.status(201).json(savedAccomodationType);
+    res.status(201).json(savedAccomodationType);
 });
 
 // @route   GET api/accomodationtypes
 // @desc    Get all accomodation types
 // @access  Public
 router.get('/', async (req, res) => {
-	const AccomodationTypes = await AccomodationType.find({}).sort('name');
+    const accomodationTypes = await AccomodationType.find({}).sort('name');
 
-	res.json(AccomodationTypes);
+    res.json(accomodationTypes);
 });
 
 export default router;
