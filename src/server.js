@@ -26,7 +26,7 @@ const db = config.MONGO_URI;
 mongoose
     .connect(db, { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true })
     .then(m => {
-        console.log(`MongoDB connected to ${m.connections[0].db.s.namespace.db}`);
+        console.log(`MongoDB connected`);
     })
     .catch(err => console.error(err));
 
