@@ -5,6 +5,7 @@ import mongoose from 'mongoose';
 const morgan = require('morgan');
 
 import config from '../config';
+import version from './routes/api/version';
 import users from './routes/api/users';
 import auth from './routes/api/auth';
 import news from './routes/api/news';
@@ -30,6 +31,7 @@ mongoose
     })
     .catch(err => console.error(err));
 
+app.use('/', version);
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/news', news);
