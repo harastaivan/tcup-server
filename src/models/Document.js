@@ -14,7 +14,7 @@ const DocumentSchema = new Schema({
         type: String,
         required: true
     },
-    extension: {
+    mimetype: {
         type: String,
         required: true
     },
