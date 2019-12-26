@@ -34,8 +34,6 @@ mongoose
 
 app.use('/', version);
 
-app.use('/documents', express.static('./documents'));
-
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/news', news);
