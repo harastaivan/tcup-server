@@ -49,4 +49,20 @@ router.get('/', async (req, res) => {
     res.json(documents);
 });
 
+// @route   DELETE api/documents/:id
+// @desc    Delete a document
+// @access  Admin
+router.delete('/:id', admin, async (req, res) => {
+    try {
+        const document = await Document.findById(req.params.id);
+        if (!document) {
+            return res.status(404).json({ success: false });
+        }
+        await Document.deleteOne(document);
+        return res.json({ success: true });
+    } catch (err) {
+        res.status(404).json({ success: false });
+    }
+});
+
 export default router;
