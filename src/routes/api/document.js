@@ -1,25 +1,10 @@
 import express from 'express';
-import multer from 'multer';
 
 import admin from '../../middleware/admin';
 import Document from '../../models/Document';
+import upload from '../../services/upload';
 
 const router = express.Router();
-
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, './documents/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname);
-    }
-});
-
-const limits = {
-    fileSize: 1024 * 1024 * 20
-};
-
-const upload = multer({ storage, limits });
 
 // @route   POST api/documents
 // @desc    Create a document
@@ -27,17 +12,33 @@ const upload = multer({ storage, limits });
 router.post('/', admin, upload.single('document'), async (req, res) => {
     console.log(req.file);
 
-    const newDocument = new Document({
-        name: req.file.filename,
-        originalName: req.file.originalname,
-        path: req.file.path,
-        mimetype: req.file.mimetype,
-        size: req.file.size
-    });
+    const document = await Document.findOne({ name: req.file.key });
 
-    const savedDocument = await newDocument.save();
+    if (document) {
+        console.log('update document');
+        document.originalName = req.file.originalname;
+        document.path = req.file.location;
+        document.mimetype = req.file.mimetype;
+        document.size = req.file.size;
+        document.updatedAt = new Date();
 
-    res.status(201).json(savedDocument);
+        const savedDocument = await document.save();
+
+        res.status(200).json(savedDocument);
+    } else {
+        console.log('create document');
+        const newDocument = new Document({
+            name: req.file.key,
+            originalName: req.file.originalname,
+            path: req.file.location,
+            mimetype: req.file.mimetype,
+            size: req.file.size
+        });
+
+        const savedDocument = await newDocument.save();
+
+        res.status(201).json(savedDocument);
+    }
 });
 
 // @route   GET api/documents

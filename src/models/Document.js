@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import timestamp from 'mongoose-timestamp';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const Schema = mongoose.Schema;
 
@@ -8,7 +9,7 @@ const DocumentSchema = new Schema({
     name: {
         type: String,
         required: true,
-        trim: true
+        unique: true
     },
     path: {
         type: String,
@@ -25,6 +26,7 @@ const DocumentSchema = new Schema({
 });
 
 DocumentSchema.plugin(timestamp);
+DocumentSchema.plugin(uniqueValidator);
 
 const Document = mongoose.model('document', DocumentSchema);
 
