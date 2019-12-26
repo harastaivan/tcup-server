@@ -18,5 +18,7 @@ export default {
     PORT: process.env.PORT || 3000,
     URL: process.env.BASE_URL || 'http://localhost:3000',
     MONGO_URI: mongoUri(),
-    JWT_SECRET: process.env.JWT_SECRET
+    JWT_SECRET: process.env.JWT_SECRET,
+    AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
+    AWS_SECRET: process.env.AWS_SECRET
 };
