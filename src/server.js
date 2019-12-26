@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors';
 // import morgan from 'morgan'; temporary fix https://github.com/expressjs/morgan/issues/190
 const morgan = require('morgan');
 
@@ -14,7 +15,7 @@ import region from './routes/api/region';
 import competitionClass from './routes/api/competitionClass';
 import gliderType from './routes/api/gliderType';
 import accomodationType from './routes/api/accomodationType';
-import cors from 'cors';
+import document from './routes/api/document';
 
 const app = express();
 
@@ -32,6 +33,9 @@ mongoose
     .catch(err => console.error(err));
 
 app.use('/', version);
+
+app.use('/documents', express.static('./documents'));
+
 app.use('/api/users', users);
 app.use('/api/auth', auth);
 app.use('/api/news', news);
@@ -40,6 +44,7 @@ app.use('/api/regions', region);
 app.use('/api/classes', competitionClass);
 app.use('/api/glidertypes', gliderType);
 app.use('/api/accomodationtypes', accomodationType);
+app.use('/api/documents', document);
 
 const port = config.PORT || 5000;
 
