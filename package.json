@@ -3,7 +3,6 @@
     "version": "1.0.2",
     "description": "Server for tcup soaring competition website",
     "main": "src/server.js",
-    "type": "module",
     "scripts": {
         "start": "node -r esm src/server.js",
         "dev": "nodemon -r esm src/server.js",
