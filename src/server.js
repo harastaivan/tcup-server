@@ -16,6 +16,7 @@ import competitionClass from './routes/api/competitionClass';
 import gliderType from './routes/api/gliderType';
 import accomodationType from './routes/api/accomodationType';
 import document from './routes/api/document';
+import startingList from './routes/api/startingList';
 
 const app = express();
 
@@ -43,6 +44,7 @@ app.use('/api/classes', competitionClass);
 app.use('/api/glidertypes', gliderType);
 app.use('/api/accomodationtypes', accomodationType);
 app.use('/api/documents', document);
+app.use('/api/starting-list', startingList);
 
 const port = config.PORT || 5000;
 
