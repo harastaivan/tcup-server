@@ -7,6 +7,8 @@ import server from '../src/server';
 
 chai.use(chaiHttp);
 
+const should = chai.should();
+
 //Our parent block
 describe('User', () => {
     beforeEach((done) => {
