@@ -1,11 +1,9 @@
-import mongoose from 'mongoose';
 import GliderType from '../src/models/GliderType';
 
 //Require the dev-dependencies
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../src/server';
-const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -13,7 +11,7 @@ chai.use(chaiHttp);
 describe('GliderType', () => {
     beforeEach(done => {
         //Before each test we empty the database
-        GliderType.deleteMany({}, err => {
+        GliderType.deleteMany({}, () => {
             done();
         });
     });

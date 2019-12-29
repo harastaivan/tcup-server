@@ -1,11 +1,9 @@
-import mongoose from 'mongoose';
 import News from '../src/models/News';
 
 //Require the dev-dependencies
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../src/server';
-const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -13,7 +11,7 @@ chai.use(chaiHttp);
 describe('News', () => {
     beforeEach(done => {
         //Before each test we empty the database
-        News.deleteMany({}, err => {
+        News.deleteMany({}, () => {
             done();
         });
     });

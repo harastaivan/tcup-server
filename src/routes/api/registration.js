@@ -21,7 +21,7 @@ const getRegistrationByUser = async id => {
 // @access  Private
 router.post('/', auth, async (req, res) => {
     try {
-        const { birthDate, phone, aeroclub, region, glider, competitionClass, logger, accomodation, meals, note } = req.body;
+        const { phone, aeroclub, region, glider, competitionClass, logger, accomodation } = req.body;
 
         if (
             !phone ||
@@ -50,7 +50,7 @@ router.post('/', auth, async (req, res) => {
             ...req.body
         });
 
-        const savedReg = await newReg.save();
+        await newReg.save();
 
         return res.status(201).json(await getRegistrationByUser(req.user.id));
     } catch (e) {
