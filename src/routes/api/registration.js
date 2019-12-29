@@ -3,6 +3,7 @@ import express from 'express';
 import Registration from '../../models/Registration';
 import User from '../../models/User';
 import auth from '../../middleware/auth';
+import admin from '../../middleware/admin';
 import AccomodationType from '../../models/AccomodationType';
 import Region from '../../models/Region';
 import GliderType from '../../models/GliderType';
@@ -144,6 +145,28 @@ router.put('/', auth, async (req, res) => {
         await oldRegistration.save();
 
         return res.status(200).json(await getRegistrationByUser(req.user.id));
+    } catch (e) {
+        return res.status(400).json({ error: e });
+    }
+});
+
+// @route   PUT api/registration/pay/registrationId
+// @desc    Mark registration paid or not
+// @access  Admin
+router.put('/pay/:id', admin, async (req, res) => {
+    try {
+        const registration = await Registration.findById(req.params.id);
+        if (!registration) {
+            return res.status(404).json({ msg: 'Registration does not exist for this user' });
+        }
+
+        const { paid } = req.body;
+        if (paid !== undefined) {
+            registration.paid = paid;
+            registration.save();
+        }
+
+        return res.status(200).json(registration);
     } catch (e) {
         return res.status(400).json({ error: e });
     }
