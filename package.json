@@ -8,7 +8,11 @@
         "dev": "nodemon -r esm src/server.js",
         "test": "NODE_ENV=test mocha --timeout 10000 -r esm --exit",
         "coverage": "nyc npm run test",
-        "lint": "eslint --ignore-path .gitignore ."
+        "lint": "eslint --ignore-path .gitignore .",
+        "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
+        "format": "npm run prettier -- --write",
+        "format:check": "npm run prettier -- --list-different",
+        "validate": "npm run format:check && npm run lint"
     },
     "repository": {
         "type": "git",
@@ -42,6 +46,7 @@
         "eslint": "^6.8.0",
         "mocha": "^6.2.2",
         "nodemon": "^1.19.1",
-        "nyc": "^14.1.1"
+        "nyc": "^14.1.1",
+        "prettier": "^1.19.1"
     }
 }
