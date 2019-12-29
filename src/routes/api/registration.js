@@ -10,7 +10,7 @@ import CompetitionClass from '../../models/CompetitionClass';
 
 const router = express.Router();
 
-const getRegistrationByUser = async id => {
+const getRegistrationByUser = async (id) => {
     return await Registration.findOne({ user: id })
         .populate('user', '-password')
         .populate(['region', 'competitionClass', 'glider.gliderType', 'accomodation.accomodationType']);
@@ -98,7 +98,18 @@ router.put('/', auth, async (req, res) => {
         if (!oldRegistration) {
             return res.status(404).json({ msg: 'Registration does not exist for this user' });
         }
-        const { birthDate, phone, aeroclub, region, glider, competitionClass, logger, accomodation, meals, note } = req.body;
+        const {
+            birthDate,
+            phone,
+            aeroclub,
+            region,
+            glider,
+            competitionClass,
+            logger,
+            accomodation,
+            meals,
+            note
+        } = req.body;
 
         if (
             !phone ||

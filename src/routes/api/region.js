@@ -9,28 +9,28 @@ const router = express.Router();
 // @desc    Create a region
 // @access  Admin
 router.post('/', admin, async (req, res) => {
-	const { name } = req.body;
-	// Simple validation
-	if (!name) {
-		return res.status(400).json({ msg: 'Please enter all fields' });
-	}
+    const { name } = req.body;
+    // Simple validation
+    if (!name) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
+    }
 
-	const newRegion = new Region({
-		name
-	});
+    const newRegion = new Region({
+        name
+    });
 
-	const savedRegion = await newRegion.save();
+    const savedRegion = await newRegion.save();
 
-	res.status(201).json(savedRegion);
+    res.status(201).json(savedRegion);
 });
 
 // @route   GET api/regions
 // @desc    Get all regions
 // @access  Public
 router.get('/', async (req, res) => {
-	const regions = await Region.find({}).sort('name');
+    const regions = await Region.find({}).sort('name');
 
-	res.json(regions);
+    res.json(regions);
 });
 
 export default router;

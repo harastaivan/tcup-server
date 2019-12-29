@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //Our parent block
 describe('Region', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         Region.deleteMany({}, () => {
             done();
@@ -19,7 +19,7 @@ describe('Region', () => {
      * Test the GET route
      */
     describe('GET /api/regions', () => {
-        it('it should get all the regions', done => {
+        it('it should get all the regions', (done) => {
             chai.request(server)
                 .get('/api/regions')
                 .end((err, res) => {

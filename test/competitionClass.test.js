@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //Our parent block
 describe('CompetitionClass', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         CompetitionClass.deleteMany({}, () => {
             done();
@@ -19,7 +19,7 @@ describe('CompetitionClass', () => {
      * Test the GET route
      */
     describe('GET /api/classes', () => {
-        it('it should get all the competition classes', done => {
+        it('it should get all the competition classes', (done) => {
             chai.request(server)
                 .get('/api/classes')
                 .end((err, res) => {

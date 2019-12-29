@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //Our parent block
 describe('News', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         News.deleteMany({}, () => {
             done();
@@ -19,7 +19,7 @@ describe('News', () => {
      * Test the GET route
      */
     describe('GET /api/news', () => {
-        it('it should get all the news', done => {
+        it('it should get all the news', (done) => {
             chai.request(server)
                 .get('/api/news')
                 .end((err, res) => {

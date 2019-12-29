@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
         .populate('user', '-password')
         .populate(['glider.gliderType']);
 
-    const simplifiedRegistrations = registrations.map(registration => {
+    const simplifiedRegistrations = registrations.map((registration) => {
         return {
             fullName: `${registration.user.name} ${registration.user.surname}`,
             birthDate: registration.birthDate,
@@ -27,12 +27,14 @@ router.get('/', async (req, res) => {
 
     const classes = await CompetitionClass.find({});
 
-    const startingList = classes.map(one => {
+    const startingList = classes.map((one) => {
         return {
             _id: one._id,
             name: one.name,
             // https://stackoverflow.com/questions/11637353/comparing-mongoose-id-and-strings
-            registrations: simplifiedRegistrations.filter(registration => registration.competitionClass._id.equals(one._id))
+            registrations: simplifiedRegistrations.filter((registration) =>
+                registration.competitionClass._id.equals(one._id)
+            )
         };
     });
 

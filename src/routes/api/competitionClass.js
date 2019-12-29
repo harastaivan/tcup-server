@@ -9,28 +9,28 @@ const router = express.Router();
 // @desc    Create a region
 // @access  Admin
 router.post('/', admin, async (req, res) => {
-	const { name } = req.body;
-	// Simple validation
-	if (!name) {
-		return res.status(400).json({ msg: 'Please enter all fields' });
-	}
+    const { name } = req.body;
+    // Simple validation
+    if (!name) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
+    }
 
-	const newCompetitionClass = new CompetitionClass({
-		name
-	});
+    const newCompetitionClass = new CompetitionClass({
+        name
+    });
 
-	const savedCompetitionClass = await newCompetitionClass.save();
+    const savedCompetitionClass = await newCompetitionClass.save();
 
-	res.status(201).json(savedCompetitionClass);
+    res.status(201).json(savedCompetitionClass);
 });
 
 // @route   GET api/classes
 // @desc    Get all classes
 // @access  Public
 router.get('/', async (req, res) => {
-	const competitionClasses = await CompetitionClass.find({}).sort('name');
+    const competitionClasses = await CompetitionClass.find({}).sort('name');
 
-	res.json(competitionClasses);
+    res.json(competitionClasses);
 });
 
 export default router;
