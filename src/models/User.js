@@ -5,31 +5,31 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UserSchema = new Schema({
-	name: {
-		type: String,
-		required: true,
-		trim: true
-	},
-	surname: {
-		type: String,
-		required: true,
-		trim: true
-	},
-	email: {
-		type: String,
-		required: true,
-		unique: true,
-		trim: true
-	},
-	password: {
-		type: String,
-		required: true
-	},
-	admin: {
-		type: Boolean,
-		required: true,
-		default: false
-	}
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    surname: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        trim: true
+    },
+    password: {
+        type: String,
+        required: true
+    },
+    admin: {
+        type: Boolean,
+        required: true,
+        default: false
+    }
 });
 
 UserSchema.plugin(timestamp);

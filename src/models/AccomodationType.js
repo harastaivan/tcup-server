@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const AccomodationTypeSchema = new Schema({
-	name: {
-		type: String,
-		required: true,
-		trim: true
-	}
+    name: {
+        type: String,
+        required: true,
+        trim: true
+    }
 });
 
 AccomodationTypeSchema.plugin(timestamp);

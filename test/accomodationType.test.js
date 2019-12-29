@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //Our parent block
 describe('AccomodationType', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         AccomodationType.deleteMany({}, () => {
             done();
@@ -19,7 +19,7 @@ describe('AccomodationType', () => {
      * Test the GET route
      */
     describe('GET /api/accomodationtypes', () => {
-        it('it should get all the accomodation types', done => {
+        it('it should get all the accomodation types', (done) => {
             chai.request(server)
                 .get('/api/accomodationtypes')
                 .end((err, res) => {

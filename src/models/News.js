@@ -5,19 +5,19 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const NewsSchema = new Schema({
-	title: {
-		type: String,
-		required: true,
-		trim: true
-	},
-	author: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'user',
-		required: true
-	},
-	body: {
-		type: String
-	}
+    title: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    author: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'user',
+        required: true
+    },
+    body: {
+        type: String
+    }
 });
 
 NewsSchema.plugin(timestamp);

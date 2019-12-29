@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //Our parent block
 describe('User', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         User.deleteMany({}, () => {
             done();
@@ -25,7 +25,7 @@ describe('User', () => {
             email: 'test@example.com',
             password: '123456789'
         };
-        it('it should create a user', done => {
+        it('it should create a user', (done) => {
             chai.request(server)
                 .post('/api/users')
                 .send(user)

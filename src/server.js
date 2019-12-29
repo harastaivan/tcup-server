@@ -31,7 +31,7 @@ mongoose
     .then(() => {
         console.log(`MongoDB connected`);
     })
-    .catch(err => console.error(err));
+    .catch((err) => console.error(err));
 
 app.use('/', version);
 

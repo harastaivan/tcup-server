@@ -12,25 +12,25 @@ chai.use(chaiHttp);
 
 //Our parent block
 describe('Form data', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         AccomodationType.deleteMany({}, () => {
             done();
         });
     });
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         CompetitionClass.deleteMany({}, () => {
             done();
         });
     });
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         GliderType.deleteMany({}, () => {
             done();
         });
     });
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         Region.deleteMany({}, () => {
             done();
@@ -40,7 +40,7 @@ describe('Form data', () => {
      * Test the GET route
      */
     describe('GET /api/registration/form', () => {
-        it('it should get all form data for registration form', done => {
+        it('it should get all form data for registration form', (done) => {
             chai.request(server)
                 .get('/api/registration/form')
                 .end((err, res) => {

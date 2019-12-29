@@ -9,7 +9,7 @@ chai.use(chaiHttp);
 
 //Our parent block
 describe('GliderType', () => {
-    beforeEach(done => {
+    beforeEach((done) => {
         //Before each test we empty the database
         GliderType.deleteMany({}, () => {
             done();
@@ -19,7 +19,7 @@ describe('GliderType', () => {
      * Test the GET route
      */
     describe('GET /api/glidertypes', () => {
-        it('it should get all the glider types', done => {
+        it('it should get all the glider types', (done) => {
             chai.request(server)
                 .get('/api/glidertypes')
                 .end((err, res) => {
