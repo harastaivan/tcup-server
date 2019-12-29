@@ -15,12 +15,14 @@ router.get('/', async (req, res) => {
 
     const simplifiedRegistrations = registrations.map((registration) => {
         return {
+            _id: registration._id,
             fullName: `${registration.user.name} ${registration.user.surname}`,
             birthDate: registration.birthDate,
             aeroclub: registration.aeroclub,
             startNumber: registration.glider.startNumber,
             gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.index})`,
             registrationNumber: registration.glider.registrationNumber,
+            paid: registration.paid,
             competitionClass: registration.competitionClass
         };
     });
