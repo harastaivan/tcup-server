@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import AccomodationType from '../src/models/AccomodationType';
 import CompetitionClass from '../src/models/CompetitionClass';
 import GliderType from '../src/models/GliderType';
@@ -8,7 +7,6 @@ import Region from '../src/models/Region';
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../src/server';
-const should = chai.should();
 
 chai.use(chaiHttp);
 
@@ -16,25 +14,25 @@ chai.use(chaiHttp);
 describe('Form data', () => {
     beforeEach(done => {
         //Before each test we empty the database
-        AccomodationType.deleteMany({}, err => {
+        AccomodationType.deleteMany({}, () => {
             done();
         });
     });
     beforeEach(done => {
         //Before each test we empty the database
-        CompetitionClass.deleteMany({}, err => {
+        CompetitionClass.deleteMany({}, () => {
             done();
         });
     });
     beforeEach(done => {
         //Before each test we empty the database
-        GliderType.deleteMany({}, err => {
+        GliderType.deleteMany({}, () => {
             done();
         });
     });
     beforeEach(done => {
         //Before each test we empty the database
-        Region.deleteMany({}, err => {
+        Region.deleteMany({}, () => {
             done();
         });
     });
