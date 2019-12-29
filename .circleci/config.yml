@@ -20,6 +20,12 @@ jobs: # a collection of steps
                   key: dependency-cache-{{ checksum "yarn.lock" }}
                   paths:
                       - ./node_modules
+            - run:
+                  name: format-check
+                  command: yarn format:check
+            - run:
+                  name: lint
+                  command: yarn lint
             - run: # run tests
                   name: test
                   command: yarn test
