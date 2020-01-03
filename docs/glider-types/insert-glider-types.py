@@ -30,11 +30,12 @@ def insert_glider_types(glider_types):
     database = client[DATABASE]
     collection = database['glidertypes']
     result = collection.insert_many(glider_types)
-    return result.acknowledged
+    return result.acknowledged, len(result.inserted_ids)
 
 
 
 glider_types = load_glider_indexes()
-print(glider_types)
-succesful = insert_glider_types(glider_types)
-print('Insert successful' if succesful else 'Insert not successful')
+# print(glider_types)
+successful, count = insert_glider_types(glider_types)
+print('Insert successful' if successful else 'Insert not successful')
+print(f'{count} glider types inserted')
