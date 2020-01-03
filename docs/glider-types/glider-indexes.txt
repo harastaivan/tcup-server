@@ -1,6 +1,6 @@
 127    Eta (+2); NimEta (+2); EB 29 (+2)
 126    ASH 30 (+2); EB 28 (+2)
-125    Antares 23m (+2), Quintus (+2)
+125    Antares 23m (+2); Quintus (+2)
 124    Nimbus 4 / 4M / 4T; ASW 22BL / BLE; JS1-C 21m (+2)
 123    ASH 25 / E / M ≥ 26m; ASH 25 EB 28; ASW 22 B / BE; Nimbus 4D / M / T; ASH 31 / Mi 21m (+2);
 122    Antares 20m (+2); LAK 20T 23m (+2); ASH 25 / E / M; LAK 20T 26m; Nimbus 3 / M / T 25,5m
@@ -32,7 +32,7 @@
 100    Cobra 17m; Std. Libelle 17m
 116    Diana 2 (+2); ASG 29 15m (+2); JS 3 15m
 114    Ventus 2 / ax; Ventus 2 cM / cT 15m; ASW 27 15m
-113    DG-800/808 15m, LAK 17 15m, LS 10 15m
+113    DG-800/808 15m; LAK 17 15m; LS 10 15m
 112    SZD 56 Diana
 111    LS 6
 110    ASW 20; DG-600 / M; Glasflügel 304 / CZ; Ventus 1; Ventus b / bT / cM 15m
@@ -51,7 +51,7 @@
 103    Falkon; LS 3 Std.; SB 12; miniLAK-FES (+2)
 102    AK 5; Cirrus B 18,34m; DG-300 ohne EZ; Pegase.
 101    Hornet WL; SZD 59 WL; 
-100    ASW 19; Cirrus / VTC 17,74m; D 37; Delphin I; DG 100; Elfe 17m; Horn WL;    LS 1 e / f; Phöbus B 3 / C; SB 7; Std. Astir; Std. Cirrus 16m; Std. Cirrus WL; Std. Jantar; SZD 59
+100    ASW 19; Cirrus / VTC 17,74m; D 37; Delphin I; DG 100; Elfe 17m; Horn WL; LS 1 e / f; Phöbus B 3 / C; SB 7; Std. Astir; Std. Cirrus 16m; Std. Cirrus WL; Std. Jantar; SZD 59
  99    Std. Cirrus
  98    Apis 2 / M 15m / MCs; ASW 19 Club; Bee; Cobra 15; DG-100 Club; LS 1-0 / c / d; Pajno V1/2; Std. Cirrus Top; Std. Libelle
  97    ASW 15; D 38
@@ -67,9 +67,9 @@
  85    Ka 6 E; Ka 10; PW 5
  84    Alpin / T; H 30; Lambada UFM-15; Silent AE-1 / pure; Silent Club / pure 
  83    SF 26
- 82    ASK 14; Ka 6; Lambada UFM-13; SZD 22 Mucha Std. ; Sagitta; SFS 31, LOM 57/1
+ 82    ASK 14; Ka 6; Lambada UFM-13; SZD 22 Mucha Std. ; Sagitta; SFS 31; LOM 57/1
  80    Duo Banjo; Mucha; LCF II; Weihe 50
- 78    L-Spatz, Lunak LF 107
+ 78    L-Spatz; Lunak LF 107
  77    Swift S-1 
  76    Banjo; Ka 8; Minimoa
  74    AV 36; RF 4; Spatz 13m
@@ -86,10 +86,10 @@
 108    Calif A 21 / -SJ; Janus C / CM / CT mit EZ
 106    B 12; DG-1000 18m mit EZ; Janus C / CM / CT ohne EZ
 104    DG-500 / M 20m; DG-505 / M 20m; DG-505 M Orion 20m; DG-1001 18 m ohne EZ
-102    Janus 18,2m, SZD-54-2 Perkoz 20m WL
+102    Janus 18,2m; SZD-54-2 Perkoz 20m WL
 100    DG-500/505 Trainer mit EZ; DG- 505 6 Orion
  99    fs 31; Taurus; Twin III 20m; D 43 18m 
- 98    AFH 22; DG-500/505 Trainer ohne EZ, Silence E 75, SZD-54-2 Perkoz 17.5m
+ 98    AFH 22; DG-500/505 Trainer ohne EZ; Silence E 75; SZD-54-2 Perkoz 17.5m
  97    Twin III
  95    G 103 Twin III / SL
  94    Twin Astir mit EZ
