@@ -1,42 +1,27 @@
-127    Eta (+2); NimEta (+2); EB 29 (+2)
-126    ASH 30 (+2); EB 28 (+2)
-125    Antares 23m (+2); Quintus (+2)
-124    Nimbus 4 / 4M / 4T; ASW 22BL / BLE; JS1-C 21m (+2)
-123    ASH 25 / E / M ≥ 26m; ASH 25 EB 28; ASW 22 B / BE; Nimbus 4D / M / T; ASH 31 / Mi 21m (+2);
-122    Antares 20m (+2); LAK 20T 23m (+2); ASH 25 / E / M; LAK 20T 26m; Nimbus 3 / M / T 25,5m
-121    AS 22-2; ASW 22 / E 24m; Nimbus 3 / T 24,5m
+127    NimEta (+2); EB 29 (+2)
+126    EB 28 (+2)
+125    Antares 23m (+2); Quintus (+2); Eta
+124    Nimbus 4 / 4M / 4T; ASW 22BL / BLE; ASH 30
+123    ASH 25 / E / M ≥ 26m; ASH 25 EB 28; ASW 22 B / BE; Nimbus 4D / M / T
+122    Antares 20m (+2); LAK 20T 23m (+2); ASH 25 /E / M; LAK 20T26m; Nimbus 3 / M / T 25,5m; JS1-C 21m
+121    AS 22-2; ASW 22 / E 24m; Nimbus 3/ T 24,5m; ASH 31 / Mi 21m
 120    LF 20 20m; Nimbus 3D / M / T
 119    ASW 22 22m; Nimbus 3 22,9m
 118    Glasflügel 604/24m; LS 5; SB 10
 115    ASW 17
 114    Glasflügel 604; Kestrel 22m; LAK 12; Nimbus 2 / b / c / M
 113    Jantar 2 / b
-112    Jantar 19m; Kestrel 19m; Stemme S 10 / VT (+2)
+112    Jantar 19m; Kestrel 19m; Stemme S 10 / VT (+2) 
 110    ASW 12; DG 500+505 / M 22m
 109    B 13
 106    Mü 27
-121    ASG 29 18m (+2); JS 1 Revelation 18m (+2); Ventus 3 (+2); JS 3 18m (+2)
-120    Antares 18S / T (+2); ASH 31 Mi 18m (+2); HPH 304 / S Shark (+2); LS 10 18m (+2)
-119    Ventus 2cxa 18m
-118    DG-800/808 18m; LF20 18m;; SB 14; Ventus 2c / M / T 18m
-117    ASH 26 / E; LAK 17 18m; LS 6 18m; LS 9
-116    ASW 28 / E 18m (+2); LAK 19 18m (+2); DG-600 / M 18m; LS 6 17,5m
-115    Ventus / bT / cM / cT 17,6m
-114    Discus 2 / T 18m; LS 8 / T 18m
-113    DG-600 / M 17m; Ventus / bT 16,6m
-112    ASW 20 16,6m; Glasflügel 304 17m; Glasflügel 304CZ 17,4 m
-110    ASW 20 Top 16,6m; Kestrel 17m
-109    DG-200 17m; DG-400 17m; LS 3 17m; Mosquito 17m
-108    BS 1; D 36; Diamant 18m
-102    Mü 26
-100    Cobra 17m; Std. Libelle 17m
-116    Diana 2 (+2); ASG 29 15m (+2); JS 3 15m
-114    Ventus 2 / ax; Ventus 2 cM / cT 15m; ASW 27 15m
+116    Diana 2 (+2);JS 3 15m (+2);Ventus 3 15m (+2)
+114    Ventus 2 / ax; Ventus 2 cM / cT 15m; ASW 27 15m; ASG 29 15m;Mü 31
 113    DG-800/808 15m; LAK 17 15m; LS 10 15m
 112    SZD 56 Diana
 111    LS 6
 110    ASW 20; DG-600 / M; Glasflügel 304 / CZ; Ventus 1; Ventus b / bT / cM 15m
-108    ASW 20 Top; SB 11; fs 32
+108    ASW 20 Top;SB 11; fs 32
 107    DG- 200; DG-400; LS 3 / a; Mini Nimbus; Mosquito
 106    D 40
 105    Speed Astir II
@@ -48,12 +33,12 @@
 106    LS 7; SZD 55
 105    DG-300 WL; DG 303; LS 4 WL
 104    AFH 24; DG-300; Glasflügel 304C; LS 4
-103    Falkon; LS 3 Std.; SB 12; miniLAK-FES (+2)
-102    AK 5; Cirrus B 18,34m; DG-300 ohne EZ; Pegase.
-101    Hornet WL; SZD 59 WL; 
-100    ASW 19; Cirrus / VTC 17,74m; D 37; Delphin I; DG 100; Elfe 17m; Horn WL; LS 1 e / f; Phöbus B 3 / C; SB 7; Std. Astir; Std. Cirrus 16m; Std. Cirrus WL; Std. Jantar; SZD 59
+103    Falkon; LS 3 Std.; SB 12; miniLAK-FES
+102    AK 5; Cirrus B 18,34m; DG-300 ohne EZ; Pegase
+101    Hornet WL; SZD 59 WL
+100    ASW 19; Cirrus / VTC 17,74m; D 37; DG 100; Elfe 17m; Hornet; LS 1 e / f; Phöbus B 3 / C; SB 7; Std. Astir; Std. Cirrus 16m;Std. Cirrus WL; Std. Jantar; SZD 59
  99    Std. Cirrus
- 98    Apis 2 / M 15m / MCs; ASW 19 Club; Bee; Cobra 15; DG-100 Club; LS 1-0 / c / d; Pajno V1/2; Std. Cirrus Top; Std. Libelle
+ 98    Apis 2 / M 15m / MCs; ASW 19 Club; Bee; Cobra 15;Delphin I; DG-100 Club; LS 1-0 / c / d; Pajno V1/2; Std. Cirrus Top;Std. Libelle
  97    ASW 15; D 38
  96    Astir CS / 77; Club Libelle; Elfe S3 / S4; IS 29 D; LS 1-0 ohne EZ; Mistral C; Phöbus B; Salto 15,5m; SHK; VSO-10
  95    Mü 22b
@@ -61,26 +46,26 @@
  93    Apis WR; Astir CS Jeans; Carat
  92    ASK 23; fs 25; Kiwi; Phönix
  91    G 102 Club Astir
- 90    Std. Austria SH1; SZD 51 Junior; Zugvogel IIIb
- 88    ASK 18; Foka; Geier; H 101 Salto; PIK 16 Vasama; Pilatus B4 mit EZ; SB 5 e; SF 27 B; Std. Austria SH; Zugvogel III a
- 86    Greif II; M-25; Pilatus B4 ohne EZ; SB 5 a / b / c; SF 27 A / MA; SF 30; SIE 3; Solo L 33; Std. Austria; SZD 30 Pirat; VT-16 Orlic; VT-116 Orlic 2; Zugvogel I / II / IV
+ 90    Std. Austria SH1; SZD 51 Junior; ZugvogelIIIb
+ 88    ASK 18; Foka; Geier; H 101 Salto; PIK 16 Vasama; Pilatus B4 mit EZ; SB 5 e; SF 27 B;Std. Austria SH; Zugvogel III a
+ 86    Greif II; M-25; Pilatus B4 ohne EZ; SB 5 a / b / c; SF 27 A / MA; SF 30; SIE 3; Solo L 33;Std. Austria; SZD 30 Pirat; VT-16 Orlic; VT-116 Orlic 2; Zugvogel I / II / IV
  85    Ka 6 E; Ka 10; PW 5
- 84    Alpin / T; H 30; Lambada UFM-15; Silent AE-1 / pure; Silent Club / pure 
+ 84    Alpin / T; H 30; Lambada UFM-15; Silent AE-1 / pure; Silent Club / pure
  83    SF 26
  82    ASK 14; Ka 6; Lambada UFM-13; SZD 22 Mucha Std. ; Sagitta; SFS 31; LOM 57/1
  80    Duo Banjo; Mucha; LCF II; Weihe 50
  78    L-Spatz; Lunak LF 107
- 77    Swift S-1 
- 76    Banjo; Ka 8; Minimoa
+ 77    Swift S-1
+ 76    Banjo;Ka 8; Minimoa: Ahrens Delphin V1
  74    AV 36; RF 4; Spatz 13m
  68    Piccolo
  65    Song
  62    Rhönsperber
- 60    Rhönbussard 
+ 60    Rhönbussard
  54    Grunau Baby; Ka 1 / 3 / 4
-116    Arcus / E / M / T (+2); ASG 32 (+2)
 115    TwinShark (+2)
-111    LS 11; Duo Discus XL 
+114    Arcus / E / M / T; ASG 32
+111    LS 11; Duo Discus XL
 110    DG-1000 20m; Duo Discus / T
 109    fs 33
 108    Calif A 21 / -SJ; Janus C / CM / CT mit EZ
@@ -88,21 +73,21 @@
 104    DG-500 / M 20m; DG-505 / M 20m; DG-505 M Orion 20m; DG-1001 18 m ohne EZ
 102    Janus 18,2m; SZD-54-2 Perkoz 20m WL
 100    DG-500/505 Trainer mit EZ; DG- 505 6 Orion
- 99    fs 31; Taurus; Twin III 20m; D 43 18m 
+ 99    fs 31; Taurus; Twin III 20m; D 43 18m
  98    AFH 22; DG-500/505 Trainer ohne EZ; Silence E 75; SZD-54-2 Perkoz 17.5m
  97    Twin III
  95    G 103 Twin III / SL
  94    Twin Astir mit EZ
- 92    ASK 21 / Mi; G 103 Twin II; Twin Astir Trainer ohne EZ
- 87    SF 34 mit EZ 
+ 92    ASK 21 / Mi; G 103 Twin II; Twin AstirTrainer ohne EZ
+ 87    SF 34 mit EZ
  86    PW 6; SF 34 ohne EZ
  84    SZD 50 Puchacz; IS 28 B2
  80    Bergfalke IV; Condor IV; Kranich III; L23 Super Blanik 18,2 m
  79    ASK 13
- 78    Ka 2 B; Ka 7; L13 Blanik; L23 Super Blanik; Pipistrel Sinus; RF 10; RF 5 B; SF 28A
- 76    ASK 16; Bergfalke III; Bocian; IS 28 M; Ka 2; Kranich II; SZD-45 A 
+ 78    Ka 2 B; Ka 7; L13 Blanik; L23 Super Blanik;Pipistrel Sinus; RF 10; RF 5 B; SF 28A
+ 76    ASK 16; Bergfalke III; Bocian; IS 28 M; Ka 2; Kranich II; SZD-45 A
  75    Puchatek
- 74    Bergfalke II; RF 5; SF-25 E
+ 74    Bergfalke II;RF 5; SF-25 E
  72    G 109B; MDM-1 Fox
  70    Taifun 17E
  68    Dimona; G109; H-36 Dimona; HK-36 Super Dimona
