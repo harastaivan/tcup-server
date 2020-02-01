@@ -57,7 +57,7 @@ router.put('/', auth, async (req, res) => {
     if (!name || !surname || !email) {
         return res.status(400).json({ msg: 'Please enter all fields' });
     }
-    const user = await User.findById(req.user.id);
+    const user = await User.findById(req.user.id).select('-password');
     user.name = name;
     user.surname = surname;
     user.email = email;
