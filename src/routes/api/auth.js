@@ -42,6 +42,46 @@ router.post('/', (req, res) => {
     });
 });
 
+// @route   POST api/auth/change-password
+// @desc    Change password for provided user
+// @access  Private
+router.post('/change-password', auth, async (req, res) => {
+    const { oldPassword, newPassword } = req.body;
+    // Simple validation
+    if (!oldPassword || !newPassword) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
+    }
+
+    const user = await User.findById(req.user.id);
+    if (!user) return res.status(400).json({ msg: 'User does not exist' });
+
+    // Validate password
+    const isMatch = await bcrypt.compare(oldPassword, user.password);
+    if (!isMatch) return res.status(400).json({ msg: 'Invalid old password' });
+
+    bcrypt.genSalt(10, (err, salt) => {
+        if (err) throw err;
+        bcrypt.hash(newPassword, salt, async (err, hash) => {
+            if (err) throw err;
+            user.password = hash;
+            const { id, name, surname, email, admin } = await user.save();
+            jwt.sign({ id }, config.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+                if (err) throw err;
+                return res.status(200).json({
+                    token,
+                    user: {
+                        id,
+                        name,
+                        surname,
+                        email,
+                        admin
+                    }
+                });
+            });
+        });
+    });
+});
+
 // @route   GET api/auth/user
 // @desc    Get user data
 // @access  Private
