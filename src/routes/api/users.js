@@ -52,6 +52,9 @@ router.post('/', async (req, res) => {
     });
 });
 
+// @route   PUT api/users
+// @desc    Changes user info
+// @access  Private
 router.put('/', auth, async (req, res) => {
     const { name, surname, email } = req.body;
     if (!name || !surname || !email) {
