@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 
 import config from '../../../config';
 import User from '../../models/User';
+import auth from '../../middleware/auth';
 
 const router = express.Router();
 
@@ -49,6 +50,19 @@ router.post('/', async (req, res) => {
             });
         });
     });
+});
+
+router.put('/', auth, async (req, res) => {
+    const { name, surname, email } = req.body;
+    if (!name || !surname || !email) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
+    }
+    const user = await User.findById(req.user.id);
+    user.name = name;
+    user.surname = surname;
+    user.email = email;
+    const savedUser = await user.save();
+    return res.json({ savedUser });
 });
 
 export default router;
