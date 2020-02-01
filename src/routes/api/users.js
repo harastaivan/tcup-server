@@ -62,7 +62,7 @@ router.put('/', auth, async (req, res) => {
     user.surname = surname;
     user.email = email;
     const savedUser = await user.save();
-    return res.json({ savedUser });
+    return res.json(savedUser);
 });
 
 export default router;
