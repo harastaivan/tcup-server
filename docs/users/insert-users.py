@@ -1,5 +1,6 @@
 import csv
 import pymongo
+from pymongo.errors import BulkWriteError
 from dotenv import load_dotenv
 import os
 import bcrypt
@@ -35,9 +36,12 @@ def insert_users(users):
     client = pymongo.MongoClient(MONGO_URI)
     database = client[DATABASE]
     collection = database['users']
-    result = collection.insert_many(users)
-    return result.acknowledged, len(result.inserted_ids)
-
+    try:
+        result = collection.insert_many(users)
+        return result.acknowledged, len(result.inserted_ids)
+    except BulkWriteError as error:
+        print(error)
+        return False, 0
 
 
 users = load_users_from_txt()
