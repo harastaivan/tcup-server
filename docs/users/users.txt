@@ -29,3 +29,22 @@ Talanda;Tomáš;t.talanda@seznam.cz
 Tolkmitt;Uwe;u.tolkmitt@t-online.de
 Zahálka;Martin;zahalkamartin@email.cz
 Žanda;Jan;janzanda@gmail.com
+Blaťák;Marek;mblato@hotmail.com
+Viskot;Jan;viskotj@gmail.com
+Hrdina;Václav;keschaf@gmail.com
+Koukal;Lukáš;koukalluk@gmail.com
+Profeld;Tomáš;tomas.profeld@atlas.cz
+Beníšek;Karel;karel.benisek@seznam.cz
+Harašta jun;Ivan;harasta.ivan@gmail.com
+Harašta sen;Ivan;ivan.harasta@gmail.com
+Hoť;Jaroslav;j.hot@volny.cz
+Jiránek;Pavel;Pajiranek@gmail.com
+Jiránek jun;Petr;pejiranek@centrum.cz
+Jiránek sen;Petr;pjiranek@volny.cz
+Kříž;František;kriz.franta@seznam.cz
+Lonský;Petr;airlony@airlony.cz
+Michálek;Roman;tezkac74@gmail.com
+Nejezchleb;Martin;nejezchlebm@seznam.cz
+Procházka;Jiří;jirprochazka@volny.cz
+Rendlová;Míša;tomas@gradient.cc
+Valenta;Martin;martinkulioko@seznam.cz
