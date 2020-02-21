@@ -4,7 +4,7 @@ Brozman;Franta;frantisekbrozman@seznam.cz
 Dráb;Michal;fdrab@email.cz
 Dupal;Ondra;odupal6@gmail.com
 Dvořák;Daniel;dan_dvorak@volny.cz
-Mathias Knopp/Flicker Raul;;karel.krobath@enterprise-it.at
+Mathias Knopp/Flicker Raul;;matthias.knopf@hotmail.com
 Frič;Martin;fric.martin@gmail.com
 Jokl;Roman;roman.jokl@gmail.com
 Jung;Rudolf;photodesigner@seznam.cz
@@ -22,7 +22,7 @@ Pubec;Jan;honza@pubec.cz
 Rendla;Tomáš;tomas@gradient.cc
 Seifert;Tomáš;tomas.seifert@centrum.cz
 Schenk;Zdeněk;zdenek.schenk@centrum.cz
-Schiffleithner;Karl;karel.krobath@enterprise-it.at
+Schiffleithner;Karl;karl.schiffleithner@gmx.at
 Svoboda;Václav;svobodavac@gmail.com
 Šrám;Vráťa;lpw@lpw.cz
 Talanda;Tomáš;t.talanda@seznam.cz
