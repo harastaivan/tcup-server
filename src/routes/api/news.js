@@ -31,11 +31,15 @@ router.post('/', admin, async (req, res) => {
 // @route   GET api/news
 // @desc    Get all news
 // @access  Public
-router.get('/', async (req, res) => {
-    const news = await News.find({})
-        .sort([['updatedAt', -1]])
-        .populate('author', '-password');
-    return res.json(news);
+router.get('/', async (req, res, next) => {
+    try {
+        const news = await News.find({})
+            .sort([['updatedAt', -1]])
+            .populate('author', '-password');
+        return res.json(news);
+    } catch (error) {
+        next(error);
+    }
 });
 
 // @route   DELETE api/news/:id
