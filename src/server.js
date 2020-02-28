@@ -83,6 +83,12 @@ app.use('/api/accomodationtypes', accomodationType);
 app.use('/api/documents', document);
 app.use('/api/starting-list', startingList);
 
+app.use((err, req, res, next) => {
+    console.log(err);
+    res.status(err.status || 500);
+    res.end();
+});
+
 const port = config.PORT || 5000;
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
