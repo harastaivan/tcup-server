@@ -83,7 +83,7 @@ app.use('/api/accomodationtypes', accomodationType);
 app.use('/api/documents', document);
 app.use('/api/starting-list', startingList);
 
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
     console.log(err);
     res.status(err.status || 500);
     res.end();
