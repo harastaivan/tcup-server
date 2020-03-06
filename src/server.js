@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint no-console: 0 */
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
@@ -17,6 +18,7 @@ import gliderType from './routes/api/gliderType';
 import accomodationType from './routes/api/accomodationType';
 import document from './routes/api/document';
 import startingList from './routes/api/startingList';
+import error from './middleware/error';
 
 const app = express();
 
@@ -83,11 +85,7 @@ app.use('/api/accomodationtypes', accomodationType);
 app.use('/api/documents', document);
 app.use('/api/starting-list', startingList);
 
-app.use((err, req, res) => {
-    console.log(err);
-    res.status(err.status || 500);
-    res.end();
-});
+app.use(error);
 
 const port = config.PORT || 5000;
 

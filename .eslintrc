@@ -19,6 +19,7 @@
             {
                 "varsIgnorePattern": "should|expect"
             }
-        ]
+        ],
+        "no-console": ["warn"]
     }
 }

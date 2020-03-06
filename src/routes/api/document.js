@@ -10,12 +10,9 @@ const router = express.Router();
 // @desc    Create a document
 // @access  Admin
 router.post('/', admin, upload.single('document'), async (req, res) => {
-    console.log(req.file);
-
     const document = await Document.findOne({ name: req.file.key });
 
     if (document) {
-        console.log('update document');
         document.originalName = req.file.originalname;
         document.path = req.file.location;
         document.mimetype = req.file.mimetype;
@@ -26,7 +23,6 @@ router.post('/', admin, upload.single('document'), async (req, res) => {
 
         res.status(200).json(savedDocument);
     } else {
-        console.log('create document');
         const newDocument = new Document({
             name: req.file.key,
             originalName: req.file.originalname,
