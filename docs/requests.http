@@ -1,0 +1,34 @@
+@prodApiUrl = https://api.tcup.cz
+@devApiUrl = http://localhost:5000
+
+@apiUrl = {{devApiUrl}}
+
+@email = harasta.ivan@gmail.com
+@password = harasta
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU4MzQ5NzgyMiwiZXhwIjoxNTgzNTAxNDIyfQ.nZRH8wME8T_v0SKdIs5t12Y-mxyj04OYtI4Z8U6xs0w
+
+POST {{apiUrl}}/api/auth
+Content-Type: application/json
+
+{
+    "email": "{{email}}",
+    "password": "{{password}}"
+}
+
+###
+
+GET {{apiUrl}}/api/news
+
+###
+
+GET {{apiUrl}}/api/regions
+
+###
+
+POST {{apiUrl}}/api/regions
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "name": "Rakousko"
+}
