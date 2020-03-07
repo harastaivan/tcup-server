@@ -18,13 +18,13 @@ router.post('/', async (req, res) => {
         return res.status(400).json({ msg: 'Please enter all fields' });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email: email.toLowerCase() });
     if (user) return res.status(400).json({ msg: 'User already exists' });
 
     const newUser = new User({
         name,
         surname,
-        email,
+        email: email.toLowerCase(),
         password
     });
 
@@ -63,7 +63,7 @@ router.put('/', auth, async (req, res) => {
     const user = await User.findById(req.user.id).select('-password');
     user.name = name;
     user.surname = surname;
-    user.email = email;
+    user.email = email.toLowerCase();
     const savedUser = await user.save();
     return res.json(savedUser);
 });
