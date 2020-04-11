@@ -91,7 +91,7 @@ router.get('/form', async (req, res) => {
 });
 
 // @route   PUT api/registration
-// @desc    Update registration of user
+// @desc    Update registration of current user
 // @access  Private
 router.put('/', auth, async (req, res) => {
     try {
@@ -145,6 +145,81 @@ router.put('/', auth, async (req, res) => {
         await oldRegistration.save();
 
         return res.status(200).json(await getRegistrationByUser(req.user.id));
+    } catch (e) {
+        return res.status(400).json({ error: e });
+    }
+});
+
+// @route   GET api/registration/:id
+// @desc    Get registration data of registraion with id in query
+// @access  Admin
+router.get('/:id', admin, async (req, res) => {
+    try {
+        const reg = await getRegistrationByUser(req.params.id);
+        if (!reg) {
+            return res.status(404).json({ msg: 'Registration with this id does not exist' });
+        }
+        return res.json(reg);
+    } catch (e) {
+        return res.status(500).json({ error: e });
+    }
+});
+
+// @route   PUT api/registration/:id
+// @desc    Update registration with id in query
+// @access  Admin
+router.put('/:id', admin, async (req, res) => {
+    try {
+        const registration = await getRegistrationByUser(req.params.id);
+        if (!registration) {
+            return res.status(404).json({ msg: 'Registration with this id does not exist' });
+        }
+        const {
+            birthDate,
+            phone,
+            aeroclub,
+            region,
+            glider,
+            competitionClass,
+            logger,
+            accomodation,
+            meals,
+            note
+        } = req.body;
+
+        if (
+            !phone ||
+            !aeroclub ||
+            !region ||
+            !glider ||
+            !competitionClass ||
+            !logger ||
+            !accomodation ||
+            !glider.gliderType ||
+            !glider.registrationNumber ||
+            !glider.startNumber ||
+            !accomodation.accomodationType
+        ) {
+            return res.status(400).json({ msg: 'Please enter all fields' });
+        }
+
+        registration.birthDate = birthDate;
+        registration.phone = phone;
+        registration.aeroclub = aeroclub;
+        registration.region = region;
+        registration.glider.gliderType = glider.gliderType;
+        registration.glider.registrationNumber = glider.registrationNumber;
+        registration.glider.startNumber = glider.startNumber;
+        registration.competitionClass = competitionClass;
+        registration.logger = logger;
+        registration.accomodation.accomodationType = accomodation.accomodationType;
+        registration.accomodation.quantity = accomodation.quantity;
+        registration.meals = meals;
+        registration.note = note;
+
+        await registration.save();
+
+        return res.status(200).json(await getRegistrationByUser(req.params.id));
     } catch (e) {
         return res.status(400).json({ error: e });
     }
