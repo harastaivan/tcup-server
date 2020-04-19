@@ -17,6 +17,12 @@ const getRegistrationByUser = async (id) => {
         .populate(['region', 'competitionClass', 'glider.gliderType', 'accomodation.accomodationType']);
 };
 
+const getRegistrationById = async (id) => {
+    return await Registration.findById(id)
+        .populate('user', '-password')
+        .populate(['region', 'competitionClass', 'glider.gliderType', 'accomodation.accomodationType']);
+};
+
 // @route   POST api/registration
 // @desc    Create a registration of a user
 // @access  Private
@@ -155,7 +161,7 @@ router.put('/', auth, async (req, res) => {
 // @access  Admin
 router.get('/:id', admin, async (req, res) => {
     try {
-        const reg = await getRegistrationByUser(req.params.id);
+        const reg = await getRegistrationById(req.params.id);
         if (!reg) {
             return res.status(404).json({ msg: 'Registration with this id does not exist' });
         }
@@ -170,7 +176,7 @@ router.get('/:id', admin, async (req, res) => {
 // @access  Admin
 router.put('/:id', admin, async (req, res) => {
     try {
-        const registration = await getRegistrationByUser(req.params.id);
+        const registration = await getRegistrationById(req.params.id);
         if (!registration) {
             return res.status(404).json({ msg: 'Registration with this id does not exist' });
         }
@@ -219,7 +225,7 @@ router.put('/:id', admin, async (req, res) => {
 
         await registration.save();
 
-        return res.status(200).json(await getRegistrationByUser(req.params.id));
+        return res.status(200).json(await getRegistrationById(req.params.id));
     } catch (e) {
         return res.status(400).json({ error: e });
     }
