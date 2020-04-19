@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
         };
     });
 
-    const classes = await CompetitionClass.find({});
+    const classes = await CompetitionClass.find({}).sort('name');
 
     const startingList = classes.map((one) => {
         return {
