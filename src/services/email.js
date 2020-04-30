@@ -55,6 +55,8 @@ const sendEmail = (user, pass, from, to, subject, text, html) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
+            // eslint-disable-next-line
+            console.error('Email not sent:', error);
             throw error;
         }
         // eslint-disable-next-line
