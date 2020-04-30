@@ -20,5 +20,8 @@ export default {
     MONGO_URI: mongoUri(),
     JWT_SECRET: process.env.JWT_SECRET,
     AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
-    AWS_SECRET: process.env.AWS_SECRET
+    AWS_SECRET: process.env.AWS_SECRET,
+    SEND_EMAILS_TO_ALL: process.env.SEND_EMAILS_TO_ALL === 'true',
+    SMTP_USER: process.env.SMTP_USER,
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD
 };
