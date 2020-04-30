@@ -3,6 +3,7 @@ import express from 'express';
 import News from '../../models/News';
 import admin from '../../middleware/admin';
 import User from '../../models/User';
+import { sendNewsEmail } from '../../services/email';
 
 const router = express.Router();
 
@@ -10,22 +11,40 @@ const router = express.Router();
 // @desc    Create a news
 // @access  Admin
 router.post('/', admin, async (req, res) => {
-    const { title, body } = req.body;
+    const { title, body, email } = req.body;
     const author = req.user.id;
+
+    console.log({ title, body });
+
     // Simple validation
     if (!title || !body || !author) {
         return res.status(400).json({ msg: 'Please enter all fields' });
     }
 
+    const user = await User.findById(author).select('-password');
+
     const newNews = new News({
         title,
         body,
-        author: await User.findById(author).select('-password')
+        author: user
     });
 
     const savedNews = await newNews.save();
 
-    return res.status(201).json(savedNews);
+    const sendEmail = email === true;
+    console.log({ email, sendEmail });
+
+    let emailSent = false;
+    if (sendEmail) {
+        try {
+            await sendNewsEmail(title, body, user);
+            emailSent = true;
+        } catch (e) {
+            emailSent = false;
+        }
+    }
+
+    return res.status(201).json({ news: savedNews, emailSent });
 });
 
 // @route   GET api/news
