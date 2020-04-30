@@ -31,11 +31,8 @@ router.post('/', admin, async (req, res) => {
 
     const savedNews = await newNews.save();
 
-    const sendEmail = email === true;
-    console.log({ email, sendEmail });
-
     let emailSent = false;
-    if (sendEmail) {
+    if (email === true) {
         try {
             await sendNewsEmail(title, body, user);
             emailSent = true;
