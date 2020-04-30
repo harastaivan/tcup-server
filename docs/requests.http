@@ -32,3 +32,15 @@ x-auth-token: {{token}}
 {
     "name": "Rakousko"
 }
+
+###
+
+POST {{apiUrl}}/api/news
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "title": "Test title",
+    "body": "asdasd\nasdasd\nas\ndas\nda\nsd",
+    "email": false
+}
