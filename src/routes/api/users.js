@@ -64,8 +64,12 @@ router.put('/', auth, async (req, res) => {
     user.name = name;
     user.surname = surname;
     user.email = email.toLowerCase();
-    const savedUser = await user.save();
-    return res.json(savedUser);
+    try {
+        const savedUser = await user.save();
+        return res.json(savedUser);
+    } catch (e) {
+        return res.status(400).json({ msg: 'User already exists' });
+    }
 });
 
 export default router;
