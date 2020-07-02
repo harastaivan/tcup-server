@@ -5,7 +5,7 @@
 
 @email = harasta.ivan@gmail.com
 @password = harasta
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU5MzYzMjYwOCwiZXhwIjoxNTkzNjM2MjA4fQ.mCcMu5O8EdLsLXA3J00zH22eSxZr_U0WD-gpr8NLsKk
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU5MzY5MzEyNSwiZXhwIjoxNTkzNjk2NzI1fQ.vYLc6TBDuPci9j8xESOTw4pgVFF03xTK3Rl4oKZVa1k
 
 POST {{apiUrl}}/api/auth
 Content-Type: application/json
@@ -68,5 +68,30 @@ x-auth-token: {{token}}
 
 {
     "task": "TASK_CANCELLED"
+}
+
+###
+
+GET {{apiUrl}}/api/competitorstatuses/5efce7a13de5543176239dc2
+Content-Type: application/json
+
+###
+
+POST {{apiUrl}}/api/competitorstatuses
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "day": "5efce7a13de5543176239dc2"
+}
+
+###
+
+PUT {{apiUrl}}/api/competitorstatuses/5efddb249ab08b63b090ed04
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "status": "HOME"
 }
 
