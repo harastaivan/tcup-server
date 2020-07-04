@@ -23,6 +23,10 @@ const populateCompetitorStatus = [
     }
 ];
 
+const sortByStartNumber = (first, second) => {
+    return first.pilot.glider.startNumber < second.pilot.glider.startNumber;
+};
+
 const filterStatus = (status) => ({
     _id: status._id,
     name: status.pilot.user.name,
@@ -60,7 +64,7 @@ router.post('/', admin, async (req, res) => {
 
     const competitorStatuses = await CompetitorStatus.find({ day: competitionDay }).populate(populateCompetitorStatus);
 
-    res.status(201).json(competitorStatuses.map(filterStatus));
+    res.status(201).json(competitorStatuses.sort(sortByStartNumber).map(filterStatus));
 });
 
 // @route   PUT api/competitorstatuses/:id
@@ -93,7 +97,7 @@ router.put('/:id', admin, async (req, res) => {
 });
 
 // @route   GET api/competitorstatuses/:day
-// @desc    Get all competition days
+// @desc    Get all competitor statuses
 // @access  Public
 router.get('/:day', async (req, res) => {
     const { day } = req.params;
@@ -109,7 +113,7 @@ router.get('/:day', async (req, res) => {
 
     const competitorStatuses = await CompetitorStatus.find({ day: competitionDay }).populate(populateCompetitorStatus);
 
-    res.status(200).json(competitorStatuses.map(filterStatus));
+    res.status(200).json(competitorStatuses.sort(sortByStartNumber).map(filterStatus));
 });
 
 export default router;
