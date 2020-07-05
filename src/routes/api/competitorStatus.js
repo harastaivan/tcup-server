@@ -24,7 +24,13 @@ const populateCompetitorStatus = [
 ];
 
 const sortByStartNumber = (first, second) => {
-    return first.pilot.glider.startNumber < second.pilot.glider.startNumber;
+    if (first.pilot.glider.startNumber < second.pilot.glider.startNumber) {
+        return -1;
+    }
+    if (first.pilot.glider.startNumber > second.pilot.glider.startNumber) {
+        return 1;
+    }
+    return 0;
 };
 
 const filterStatus = (status) => ({
