@@ -95,3 +95,7 @@ x-auth-token: {{token}}
     "status": "HOME"
 }
 
+###
+
+GET {{apiUrl}}/api/igc/form
+Content-Type: application/json
