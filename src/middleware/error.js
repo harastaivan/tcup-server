@@ -5,7 +5,6 @@ const error = (err, req, res, next) => {
     const status = err.status || 500;
     // eslint-disable-next-line
     console.log('status', status);
-    console.log(status);
     res.status(status);
     res.end();
 };
