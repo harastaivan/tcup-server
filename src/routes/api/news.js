@@ -14,8 +14,6 @@ router.post('/', admin, async (req, res) => {
     const { title, body, email } = req.body;
     const author = req.user.id;
 
-    console.log({ title, body });
-
     // Simple validation
     if (!title || !body || !author) {
         return res.status(400).json({ msg: 'Please enter all fields' });

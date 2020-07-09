@@ -1,10 +1,8 @@
 import express from 'express';
 
-import admin from '../../middleware/admin';
 import Registration from '../../models/Registration';
 import CompetitionDay from '../../models/CompetitionDay';
 import igc from '../../services/igc';
-import upload from '../../services/upload';
 import IgcFile from '../../models/IgcFile';
 
 const router = express.Router();
