@@ -31,6 +31,16 @@ const IgcFileSchema = new Schema({
     size: {
         type: Number,
         required: true
+    },
+    downloaded: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    processed: {
+        type: Boolean,
+        required: true,
+        default: false
     }
 });
 
