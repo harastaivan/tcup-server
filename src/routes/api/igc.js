@@ -7,6 +7,16 @@ import IgcFile from '../../models/IgcFile';
 
 const router = express.Router();
 
+const sortByStartNumber = (first, second) => {
+    if (first.glider.startNumber < second.glider.startNumber) {
+        return -1;
+    }
+    if (first.glider.startNumber > second.glider.startNumber) {
+        return 1;
+    }
+    return 0;
+};
+
 const mapRegistrationForForm = (registration) => {
     return {
         _id: registration._id,
@@ -63,7 +73,7 @@ router.post('/', igc.single('igc'), async (req, res) => {
 router.get('/form', async (req, res) => {
     const registrations = await Registration.find({}).populate('user', '-password');
 
-    res.status(200).json(registrations.map(mapRegistrationForForm));
+    res.status(200).json(registrations.sort(sortByStartNumber).map(mapRegistrationForForm));
 });
 
 export default router;
