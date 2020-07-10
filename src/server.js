@@ -21,6 +21,7 @@ import accomodationType from './routes/api/accomodationType';
 import document from './routes/api/document';
 import startingList from './routes/api/startingList';
 import igc from './routes/api/igc';
+import tracking from './routes/api/tracking';
 import error from './middleware/error';
 
 const app = express();
@@ -90,6 +91,7 @@ app.use('/api/accomodationtypes', accomodationType);
 app.use('/api/documents', document);
 app.use('/api/starting-list', startingList);
 app.use('/api/igc', igc);
+app.use('/api/tracking', tracking);
 
 app.use(error);
 
