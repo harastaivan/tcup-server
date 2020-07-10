@@ -5,7 +5,7 @@
 
 @email = harasta.ivan@gmail.com
 @password = harasta
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU5NDM3Mzc5NiwiZXhwIjoxNTk0Mzc3Mzk2fQ.VXah22jTOrXBCMGqfs31pUkUnnvmGW7xo7L6BAXnEH8
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU5NDM5MDAzNSwiZXhwIjoxNTk0MzkzNjM1fQ.zPdsnLHL5RKODWhN6kHLmxgyjnXJTJvd5D-yUMCX3rM
 
 POST {{apiUrl}}/api/auth
 Content-Type: application/json
@@ -120,3 +120,8 @@ x-auth-token: {{token}}
     "label": "Tracking Kombi Day 1",
     "taskUrl": "https://www.soaringspot.com/cs/tcup2020/results"
 }
+
+###
+
+GET {{apiUrl}}/api/starting-list/export/seeyou/5d4026c05fa77179689ce31c
+x-auth-token: {{token}}
