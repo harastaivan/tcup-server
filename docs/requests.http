@@ -5,7 +5,7 @@
 
 @email = harasta.ivan@gmail.com
 @password = harasta
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU5NDM5MDAzNSwiZXhwIjoxNTk0MzkzNjM1fQ.zPdsnLHL5RKODWhN6kHLmxgyjnXJTJvd5D-yUMCX3rM
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU5NDQ5MTMxMCwiZXhwIjoxNTk0NDk0OTEwfQ.B5tI99IdjJrVHqqLxvAI5zV3JEpvEDl_HWYfgu0u6V0
 
 POST {{apiUrl}}/api/auth
 Content-Type: application/json
@@ -82,7 +82,7 @@ Content-Type: application/json
 x-auth-token: {{token}}
 
 {
-    "day": "5efce7a13de5543176239dc2"
+    "day": "5efde4ff7122fd0017744f98"
 }
 
 ###
