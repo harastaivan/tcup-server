@@ -125,3 +125,19 @@ x-auth-token: {{token}}
 
 GET {{apiUrl}}/api/starting-list/export/seeyou/5d4026c05fa77179689ce31c
 x-auth-token: {{token}}
+
+###
+
+GET {{apiUrl}}/api/igc/5efce7a13de5543176239dc2
+x-auth-token: {{token}}
+
+###
+
+PUT {{apiUrl}}/api/igc/5f09a7ed72acfb0f2c35f3ba
+Content-Type: application/json
+x-auth-token: {{token}}
+
+{
+    "processed": true,
+    "downloaded": true
+}
