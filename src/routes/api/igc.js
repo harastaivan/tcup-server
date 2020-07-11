@@ -2,16 +2,70 @@ import express from 'express';
 
 import Registration from '../../models/Registration';
 import CompetitionDay from '../../models/CompetitionDay';
+import CompetitionClass from '../../models/CompetitionClass';
 import igc from '../../services/igc';
 import IgcFile from '../../models/IgcFile';
+import admin from '../../middleware/admin';
 
 const router = express.Router();
 
-const sortByStartNumber = (first, second) => {
+const populateIgcFile = [
+    {
+        path: 'pilot',
+        populate: {
+            path: 'user',
+            select: '-password'
+        }
+    },
+    {
+        path: 'pilot',
+        populate: {
+            path: 'competitionClass'
+        }
+    }
+];
+
+const mapIgcFile = (igcFile) => ({
+    downloaded: igcFile.downloaded,
+    processed: igcFile.processed,
+    _id: igcFile._id,
+    name: igcFile.name,
+    path: igcFile.path,
+    day: igcFile.day,
+    startNumber: igcFile.pilot.glider.startNumber,
+    createdAt: igcFile.createdAt,
+    updatedAt: igcFile.updatedAt,
+    user: {
+        name: igcFile.pilot.user.name,
+        surname: igcFile.pilot.user.surname
+    }
+});
+
+const sortRegistrationByStartNumber = (first, second) => {
     if (first.glider.startNumber < second.glider.startNumber) {
         return -1;
     }
     if (first.glider.startNumber > second.glider.startNumber) {
+        return 1;
+    }
+    return 0;
+};
+
+const sortIgcFileByStartNumber = (first, second) => {
+    if (first.pilot.glider.startNumber < second.pilot.glider.startNumber) {
+        return -1;
+    }
+    if (first.pilot.glider.startNumber > second.pilot.glider.startNumber) {
+        return 1;
+    }
+    return 0;
+};
+
+const sortClassByName = (first, second) => {
+    if (first.name < second.name) {
+        return -1;
+    }
+    if (first.name > second.name) {
         return 1;
     }
     return 0;
@@ -49,6 +103,22 @@ router.post('/', igc.single('igc'), async (req, res) => {
             return res.status(400).json({ msg: 'Invalid day' });
         }
 
+        const igcFile = await IgcFile.findOne({ name: req.file.key });
+
+        if (igcFile) {
+            igcFile.originalName = req.file.originalname;
+            igcFile.path = req.file.location;
+            igcFile.mimetype = req.file.mimetype;
+            igcFile.size = req.file.size;
+            igcFile.day = competitionDay;
+            igcFile.pilot = registration;
+            igcFile.updatedAt = new Date();
+
+            const savedIgcFile = await igcFile.save();
+
+            return res.status(200).json(savedIgcFile);
+        }
+
         const newIgcFile = new IgcFile({
             name: req.file.key,
             originalName: req.file.originalname,
@@ -73,7 +143,50 @@ router.post('/', igc.single('igc'), async (req, res) => {
 router.get('/form', async (req, res) => {
     const registrations = await Registration.find({}).populate('user', '-password');
 
-    res.status(200).json(registrations.sort(sortByStartNumber).map(mapRegistrationForForm));
+    res.status(200).json(registrations.sort(sortRegistrationByStartNumber).map(mapRegistrationForForm));
+});
+
+// @route   GET api/igc/:day
+// @desc    Get igc files information of given day (both class)
+// @access  Admin
+router.get('/:day', admin, async (req, res) => {
+    const { day } = req.params;
+
+    const igcFiles = await IgcFile.find({ day }).populate(populateIgcFile);
+    const competitionClasses = await CompetitionClass.find({});
+
+    const result = competitionClasses.sort(sortClassByName).map((competitionClass) => ({
+        _id: competitionClass._id,
+        name: competitionClass.name,
+        igcFiles: igcFiles
+            .filter((igcFile) => igcFile.pilot.competitionClass._id.equals(competitionClass._id))
+            .sort(sortIgcFileByStartNumber)
+            .map(mapIgcFile)
+    }));
+
+    res.status(200).json(result);
+});
+
+// @route   PUT api/igc/:id
+// @desc    Update downloaded or processed attributes of IgcFile
+// @access  Admin
+router.put('/:id', admin, async (req, res) => {
+    const { id } = req.params;
+    const { downloaded, processed } = req.body;
+
+    const igcFile = await IgcFile.findById(id);
+
+    if (downloaded !== undefined) {
+        igcFile.downloaded = downloaded;
+    }
+
+    if (processed !== undefined) {
+        igcFile.processed = processed;
+    }
+
+    const savedIgcFile = await igcFile.save();
+
+    res.status(200).json(savedIgcFile);
 });
 
 export default router;
