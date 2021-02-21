@@ -1,9 +1,9 @@
 import nodemailer from 'nodemailer';
 import config from '../../config';
 import User from '../models/User';
-import { getText, getHtml } from '../constants/email/news';
+import { getNewsText, getNewsHtml } from '../constants/email/news';
 
-const getReceivers = async (SEND_EMAILS_TO_ALL) => {
+const getNewsReceivers = async (SEND_EMAILS_TO_ALL) => {
     if (!SEND_EMAILS_TO_ALL) {
         return 'harasta.ivan@gmail.com';
     }
@@ -20,16 +20,16 @@ const getSubject = (SEND_EMAILS_TO_ALL, title) => {
     return title;
 };
 
-const sendNewsEmail = async (title, body, author) => {
+export const sendNewsEmail = async (title, body, author) => {
     const SEND_EMAILS_TO_ALL = config.SEND_EMAILS_TO_ALL;
     const user = config.SMTP_USER;
     const password = config.SMTP_PASSWORD;
     const from = '"tcup novinky" <news@tcup.cz>';
-    const to = await getReceivers(SEND_EMAILS_TO_ALL);
+    const to = await getNewsReceivers(SEND_EMAILS_TO_ALL);
     const subject = getSubject(SEND_EMAILS_TO_ALL, title);
 
-    const text = getText(title, body, author);
-    const html = getHtml(title, body, author);
+    const text = getNewsText(title, body, author);
+    const html = getNewsHtml(title, body, author);
 
     sendEmail(user, password, from, to, subject, text, html);
 };
@@ -63,5 +63,3 @@ const sendEmail = (user, pass, from, to, subject, text, html) => {
         console.log('Email sent:', info.messageId, 'to', to);
     });
 };
-
-export { sendNewsEmail };

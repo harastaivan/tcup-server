@@ -1,4 +1,4 @@
-const getText = (title, body, author) => {
+export const getNewsText = (title, body, author) => {
     return `
 Byla zveřejněna novinka na tcup:
 
@@ -11,7 +11,7 @@ ${author.email}
     `;
 };
 
-const getHtml = (title, body, author) => {
+export const getNewsHtml = (title, body, author) => {
     const bodyParagraphs = body.split('\n').join('<br>');
 
     return `
@@ -25,4 +25,4 @@ const getHtml = (title, body, author) => {
     `;
 };
 
-export { getText, getHtml };
+
