@@ -3,8 +3,9 @@ import express from 'express';
 import User from '../../models/User';
 import ResetPassword from '../../models/ResetPassword';
 import auth from '../../middleware/auth';
+import resetPassword from '../../middleware/resetPassword';
 import { checkPassword, generateToken, getToken, hashPassword } from '../../lib/auth';
-import { sendResetPasswordEmail } from '../../services/email';
+import { sendPasswordResetCompleteEmail, sendResetPasswordEmail } from '../../services/email';
 
 const router = express.Router();
 
@@ -103,9 +104,41 @@ router.post('/reset-password', async (req, res) => {
 
     await newResetPassword.save();
 
-    sendResetPasswordEmail(user.email, token);
+    await sendResetPasswordEmail(user.email, token);
 
-    return res.status(200);
+    return res.status(200).json({ msg: 'Email sent' });
+});
+
+// @route   POST api/auth/reset-password/valid
+// @desc    Check if token is valid
+// @access  Private
+router.post('/reset-password/valid', resetPassword, async (req, res) => {
+    return res.status(200).json({ msg: 'Token is valid' });
+});
+
+// @route   POST api/auth/reset-password/reset
+// @desc    Set a new password
+// @access  Private
+router.post('/reset-password/reset', resetPassword, async (req, res) => {
+    const { password } = req.body;
+
+    if (!password) {
+        return res.status(400).json({ msg: 'Please enter all fields' });
+    }
+
+    const resetPw = await ResetPassword.findOne({ token: req.resetPasswordToken });
+
+    const user = await User.findById(resetPw.user);
+
+    user.password = await hashPassword(password);
+    resetPw.completed = true;
+
+    user.save();
+    resetPw.save();
+
+    sendPasswordResetCompleteEmail(user.email);
+
+    return res.status(200).json({ msg: 'Password was successfully changed' });
 });
 
 export default router;
