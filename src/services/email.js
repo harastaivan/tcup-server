@@ -2,7 +2,13 @@ import nodemailer from 'nodemailer';
 import config from '../../config';
 import User from '../models/User';
 import { getNewsText, getNewsHtml } from '../constants/email/news';
-import { getResetPasswordLink, getResetPasswordHtml, getResetPasswordText } from '../constants/email/resetPassword';
+import {
+    getResetPasswordLink,
+    getResetPasswordHtml,
+    getResetPasswordText,
+    getPasswordResetCompleteHtml,
+    getPasswordResetCompleteText
+} from '../constants/email/resetPassword';
 
 const getNewsReceivers = async (SEND_EMAILS_TO_ALL) => {
     if (!SEND_EMAILS_TO_ALL) {
@@ -25,7 +31,7 @@ export const sendNewsEmail = async (title, body, author) => {
     const SEND_EMAILS_TO_ALL = config.SEND_EMAILS_TO_ALL;
     const user = config.SMTP_USER;
     const password = config.SMTP_PASSWORD;
-    const from = '"tcup novinky" <news@tcup.cz>';
+    const from = '"tcup novinky" <noreply@tcup.cz>';
     const to = await getNewsReceivers(SEND_EMAILS_TO_ALL);
     const subject = getSubject(SEND_EMAILS_TO_ALL, title);
 
@@ -45,6 +51,18 @@ export const sendResetPasswordEmail = async (to, token) => {
 
     const text = getResetPasswordText(link);
     const html = getResetPasswordHtml(link);
+
+    sendEmail(user, password, from, to, subject, text, html);
+};
+
+export const sendPasswordResetCompleteEmail = async (to) => {
+    const user = config.SMTP_USER;
+    const password = config.SMTP_PASSWORD;
+    const from = '"tcup" <noreply@tcup.cz>';
+    const subject = 'Změna hesla';
+
+    const text = getPasswordResetCompleteText();
+    const html = getPasswordResetCompleteHtml();
 
     sendEmail(user, password, from, to, subject, text, html);
 };

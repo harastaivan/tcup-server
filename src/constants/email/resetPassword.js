@@ -20,3 +20,14 @@ export const getResetPasswordHtml = (link) => {
         <p>Pokud jste to nebyli vy, nemusíte dělat nic, vaše heslo zůstane nezměněno.<p>
     `;
 };
+
+export const getPasswordResetCompleteText = () => {
+    return 'Vaše heslo bylo obnoveno.';
+};
+
+export const getPasswordResetCompleteHtml = () => {
+    return `
+        <h2>Změna hesla</h2>
+        <p>Vaše heslo bylo úspěšně změněno.<p>
+    `;
+};
