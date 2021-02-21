@@ -1,6 +1,4 @@
-import jwt from 'jsonwebtoken';
-
-import config from '../../config';
+import { verifyToken } from '../lib/auth';
 
 const auth = (req, res, next) => {
     const token = req.header('x-auth-token');
@@ -10,7 +8,7 @@ const auth = (req, res, next) => {
 
     try {
         // Verify token
-        const decoded = jwt.verify(token, config.JWT_SECRET);
+        const decoded = verifyToken(token);
 
         // Add user from payload
         req.user = decoded;
