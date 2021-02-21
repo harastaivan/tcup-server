@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { v4 as uuidV4 } from 'uuid';
 
 import config from '../../config';
 
@@ -31,4 +32,13 @@ export const getToken = (id) => {
 
 export const verifyToken = (token) => {
     return jwt.verify(token, config.JWT_SECRET);
+};
+
+export const generateToken = () => {
+    return new Promise((resolve, reject) => {
+        jwt.sign({ token: uuidV4() }, config.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+            if (err) reject(err);
+            resolve(token);
+        });
+    });
 };
