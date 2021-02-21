@@ -1,10 +1,7 @@
 import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-
-import config from '../../../config';
 import User from '../../models/User';
 import auth from '../../middleware/auth';
+import { getToken, hashPassword } from '../../lib/auth';
 
 const router = express.Router();
 
@@ -25,30 +22,22 @@ router.post('/', async (req, res) => {
         name,
         surname,
         email: email.toLowerCase(),
-        password
+        password: await hashPassword(password)
     });
 
-    // Create salt & hash
-    bcrypt.genSalt(10, (err, salt) => {
-        if (err) throw err;
-        bcrypt.hash(newUser.password, salt, async (err, hash) => {
-            if (err) throw err;
-            newUser.password = hash;
-            const { id, name, surname, email, admin } = await newUser.save();
-            jwt.sign({ id }, config.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
-                if (err) throw err;
-                return res.status(201).json({
-                    token,
-                    user: {
-                        id,
-                        name,
-                        surname,
-                        email,
-                        admin
-                    }
-                });
-            });
-        });
+    const { id, admin } = await newUser.save();
+
+    const token = await getToken(id);
+
+    return res.status(201).json({
+        token,
+        user: {
+            id,
+            name,
+            surname,
+            email,
+            admin
+        }
     });
 });
 
