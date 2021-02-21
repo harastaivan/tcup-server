@@ -1,7 +1,8 @@
 import nodemailer from 'nodemailer';
 import config from '../../config';
 import User from '../models/User';
-import { getNewsText, getNewsHtml, getResetPasswordHtml, getResetPasswordText } from '../constants/email/news';
+import { getNewsText, getNewsHtml } from '../constants/email/news';
+import { getResetPasswordLink, getResetPasswordHtml, getResetPasswordText } from '../constants/email/resetPassword';
 
 const getNewsReceivers = async (SEND_EMAILS_TO_ALL) => {
     if (!SEND_EMAILS_TO_ALL) {
@@ -34,11 +35,13 @@ export const sendNewsEmail = async (title, body, author) => {
     sendEmail(user, password, from, to, subject, text, html);
 };
 
-export const sendResetPasswordEmail = async (to, link) => {
+export const sendResetPasswordEmail = async (to, token) => {
     const user = config.SMTP_USER;
     const password = config.SMTP_PASSWORD;
     const from = '"tcup" <noreply@tcup.cz>';
     const subject = 'Změna hesla';
+
+    const link = getResetPasswordLink(token);
 
     const text = getResetPasswordText(link);
     const html = getResetPasswordHtml(link);
