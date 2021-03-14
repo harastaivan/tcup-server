@@ -12,7 +12,8 @@
         "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json)\"",
         "format": "npm run prettier -- --write",
         "format:check": "npm run prettier -- --list-different",
-        "validate": "npm run format:check && npm run lint && npm run test"
+        "validate": "npm run format:check && npm run lint && npm run test",
+        "migrate": "node -r esm scripts/migrate-users/migrate.js"
     },
     "repository": {
         "type": "git",
@@ -25,8 +26,10 @@
     },
     "homepage": "https://github.com/harastaivan/tcup-server#readme",
     "dependencies": {
+        "@types/mongoose": "^5.10.3",
         "aws-sdk": "^2.596.0",
         "bcryptjs": "^2.4.3",
+        "cli-interact": "^0.1.9",
         "concurrently": "^4.1.1",
         "cors": "^2.8.5",
         "dotenv": "^8.0.0",
