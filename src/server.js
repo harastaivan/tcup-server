@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 /* eslint no-console: 0 */
 import express from 'express';
-import mongoose from 'mongoose';
 import cors from 'cors';
 // import morgan from 'morgan'; temporary fix https://github.com/expressjs/morgan/issues/190
 const morgan = require('morgan');
@@ -23,6 +22,7 @@ import startingList from './routes/api/startingList';
 import igc from './routes/api/igc';
 import tracking from './routes/api/tracking';
 import error from './middleware/error';
+import { connect } from './db';
 
 const app = express();
 
@@ -32,49 +32,7 @@ app.use(cors());
 
 const db = config.MONGO_URI;
 
-mongoose.connect(db, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-    reconnectTries: Number.MAX_VALUE,
-    reconnectInterval: 1000
-});
-
-mongoose.connection.on('connecting', () => {
-    console.log('MongoDB connecting');
-});
-
-mongoose.connection.on('connected', () => {
-    console.log('MongoDB connected');
-});
-
-mongoose.connection.on('open', () => {
-    console.log('MongoDB connection is open');
-});
-
-mongoose.connection.on('disconnecting', () => {
-    console.error('MongoDB disconnecting');
-});
-
-mongoose.connection.on('disconnected', () => {
-    console.error('MongoDB disconnected');
-});
-
-mongoose.connection.on('close', () => {
-    console.error('MongoDB connection closed');
-});
-
-mongoose.connection.on('reconnected', () => {
-    console.log('MongoDB reconnected');
-});
-
-mongoose.connection.on('error', (err) => {
-    console.error('MongoDB error', err);
-});
-
-mongoose.connection.on('fullsetup', () => {
-    console.log('MongoDB fullsetup');
-});
+connect(db);
 
 app.use('/', version);
 
