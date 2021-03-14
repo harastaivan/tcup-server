@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../../models/User';
 import auth from '../../middleware/auth';
+import admin from '../../middleware/admin';
 import { getToken, hashPassword } from '../../lib/auth';
 
 const router = express.Router();
@@ -39,6 +40,24 @@ router.post('/', async (req, res) => {
             admin
         }
     });
+});
+
+// @route   GET api/users
+// @desc    Get all users
+// @access  Admin
+router.get('/', admin, async (req, res) => {
+    const users = await User.find({}).sort('surname');
+
+    const response = users.map(({ id, name, surname, email, admin, password }) => ({
+        id,
+        name,
+        surname,
+        email,
+        admin,
+        passwordValid: password !== 'invalid_password'
+    }));
+
+    return res.json(response);
 });
 
 // @route   PUT api/users
