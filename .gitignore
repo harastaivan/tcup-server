@@ -5,3 +5,4 @@ documents/
 venv/
 .vscode
 dump/
+scripts/migrate-users/users.json
