@@ -113,6 +113,24 @@ const insertUsers = async (newUsers) => {
     }
 };
 
+const reviewOldUsers = async (oldUsers, usersToIgnore) => {
+    const usersToReview = removeExistingUsers(oldUsers, usersToIgnore);
+    const usersToInsert = usersToReview.filter((user) =>
+        getYesNo(`Insert user ${user.name} ${user.surname} <${user.email}>?`)
+    );
+    console.log(`${usersToInsert.length} -- Users to insert (reviewed)`);
+    console.log(`${JSON.stringify(usersToInsert.map((user) => user.email))} -- These users will be inserted`);
+
+    if (!getYesNo('Do you want to insert the users?')) {
+        console.log('Inserting cancelled');
+        return;
+    }
+
+    console.log('Inserting users...');
+
+    await insertUsers(usersToInsert);
+};
+
 const migrateUsers = async () => {
     const oldUsers = await getOldUsers();
     const existingUsers = await getExistingUsers();
@@ -128,15 +146,15 @@ const migrateUsers = async () => {
     console.log(`${usersToInsert.length} -- Users to insert (filtered existing)`);
     console.log(`${JSON.stringify(usersToInsert.map((user) => user.email))} -- These users will be inserted`);
 
-    if (!getYesNo('Do you want to insert the users?')) {
-        console.log('Inserting cancelled');
-        await disconnect();
-        return;
+    if (getYesNo('Do you want to insert the users?')) {
+        console.log('Inserting users...');
+        await insertUsers(usersToInsert);
     }
 
-    console.log('Inserting users...');
-
-    await insertUsers(usersToInsert);
+    if (getYesNo('Do you want to review all old users to insert them into database?')) {
+        console.log('Reviewing users...');
+        await reviewOldUsers(oldUsers, existingUsers);
+    }
 
     await disconnect();
 };
