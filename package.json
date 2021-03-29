@@ -13,7 +13,8 @@
         "format": "npm run prettier -- --write",
         "format:check": "npm run prettier -- --list-different",
         "validate": "npm run format:check && npm run lint && npm run test",
-        "migrate": "node -r esm scripts/migrate-users/migrate.js"
+        "migrate": "node -r esm scripts/migrate-users/migrate.js",
+        "soaring-spot:test": "node -r esm src/api/soaring-spot/test.js"
     },
     "repository": {
         "type": "git",
