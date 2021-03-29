@@ -23,5 +23,7 @@ export default {
     AWS_SECRET: process.env.AWS_SECRET,
     SEND_EMAILS_TO_ALL: process.env.SEND_EMAILS_TO_ALL === 'true',
     SMTP_USER: process.env.SMTP_USER,
-    SMTP_PASSWORD: process.env.SMTP_PASSWORD
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD,
+    SOARING_SPOT_CLIENT_ID: process.env.SOARING_SPOT_CLIENT_ID,
+    SOARING_SPOT_SECRET: process.env.SOARING_SPOT_SECRET
 };
