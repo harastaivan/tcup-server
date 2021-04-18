@@ -9,6 +9,16 @@ const CompetitionClassSchema = new Schema({
         type: String,
         required: true,
         trim: true
+    },
+    type: {
+        type: String,
+        required: true,
+        default: ''
+    },
+    soaringSpotId: {
+        type: Number,
+        required: true,
+        default: 0
     }
 });
 
