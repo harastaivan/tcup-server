@@ -1,8 +1,8 @@
+/* eslint-disable no-console */
 import axios from 'axios';
 import config from '../../../config';
 import headers from './headers';
 import catchError from './utils/catchError';
-import write from './utils/write';
 
 import CompetitionClass from '../../models/CompetitionClass';
 import DailyResult from '../../models/DailyResult';
@@ -56,7 +56,7 @@ const getSoaringSpotResult = async (competitionClass) => {
     };
 
     try {
-        console.log('Fetching results...');
+        console.log(`Fetching results for ${competitionClass.name} class...`);
         const id = competitionClass.soaringSpotId;
         const res = await axios.get(`https://api.soaringspot.com/v1/classes/${id}/results`, config);
         const classResults = res.data['_embedded']['http://api.soaringspot.com/rel/class_results'];
@@ -77,32 +77,19 @@ const getSoaringSpotResults = async () => {
     return results;
 };
 
-const getFilteredSoaringSpotResults = async () => {
-    const results = await getSoaringSpotResults();
-
-    const filterClases = (classes) => [classes[0]];
-    const filterDays = (days) => [days[0], days[1]];
-    const filterResults = (results) => [results[0], results[1], results[2], results[3], results[4]];
-
-    const filtered = /* filterClases(results)*/ results.map((competitionClass) => ({
-        ...competitionClass,
-        days: /* filterDays(competitionClass.days) */ competitionClass.days.map((day) => ({
-            ...day,
-            results: filterResults(day.results)
-        }))
-    }));
-
-    write(`results/filtered.json`, filtered);
-
-    return filtered;
-};
-
 const syncResults = async () => {
     await connect(db);
+
+    console.log('Synchronizing results from SoaringSpot API...');
+    console.log('Deleting DailyResults...');
 
     await DailyResult.deleteMany({});
 
     const results = await getSoaringSpotResults();
+
+    let newCompetitionDaysCount = 0;
+    let existingCompetitionDaysCount = 0;
+    let newResultsCount = 0;
 
     for (const { _id: competitionClassId, days } of results) {
         const competitionClass = await CompetitionClass.findById(competitionClassId);
@@ -117,11 +104,13 @@ const syncResults = async () => {
                     task: 'TASK'
                 });
                 await competitionDay.save();
+                newCompetitionDaysCount++;
+            } else {
+                existingCompetitionDaysCount++;
             }
 
             for (const result of results) {
-                // await test(2000);
-                console.log({ competitionClassId, taskDate, taskNumber, result });
+                // console.log({ competitionClassId, taskDate, taskNumber, result });
 
                 const dailyResult = new DailyResult({
                     ...result,
@@ -130,9 +119,15 @@ const syncResults = async () => {
                 });
 
                 await dailyResult.save();
+                newResultsCount++;
             }
         }
     }
+
+    console.log('Synchronization done.');
+    console.log(`New results: ${newResultsCount}`);
+    console.log(`Existing competition days: ${existingCompetitionDaysCount}`);
+    console.log(`New competition days: ${newCompetitionDaysCount}`);
 
     await disconnect();
 };
