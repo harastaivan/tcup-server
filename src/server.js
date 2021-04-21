@@ -21,6 +21,7 @@ import document from './routes/api/document';
 import startingList from './routes/api/startingList';
 import igc from './routes/api/igc';
 import tracking from './routes/api/tracking';
+import results from './routes/api/results';
 import error from './middleware/error';
 import { connect } from './db';
 
@@ -50,6 +51,7 @@ app.use('/api/documents', document);
 app.use('/api/starting-list', startingList);
 app.use('/api/igc', igc);
 app.use('/api/tracking', tracking);
+app.use('/api/results', results);
 
 app.use(error);
 
