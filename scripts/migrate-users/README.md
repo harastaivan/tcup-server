@@ -43,6 +43,17 @@ heroku run -a tcup-api npm run soaring-spot:contest
 heroku run -a tcup-api npm run soaring-spot:results
 ```
 
+### Scheduler for results synchronization
+
+```
+heroku addons:create scheduler:standard -a tcup-api
+heroku addons:open scheduler -a tcup-api
+```
+
+- Create job
+- Every 10 minute
+- Run command `npm run soaring-spot:results`
+
 ## tcup-client
 
 1. new branch
