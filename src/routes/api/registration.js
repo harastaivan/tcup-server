@@ -141,6 +141,7 @@ router.put('/', auth, async (req, res) => {
         oldRegistration.glider.gliderType = glider.gliderType;
         oldRegistration.glider.registrationNumber = glider.registrationNumber;
         oldRegistration.glider.startNumber = glider.startNumber;
+        oldRegistration.glider.hasEngine = glider.hasEngine;
         oldRegistration.competitionClass = competitionClass;
         oldRegistration.logger = logger;
         oldRegistration.accomodation.accomodationType = accomodation.accomodationType;
@@ -190,7 +191,9 @@ router.put('/:id', admin, async (req, res) => {
             logger,
             accomodation,
             meals,
-            note
+            note,
+            igcId,
+            registrationCompleted
         } = req.body;
 
         if (
@@ -216,12 +219,15 @@ router.put('/:id', admin, async (req, res) => {
         registration.glider.gliderType = glider.gliderType;
         registration.glider.registrationNumber = glider.registrationNumber;
         registration.glider.startNumber = glider.startNumber;
+        registration.glider.hasEngine = glider.hasEngine;
         registration.competitionClass = competitionClass;
         registration.logger = logger;
         registration.accomodation.accomodationType = accomodation.accomodationType;
         registration.accomodation.quantity = accomodation.quantity;
         registration.meals = meals;
         registration.note = note;
+        registration.igcId = igcId;
+        registration.registrationCompleted = registrationCompleted;
 
         await registration.save();
 
