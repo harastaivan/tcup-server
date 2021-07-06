@@ -41,6 +41,7 @@ router.get('/', async (req, res) => {
             gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.index})`,
             registrationNumber: registration.glider.registrationNumber,
             paid: registration.paid,
+            registrationCompleted: registration.registrationCompleted,
             competitionClass: registration.competitionClass
         };
     });
