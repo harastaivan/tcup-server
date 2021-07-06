@@ -27,7 +27,7 @@ GET {{apiUrl}}/api/regions
 
 POST {{apiUrl}}/api/regions
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "name": "Rakousko"
@@ -37,7 +37,7 @@ x-auth-token: {{token}}
 
 POST {{apiUrl}}/api/news
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "title": "Test title",
@@ -53,7 +53,7 @@ GET {{apiUrl}}/api/days
 
 POST {{apiUrl}}/api/days
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "name": "Den 4",
@@ -64,7 +64,7 @@ x-auth-token: {{token}}
 
 PUT {{apiUrl}}/api/days/5efce7ee3de5543176239dc4
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "task": "TASK_CANCELLED"
@@ -79,7 +79,7 @@ Content-Type: application/json
 
 POST {{apiUrl}}/api/competitorstatuses
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "day": "5efde4ff7122fd0017744f98"
@@ -89,7 +89,7 @@ x-auth-token: {{token}}
 
 PUT {{apiUrl}}/api/competitorstatuses/5efddb249ab08b63b090ed04
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "status": "HOME"
@@ -114,7 +114,7 @@ Content-Type: application/json
 
 POST {{apiUrl}}/api/tracking/5efce7a13de5543176239dc2/5d4026c05fa77179689ce31c
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "label": "Tracking Kombi Day 1",
@@ -124,18 +124,18 @@ x-auth-token: {{token}}
 ###
 
 GET {{apiUrl}}/api/starting-list/export/seeyou/5d4026c05fa77179689ce31c
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 ###
 
 GET {{apiUrl}}/api/igc/5efce7a13de5543176239dc2
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 ###
 
 PUT {{apiUrl}}/api/igc/5f09a7ed72acfb0f2c35f3ba
 Content-Type: application/json
-x-auth-token: {{token}}
+Authorization: Bearer {{token}}
 
 {
     "processed": true,
