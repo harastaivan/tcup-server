@@ -66,6 +66,7 @@ const getSoaringSpotResult = async (competitionClass) => {
         return { ...competitionClass, days };
     } catch (err) {
         catchError(err);
+        return { ...competitionClass, days: null };
     }
 };
 
@@ -93,6 +94,12 @@ const syncResults = async () => {
 
     for (const { _id: competitionClassId, days } of results) {
         const competitionClass = await CompetitionClass.findById(competitionClassId);
+
+        // Check if days is null (there was an error fetching results for the class)
+        if (days === null) {
+            console.log(`Skipping results for class ${competitionClassId}...`);
+            continue;
+        }
 
         for (const { taskDate, taskNumber, results } of days) {
             let competitionDay = await CompetitionDay.findOne({ date: new Date(taskDate) });

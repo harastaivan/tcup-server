@@ -34,13 +34,13 @@ mongorestore --uri 'mongodb+srv://user:password@cluster1.isq4l.mongodb.net/tcup_
 ### Synchronize contest
 
 ```
-heroku run -a tcup-thesis-api npm run soaring-spot:contest
+heroku run -a tcup-api npm run soaring-spot:contest
 ```
 
 ### Synchronize results
 
 ```
-heroku run -a tcup-thesis-api npm run soaring-spot:results
+heroku run -a tcup-api npm run soaring-spot:results
 ```
 
 ## tcup-client
