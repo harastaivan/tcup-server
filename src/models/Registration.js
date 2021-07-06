@@ -45,6 +45,11 @@ const RegistrationSchema = new Schema({
         startNumber: {
             type: String,
             required: true
+        },
+        hasEngine: {
+            type: Boolean,
+            required: false,
+            default: false
         }
     },
     competitionClass: {
@@ -76,6 +81,16 @@ const RegistrationSchema = new Schema({
     note: {
         type: String,
         required: false
+    },
+    igcId: {
+        type: Number,
+        required: false,
+        default: null
+    },
+    registrationCompleted: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 });
 
