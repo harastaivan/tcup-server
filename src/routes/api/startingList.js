@@ -147,7 +147,7 @@ router.get('/export/seeyou/:compClass', admin, async (req, res) => {
                 birth_date: registration.birthDate,
                 nationality: getNationalityByRegion(registration.region.name),
                 civl_id: 0,
-                igc_id: 0, // TODO: important
+                igc_id: String(registration.igcId),
                 email: registration.user.email,
                 phone: registration.phone,
                 club: registration.aeroclub,
@@ -157,8 +157,7 @@ router.get('/export/seeyou/:compClass', admin, async (req, res) => {
                 contestant_number: registration.glider.startNumber,
                 aircraft_registration: registration.glider.registrationNumber,
                 handicap: registration.glider.gliderType.index,
-                pure_glider: 'False', // TODO
-                // TODO: competitionClass: registration.competitionClass.name,
+                pure_glider: registration.glider.hasEngine ? 'False' : 'True',
                 flight_recorders: registration.logger,
                 tag: '',
                 not_competing: 'False',
