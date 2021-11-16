@@ -29,7 +29,7 @@
     "homepage": "https://github.com/harastaivan/tcup-server#readme",
     "dependencies": {
         "@types/mongoose": "^5.10.3",
-        "aws-sdk": "^2.596.0",
+        "aws-sdk": "^2.814.0",
         "axios": "^0.21.1",
         "bcryptjs": "^2.4.3",
         "cli-interact": "^0.1.9",
