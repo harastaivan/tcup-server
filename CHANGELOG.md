@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="1.5.1"></a>
+## 1.5.1 (2022-03-30)
+
+### Added
+
+- ➕ Add uuid package [[fa3540f](https://github.com/harastaivan/tcup-server/commit/fa3540fd0cc5f419f9a700d0d768997650389f63)]
+- ➕ Add gitmoji-changelog [[38ae738](https://github.com/harastaivan/tcup-server/commit/38ae738b6f59fe25d701706fe8d63f58ceabf05e)]
+
+
 <a name="1.5.0"></a>
 ## 1.5.0 (2022-03-30)
 
