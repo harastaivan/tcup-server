@@ -15,7 +15,9 @@
         "validate": "npm run format:check && npm run lint && npm run test",
         "migrate": "node -r esm scripts/migrate-users/migrate.js",
         "soaring-spot:contest": "node -r esm src/api/soaring-spot/contest.js",
-        "soaring-spot:results": "node -r esm src/api/soaring-spot/results.js"
+        "soaring-spot:results": "node -r esm src/api/soaring-spot/results.js",
+        "version": "yarn changelog && code CHANGELOG.md --wait && git add CHANGELOG.md",
+        "changelog": "gitmoji-changelog"
     },
     "repository": {
         "type": "git",
