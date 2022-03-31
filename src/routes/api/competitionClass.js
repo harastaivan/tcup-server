@@ -10,21 +10,23 @@ const router = express.Router();
 // @access  Admin
 router.post('/', admin, async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name, type, soaringSpotId } = req.body;
         // Simple validation
-        if (!name) {
+        if (!name || !type || !soaringSpotId) {
             return res.status(400).json({ msg: 'Please enter all fields' });
         }
 
         const newCompetitionClass = new CompetitionClass({
-            name
+            name,
+            type,
+            soaringSpotId
         });
 
         const savedCompetitionClass = await newCompetitionClass.save();
 
         res.status(201).json(savedCompetitionClass);
     } catch (err) {
-        return res.status(500).json({ error: err.message || 'Something went wrong' });
+        return res.status(500).json({ error: err.message });
     }
 });
 
