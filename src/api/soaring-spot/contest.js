@@ -110,9 +110,14 @@ const syncCompetitionClasses = async (classes) => {
 };
 
 export const getContest = async () => {
-    const contest = await Contest.findOne({});
+    try {
+        const contest = await Contest.findOne({});
 
-    return contest;
+        return contest;
+    } catch (err) {
+        console.error('Error getting contest.');
+        console.error(err);
+    }
 };
 
 syncContest();

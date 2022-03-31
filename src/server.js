@@ -25,6 +25,10 @@ import results from './routes/api/results';
 import error from './middleware/error';
 import { connect } from './db';
 
+const catchWrapper = (cb) => {
+    return (req, res, next) => cb(req, res, next).catch(next);
+};
+
 const app = express();
 
 app.use(morgan('combined'));
@@ -37,21 +41,21 @@ connect(db);
 
 app.use('/', version);
 
-app.use('/api/users', users);
-app.use('/api/auth', auth);
-app.use('/api/news', news);
-app.use('/api/registration', registration);
-app.use('/api/regions', region);
-app.use('/api/classes', competitionClass);
-app.use('/api/days', competitionDay);
-app.use('/api/competitorstatuses', competitorStatus);
-app.use('/api/glidertypes', gliderType);
-app.use('/api/accomodationtypes', accomodationType);
-app.use('/api/documents', document);
-app.use('/api/starting-list', startingList);
-app.use('/api/igc', igc);
-app.use('/api/tracking', tracking);
-app.use('/api/results', results);
+app.use('/api/users', catchWrapper(users));
+app.use('/api/auth', catchWrapper(auth));
+app.use('/api/news', catchWrapper(news));
+app.use('/api/registration', catchWrapper(registration));
+app.use('/api/regions', catchWrapper(region));
+app.use('/api/classes', catchWrapper(competitionClass));
+app.use('/api/days', catchWrapper(competitionDay));
+app.use('/api/competitorstatuses', catchWrapper(competitorStatus));
+app.use('/api/glidertypes', catchWrapper(gliderType));
+app.use('/api/accomodationtypes', catchWrapper(accomodationType));
+app.use('/api/documents', catchWrapper(document));
+app.use('/api/starting-list', catchWrapper(startingList));
+app.use('/api/igc', catchWrapper(igc));
+app.use('/api/tracking', catchWrapper(tracking));
+app.use('/api/results', catchWrapper(results));
 
 app.use(error);
 
