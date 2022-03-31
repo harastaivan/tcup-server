@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.5.3"></a>
+
+## 1.5.3 (2022-03-31)
+
+### Removed
+
+-   🔥 Remove error handling and setup per route [[10ae119](https://github.com/harastaivan/tcup-server/commit/10ae119bae5aded7d3e4c457779a054caabfd623)]
+
+### Fixed
+
+-   🐛 Fix create competition class [[93590ba](https://github.com/harastaivan/tcup-server/commit/93590baac62422c57987e8ff8f29018daba00df7)]
+
 <a name="1.5.2"></a>
 
 ## 1.5.2 (2022-03-31)
