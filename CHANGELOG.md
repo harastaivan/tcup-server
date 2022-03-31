@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.5.5"></a>
+
+## 1.5.5 (2022-03-31)
+
+### Removed
+
+-   🔥 Remove error middleware [[9174e39](https://github.com/harastaivan/tcup-server/commit/9174e394158c8aa96e98f44e0cbd6dd653ada9a8)]
+
+### Fixed
+
+-   🐛 Error handle competitionDay [[12d6d40](https://github.com/harastaivan/tcup-server/commit/12d6d4055de57668e05071f678419404e697934f)]
+
 <a name="1.5.4"></a>
 
 ## 1.5.4 (2022-03-31)
