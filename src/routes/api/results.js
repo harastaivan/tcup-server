@@ -92,10 +92,6 @@ router.get('/top', async (req, res, next) => {
         const day = await getLastCompetitionDay();
         const classes = await getCompetitionClasses();
 
-        if (!day) {
-            return res.status(400).json({ msg: "Competition day doesn't exists" });
-        }
-
         const results = await Promise.all(classes.map((competitionClass) => getTopResults(day, competitionClass)));
 
         return res.json({ classes: results });
