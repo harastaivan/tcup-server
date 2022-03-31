@@ -9,19 +9,23 @@ const router = express.Router();
 // @desc    Create a region
 // @access  Admin
 router.post('/', admin, async (req, res) => {
-    const { name } = req.body;
-    // Simple validation
-    if (!name) {
-        return res.status(400).json({ msg: 'Please enter all fields' });
+    try {
+        const { name } = req.body;
+        // Simple validation
+        if (!name) {
+            return res.status(400).json({ msg: 'Please enter all fields' });
+        }
+
+        const newCompetitionClass = new CompetitionClass({
+            name
+        });
+
+        const savedCompetitionClass = await newCompetitionClass.save();
+
+        res.status(201).json(savedCompetitionClass);
+    } catch (err) {
+        return res.status(500).json({ error: err.message || 'Something went wrong' });
     }
-
-    const newCompetitionClass = new CompetitionClass({
-        name
-    });
-
-    const savedCompetitionClass = await newCompetitionClass.save();
-
-    res.status(201).json(savedCompetitionClass);
 });
 
 // @route   GET api/classes
