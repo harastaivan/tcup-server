@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.5.4"></a>
+
+## 1.5.4 (2022-03-31)
+
+### Fixed
+
+-   🐛 Fix Top results error [[2b91a1b](https://github.com/harastaivan/tcup-server/commit/2b91a1b9357db9caa6eebfcceaa0b855e9111198)]
+
 <a name="1.5.3"></a>
 
 ## 1.5.3 (2022-03-31)
