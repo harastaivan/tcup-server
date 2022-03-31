@@ -9,21 +9,25 @@ const router = express.Router();
 // @desc    Create a competition day
 // @access  Admin
 router.post('/', admin, async (req, res) => {
-    const { name, date, task } = req.body;
-    // Simple validation
-    if (!name || !date) {
-        return res.status(400).json({ msg: 'Please enter all fields' });
+    try {
+        const { name, date, task } = req.body;
+        // Simple validation
+        if (!name || !date) {
+            return res.status(400).json({ msg: 'Please enter all fields' });
+        }
+
+        const newCompetitionDay = new CompetitionDay({
+            name,
+            date,
+            task
+        });
+
+        const savedCompetitionDay = await newCompetitionDay.save();
+
+        res.status(201).json(savedCompetitionDay);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
     }
-
-    const newCompetitionDay = new CompetitionDay({
-        name,
-        date,
-        task
-    });
-
-    const savedCompetitionDay = await newCompetitionDay.save();
-
-    res.status(201).json(savedCompetitionDay);
 });
 
 // @route   GET api/days
