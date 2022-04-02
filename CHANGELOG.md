@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.6.0"></a>
+
+## 1.6.0 (2022-04-02)
+
+### Added
+
+-   ✨ Implement glider-types-importer node package [[c13447d](https://github.com/harastaivan/tcup-server/commit/c13447df863b062d6751c90b3d2e95ebb5cf77d2)]
+
+### Removed
+
+-   🔥 Remove glider-types python script [[6b25985](https://github.com/harastaivan/tcup-server/commit/6b259853aff9f6e16c9a8d3edc2347377d5d94e2)]
+
 <a name="1.5.5"></a>
 
 ## 1.5.5 (2022-03-31)
