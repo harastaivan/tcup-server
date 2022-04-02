@@ -1,0 +1,20 @@
+{
+    "name": "glider-types-importer",
+    "version": "1.0.0",
+    "main": "index.ts",
+    "author": "Ivan Harasta",
+    "license": "MIT",
+    "private": false,
+    "scripts": {
+        "import": "ts-node src/index.ts"
+    },
+    "devDependencies": {
+        "@types/mongoose": "^5.11.97",
+        "ts-node": "^10.7.0"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.0",
+        "exceljs": "^4.3.0",
+        "mongoose": "^6.2.9"
+    }
+}
