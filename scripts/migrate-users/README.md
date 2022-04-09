@@ -21,15 +21,11 @@
 
 ### Dump database
 
-```
-mongodump --uri 'mongodb+srv://user:password@cluster1.isq4l.mongodb.net/tcup_prod' -o mongodump/
-```
+See [scripts/migrate-database](../migrate-database/migrate.zsh).
 
 ### Restore database
 
-```
-mongorestore --uri 'mongodb+srv://user:password@cluster1.isq4l.mongodb.net/tcup_prod_2020' -d tcup_prod_2020 mongodump/tcup_prod/
-```
+See [scripts/migrate-database](../migrate-database/migrate.zsh).
 
 ### Synchronize contest
 
@@ -50,9 +46,9 @@ heroku addons:create scheduler:standard -a tcup-api
 heroku addons:open scheduler -a tcup-api
 ```
 
-- Create job
-- Every 10 minute
-- Run command `npm run soaring-spot:results`
+-   Create job
+-   Every 10 minute
+-   Run command `npm run soaring-spot:results`
 
 ## tcup-client
 
