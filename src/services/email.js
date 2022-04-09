@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import config from '../../config';
+import { SEND_EMAILS_TO_ALL, SMTP_PASSWORD, SMTP_USER } from '../../config';
 import User from '../models/User';
 import { getNewsText, getNewsHtml } from '../constants/email/news';
 import {
@@ -28,9 +28,8 @@ const getSubject = (SEND_EMAILS_TO_ALL, title) => {
 };
 
 export const sendNewsEmail = async (title, body, author) => {
-    const SEND_EMAILS_TO_ALL = config.SEND_EMAILS_TO_ALL;
-    const user = config.SMTP_USER;
-    const password = config.SMTP_PASSWORD;
+    const user = SMTP_USER;
+    const password = SMTP_PASSWORD;
     const from = '"tcup novinky" <noreply@tcup.cz>';
     const to = await getNewsReceivers(SEND_EMAILS_TO_ALL);
     const subject = getSubject(SEND_EMAILS_TO_ALL, title);
@@ -42,8 +41,8 @@ export const sendNewsEmail = async (title, body, author) => {
 };
 
 export const sendResetPasswordEmail = async (to, token) => {
-    const user = config.SMTP_USER;
-    const password = config.SMTP_PASSWORD;
+    const user = SMTP_USER;
+    const password = SMTP_PASSWORD;
     const from = '"tcup" <noreply@tcup.cz>';
     const subject = 'Změna hesla';
 
@@ -56,8 +55,8 @@ export const sendResetPasswordEmail = async (to, token) => {
 };
 
 export const sendPasswordResetCompleteEmail = async (to) => {
-    const user = config.SMTP_USER;
-    const password = config.SMTP_PASSWORD;
+    const user = SMTP_USER;
+    const password = SMTP_PASSWORD;
     const from = '"tcup" <noreply@tcup.cz>';
     const subject = 'Změna hesla';
 

@@ -1,7 +1,5 @@
 import crypto from 'crypto';
-import config from '../../../config';
-
-const { SOARING_SPOT_CLIENT_ID, SOARING_SPOT_SECRET } = config;
+import { SOARING_SPOT_CLIENT_ID, SOARING_SPOT_SECRET } from '../../../config';
 
 const nonce = 'abcdefghijklmnopqrstvwxyz';
 const created = new Date().toISOString();

@@ -2,11 +2,11 @@ import S3 from 'aws-sdk/clients/s3';
 import multer from 'multer';
 import multerS3 from 'multer-s3';
 
-import config from '../../config';
+import { AWS_ACCESS_KEY_ID, AWS_SECRET } from '../../config';
 
 const s3 = new S3({
-    secretAccessKey: config.AWS_SECRET,
-    accessKeyId: config.AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET,
+    accessKeyId: AWS_ACCESS_KEY_ID,
     region: 'eu-central-1'
 });
 

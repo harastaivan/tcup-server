@@ -1,14 +1,12 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import config from '../../../config';
+import { MONGO_URI } from '../../../config';
 import { connect, disconnect } from '../../db';
 import CompetitionClass from '../../models/CompetitionClass';
 import Contest from '../../models/Contest';
 import headers from './headers';
 import catchError from './utils/catchError';
 import write from './utils/write';
-
-const db = config.MONGO_URI;
 
 const getSoaringSpotContest = async () => {
     const config = {
@@ -45,7 +43,7 @@ const getSoaringSpotContest = async () => {
 const syncContest = async () => {
     const contest = await getSoaringSpotContest();
 
-    await connect(db);
+    await connect(MONGO_URI);
 
     await syncCompetitionClasses(contest.classes);
 

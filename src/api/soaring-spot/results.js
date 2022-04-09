@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import axios from 'axios';
-import config from '../../../config';
+import { MONGO_URI } from '../../../config';
 import headers from './headers';
 import catchError from './utils/catchError';
 
@@ -8,8 +8,6 @@ import CompetitionClass from '../../models/CompetitionClass';
 import DailyResult from '../../models/DailyResult';
 import { connect, disconnect } from '../../db';
 import CompetitionDay from '../../models/CompetitionDay';
-
-const db = config.MONGO_URI;
 
 const getFlightId = (result) => {
     const links = result['_links'];
@@ -79,7 +77,7 @@ const getSoaringSpotResults = async () => {
 };
 
 const syncResults = async () => {
-    await connect(db);
+    await connect(MONGO_URI);
 
     console.log('Synchronizing results from SoaringSpot API...');
     console.log('Deleting DailyResults...');

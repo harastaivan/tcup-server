@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { v4 as uuidV4 } from 'uuid';
 
-import config from '../../config';
+import { JWT_SECRET } from '../../config';
 
 export const hashPassword = (password) => {
     return new Promise((resolve, reject) => {
@@ -23,7 +23,7 @@ export const checkPassword = (password, hash) => {
 
 export const getToken = (id) => {
     return new Promise((resolve, reject) => {
-        jwt.sign({ id }, config.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+        jwt.sign({ id }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
             if (err) reject(err);
             resolve(token);
         });
@@ -31,12 +31,12 @@ export const getToken = (id) => {
 };
 
 export const verifyToken = (token) => {
-    return jwt.verify(token, config.JWT_SECRET);
+    return jwt.verify(token, JWT_SECRET);
 };
 
 export const generateToken = () => {
     return new Promise((resolve, reject) => {
-        jwt.sign({ token: uuidV4() }, config.JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
+        jwt.sign({ token: uuidV4() }, JWT_SECRET, { expiresIn: 3600 }, (err, token) => {
             if (err) reject(err);
             resolve(token);
         });

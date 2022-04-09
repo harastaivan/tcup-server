@@ -1,11 +1,10 @@
-#!/usr/bin/env node
 /* eslint no-console: 0 */
 import express from 'express';
 import cors from 'cors';
 // import morgan from 'morgan'; temporary fix https://github.com/expressjs/morgan/issues/190
 const morgan = require('morgan');
 
-import config from '../config';
+import { MONGO_URI, PORT } from '../config';
 import version from './routes/api/version';
 import users from './routes/api/users';
 import auth from './routes/api/auth';
@@ -30,9 +29,7 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use(cors());
 
-const db = config.MONGO_URI;
-
-connect(db);
+connect(MONGO_URI);
 
 app.use('/', version);
 
@@ -52,8 +49,6 @@ app.use('/api/igc', igc);
 app.use('/api/tracking', tracking);
 app.use('/api/results', results);
 
-const port = config.PORT || 5000;
-
-app.listen(port, () => console.log(`Server started on port ${port}`));
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 export default app;
