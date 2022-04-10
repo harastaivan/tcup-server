@@ -57,7 +57,7 @@ router.post('/', admin, async (req, res) => {
         return res.status(400).json({ msg: 'This competition day does not exist' });
     }
 
-    const pilots = await Registration.find({});
+    const pilots = await Registration.find({ accepted: true });
 
     for (const pilot of pilots) {
         const existing = await CompetitorStatus.findOne({ day: competitionDay, pilot });

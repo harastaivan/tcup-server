@@ -23,14 +23,7 @@ const getNationalityByRegion = (region) => {
     }
 };
 
-// @route   GET api/starting-list
-// @desc    Get starting list of registered pilots
-// @access  Public
-router.get('/', async (req, res) => {
-    const registrations = await Registration.find({})
-        .populate('user', '-password')
-        .populate(['glider.gliderType']);
-
+const getStartingList = async (registrations) => {
     const simplifiedRegistrations = registrations.map((registration) => {
         return {
             _id: registration._id,
@@ -41,6 +34,7 @@ router.get('/', async (req, res) => {
             gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.index})`,
             registrationNumber: registration.glider.registrationNumber,
             paid: registration.paid,
+            accepted: registration.accepted,
             registrationCompleted: registration.registrationCompleted,
             competitionClass: registration.competitionClass
         };
@@ -59,6 +53,32 @@ router.get('/', async (req, res) => {
         };
     });
 
+    return startingList;
+};
+
+// @route   GET api/starting-list
+// @desc    Get starting list of registered (accepted) pilots
+// @access  Public
+router.get('/', async (req, res) => {
+    const registrations = await Registration.find({ accepted: true })
+        .populate('user', '-password')
+        .populate(['glider.gliderType']);
+
+    const startingList = await getStartingList(registrations);
+
+    res.json(startingList);
+});
+
+// @route   GET api/starting-list/all
+// @desc    Get starting list of registered (all) pilots
+// @access  Public
+router.get('/all', admin, async (req, res) => {
+    const registrations = await Registration.find()
+        .populate('user', '-password')
+        .populate(['glider.gliderType']);
+
+    const startingList = await getStartingList(registrations);
+
     res.json(startingList);
 });
 
@@ -67,7 +87,7 @@ router.get('/', async (req, res) => {
 // @access  Admin
 router.get('/export', admin, async (req, res) => {
     try {
-        const registrations = await Registration.find({})
+        const registrations = await Registration.find({ accepted: true })
             .populate('user', '-password')
             .populate(['glider.gliderType', 'region', 'competitionClass', 'accomodation.accomodationType']);
 
@@ -136,7 +156,7 @@ router.get('/export/seeyou/:compClass', admin, async (req, res) => {
             return res.status(400).json({ msg: 'Invalid competition class' });
         }
 
-        const registrations = await Registration.find({ competitionClass })
+        const registrations = await Registration.find({ competitionClass, accepted: true })
             .populate('user', '-password')
             .populate(['glider.gliderType', 'region', 'competitionClass', 'accomodation.accomodationType']);
 

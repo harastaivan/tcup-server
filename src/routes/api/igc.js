@@ -97,6 +97,10 @@ router.post('/', igc.single('igc'), async (req, res) => {
             return res.status(400).json({ msg: 'Invalid pilot' });
         }
 
+        if (!registration.accepted) {
+            return res.status(400).json({ msg: 'Pilot registration is not accepted' });
+        }
+
         const competitionDay = await CompetitionDay.findById(day);
 
         if (!competitionDay) {
@@ -141,7 +145,7 @@ router.post('/', igc.single('igc'), async (req, res) => {
 // @desc    Get form data for igc
 // @access  Public
 router.get('/form', async (req, res) => {
-    const registrations = await Registration.find({}).populate('user', '-password');
+    const registrations = await Registration.find({ accepted: true }).populate('user', '-password');
 
     res.status(200).json(registrations.sort(sortRegistrationByStartNumber).map(mapRegistrationForForm));
 });
