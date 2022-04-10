@@ -158,7 +158,7 @@ router.put('/', auth, async (req, res) => {
 });
 
 // @route   GET api/registration/:id
-// @desc    Get registration data of registraion with id in query
+// @desc    Get registration data of registration with id in query
 // @access  Admin
 router.get('/:id', admin, async (req, res) => {
     try {
@@ -237,19 +237,25 @@ router.put('/:id', admin, async (req, res) => {
     }
 });
 
-// @route   PUT api/registration/pay/registrationId
-// @desc    Mark registration paid or not
+// @route   PUT api/registration/:registrationId/quick-actions
+// @desc    Update registration quick actions
 // @access  Admin
-router.put('/pay/:id', admin, async (req, res) => {
+router.put('/:id/quick-actions', admin, async (req, res) => {
     try {
         const registration = await Registration.findById(req.params.id);
         if (!registration) {
             return res.status(404).json({ msg: 'Registration does not exist for this user' });
         }
 
-        const { paid } = req.body;
+        const { paid, accepted } = req.body;
+
         if (paid !== undefined) {
             registration.paid = paid;
+            registration.save();
+        }
+
+        if (accepted !== undefined) {
+            registration.accepted = accepted;
             registration.save();
         }
 

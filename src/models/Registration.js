@@ -15,6 +15,11 @@ const RegistrationSchema = new Schema({
         required: true,
         default: false
     },
+    accepted: {
+        type: Boolean,
+        required: false,
+        default: false
+    },
     birthDate: {
         type: String,
         required: false
