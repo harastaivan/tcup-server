@@ -1,5 +1,24 @@
 # Changelog
 
+<a name="1.7.0"></a>
+
+## 1.7.0 (2022-04-11)
+
+### Added
+
+-   ✨ Send email after registration completed [[f057e5c](https://github.com/harastaivan/tcup-server/commit/f057e5ce3737e94455f88df5ae672174b6c2fc6d)]
+-   ✨ Filter only accepted registrations [[15dc9e2](https://github.com/harastaivan/tcup-server/commit/15dc9e22c92776c1bdc456515c4c11232bdb34a3)]
+-   ✨ Add accepted field to registration [[b5a85c7](https://github.com/harastaivan/tcup-server/commit/b5a85c7d57d443acb7f20844dfbddcff8e2f1c06)]
+
+### Changed
+
+-   ♻️ Refactor email service [[e2f4e96](https://github.com/harastaivan/tcup-server/commit/e2f4e966e4e833a6d3e83d05553fcdfed51e2946)]
+-   🔧 Update config [[d3ee8d8](https://github.com/harastaivan/tcup-server/commit/d3ee8d8cb92086b2995d10292113ebfcb44d3a0a)]
+
+### Miscellaneous
+
+-   🔨 Add migrate-database script [[5f331ee](https://github.com/harastaivan/tcup-server/commit/5f331ee9776894b0a4282dd9055df1b70809bb2b)]
+
 <a name="1.6.0"></a>
 
 ## 1.6.0 (2022-04-02)
