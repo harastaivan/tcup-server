@@ -32,7 +32,7 @@
     "dependencies": {
         "@types/mongoose": "^5.10.3",
         "aws-sdk": "^2.596.0",
-        "axios": "^0.21.1",
+        "axios": "^0.21.2",
         "bcryptjs": "^2.4.3",
         "cli-interact": "^0.1.9",
         "concurrently": "^4.1.1",
