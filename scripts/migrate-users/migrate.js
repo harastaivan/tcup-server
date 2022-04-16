@@ -7,8 +7,12 @@ import User from '../../src/models/User';
 
 console.log('Migrate users');
 
-const COLLECTION_OLD = 'tcup_prod_2020';
-const COLLECTION_NEW = 'tcup_prod_2021';
+// Do two runs:
+// First run will insert new users from users.json
+// Second run will ask to insert users who are not yet in the database but were in COLLECTION_OLD
+
+const COLLECTION_OLD = 'tcup_prod_2021';
+const COLLECTION_NEW = 'tcup_prod_2022';
 const USER = 'ivan';
 const PASSWORD = 'password';
 const NEW_USERS_FILE = 'users.json';
