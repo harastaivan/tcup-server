@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="1.7.1"></a>
+
+## 1.7.1 (2022-04-16)
+
+### Added
+
+-   ✨ Update migrate-users script [[dad2c86](https://github.com/harastaivan/tcup-server/commit/dad2c866712190baf87bde83e9b22d3bd35c92ce)]
+-   ✨ Update glider-types-importer for new data [[ec03608](https://github.com/harastaivan/tcup-server/commit/ec036083a66a7d073fc325627dff33a3e7caf5f1)]
+
 <a name="1.7.0"></a>
 
 ## 1.7.0 (2022-04-11)

@@ -1,6 +1,6 @@
 {
     "name": "tcup-server",
-    "version": "1.7.0",
+    "version": "1.7.1",
     "description": "Server for tcup soaring competition website",
     "main": "src/server.js",
     "scripts": {
