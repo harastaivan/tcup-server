@@ -1,6 +1,11 @@
 import { Schema, model } from 'mongoose';
 import { GliderTypeDocument } from './types';
 
+export enum CompetitionClassType {
+    CLUB = 'club',
+    KOMBI = '18_meter'
+}
+
 const GliderTypeSchema = new Schema<GliderTypeDocument>({
     name: {
         type: String,
@@ -12,6 +17,10 @@ const GliderTypeSchema = new Schema<GliderTypeDocument>({
     },
     handicap: {
         type: Number
+    },
+    competitionClassType: {
+        type: String,
+        required: true
     }
 });
 

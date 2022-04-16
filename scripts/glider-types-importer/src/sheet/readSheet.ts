@@ -1,19 +1,25 @@
-import { Row, Workbook, Worksheet, CellValue, RichText, CellRichTextValue } from 'exceljs';
+import { Row, Workbook, Worksheet, CellValue, RichText, CellRichTextValue, CellFormulaValue } from 'exceljs';
 import path from 'path';
 
 import { FILENAME } from '../constants';
+import { CompetitionClassType } from '../database/models/GliderType';
 import { GliderType } from '../database/models/types';
 
 enum WorksheetName {
-    CLUB = 'Club',
+    CLUB = 'Klub',
     KOMBI = 'Kombi'
 }
+
+const competitionClassTypes = {
+    [WorksheetName.CLUB]: CompetitionClassType.CLUB,
+    [WorksheetName.KOMBI]: CompetitionClassType.KOMBI
+};
 
 const BOUNDARIES = {
     [WorksheetName.KOMBI]: {
         rows: {
-            min: 5,
-            max: 273
+            min: 4,
+            max: 275
         },
         columns: {
             name: 1,
@@ -24,14 +30,14 @@ const BOUNDARIES = {
     },
     [WorksheetName.CLUB]: {
         rows: {
-            min: 5,
+            min: 4,
             max: 191
         },
         columns: {
             name: 1,
             nameSplit: ',  ',
             index: 2,
-            handicap: null
+            handicap: 3
         }
     }
 };
@@ -59,36 +65,22 @@ const getGliderTypesFromRow = (row: Row, worksheetName: WorksheetName): GliderTy
         nameCell = (nameCell as CellRichTextValue).richText.reduce((prev, cur) => prev + cur.text, '');
     }
 
-    // ...
-    if (String(nameCell) === '12') {
-        nameCell = 'LAK 12';
-    }
-
-    if (String(nameCell) === 'ASW 19, ASW 19B') {
-        nameCell = 'LAK 12';
-    }
-
-    // ...
-    if (String(nameCell).includes('Ventusy')) {
-        const val = String(nameCell).split('Ventusy: ')[1];
-        const [types, end] = val.split('  ');
-        nameCell = types
-            .split(', ')
-            .map((type) => `Ventus ${type}  ${end}`)
-            .join(',  ');
-    }
-
     const names = String(nameCell)
         .split(BOUNDARIES[worksheetName].columns.nameSplit)
         .map((name) => name.trim());
 
     const index = Number(indexCell);
-    const handicap = handicapCell ? Number(handicapCell) : undefined;
+    const handicap = handicapCell
+        ? (handicapCell as CellFormulaValue).result
+            ? Number((handicapCell as CellFormulaValue).result)
+            : Number(handicapCell)
+        : undefined;
 
     return names.map((name) => ({
         name,
         index,
-        handicap
+        handicap,
+        competitionClassType: competitionClassTypes[worksheetName]
     }));
 };
 
