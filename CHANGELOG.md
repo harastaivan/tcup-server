@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.7.2"></a>
+
+## 1.7.2 (2022-04-16)
+
+### Miscellaneous
+
+-   👷 Add GitHub actions [[347d601](https://github.com/harastaivan/tcup-server/commit/347d601afc47679e29f8d6382657066fd0046764)]
+
 <a name="1.7.1"></a>
 
 ## 1.7.1 (2022-04-16)
