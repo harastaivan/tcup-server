@@ -38,6 +38,9 @@ jobs:
                   MONGO_URI_TEST: mongodb://localhost:27017/tcup_test
                   JWT_SECRET: some_jwt_secret
 
+            - name: audit
+              run: yarn audit --level high --groups dependencies
+
     deploy:
         needs: build
         runs-on: ubuntu-latest
