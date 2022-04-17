@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.8.1"></a>
+
+## 1.8.1 (2022-04-17)
+
+### Security
+
+-   🔒 Fix devDependencies vulnerabilities [[10620c2](https://github.com/harastaivan/tcup-server/commit/10620c26f9def69f1215dfd020a4165ecb14bf1e)]
+
 <a name="1.8.0"></a>
 
 ## 1.8.0 (2022-04-17)
