@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.7.3"></a>
+
+## 1.7.3 (2022-04-17)
+
+### Added
+
+-   ✨ Add delete registration route [[2f162da](https://github.com/harastaivan/tcup-server/commit/2f162da5b405abc2a9a5d912064610028cd04919)]
+
 <a name="1.7.2"></a>
 
 ## 1.7.2 (2022-04-16)
