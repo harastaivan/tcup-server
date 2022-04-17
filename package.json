@@ -35,7 +35,6 @@
         "axios": "^0.21.1",
         "bcryptjs": "^2.4.3",
         "cli-interact": "^0.1.9",
-        "concurrently": "^4.1.1",
         "cors": "^2.8.5",
         "dotenv": "^8.0.0",
         "encoding": "^0.1.13",
