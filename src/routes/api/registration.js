@@ -9,6 +9,7 @@ import Region from '../../models/Region';
 import GliderType from '../../models/GliderType';
 import CompetitionClass from '../../models/CompetitionClass';
 import { sendRegistrationSubmittedEmail } from '../../services/email';
+import { ENV } from '../../../config';
 
 const router = express.Router();
 
@@ -157,6 +158,29 @@ router.put('/', auth, async (req, res) => {
         return res.status(200).json(await getRegistrationByUser(req.user.id));
     } catch (e) {
         return res.status(400).json({ error: e });
+    }
+});
+
+// @route   DELETE api/registration
+// @desc    Deletes registration
+// @access  Private
+router.delete('/', auth, async (req, res) => {
+    try {
+        if (ENV === 'production') {
+            return res.status(405).json({ msg: 'Method not allowed' });
+        }
+
+        const registration = await getRegistrationByUser(req.user.id);
+
+        if (!registration) {
+            return res.status(404).json({ msg: 'Registration does not exist for this user' });
+        }
+
+        await Registration.deleteOne({ _id: registration._id });
+
+        return res.status(200).json({ msg: 'Registration deleted' });
+    } catch (e) {
+        return res.status(500).json({ error: e });
     }
 });
 
