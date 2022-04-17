@@ -1,5 +1,17 @@
 # Changelog
 
+<a name="1.8.0"></a>
+
+## 1.8.0 (2022-04-17)
+
+### Security
+
+-   🔒 Fix security vulnerabilities [[1820fc2](https://github.com/harastaivan/tcup-server/commit/1820fc24232041021693d1dda1d489f9a9dccc26)]
+
+### Miscellaneous
+
+-   👷 Add audit step to build job [[d50c349](https://github.com/harastaivan/tcup-server/commit/d50c349fd50a6302dfbbc2ae51755d694b57d969)]
+
 <a name="1.7.3"></a>
 
 ## 1.7.3 (2022-04-17)
