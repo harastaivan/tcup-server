@@ -26,18 +26,20 @@ services:
         networks:
             - backend
         links:
-            - mysql
+            - db
         depends_on:
-            - mysql
-    mysql:
-        image: mysql:5.7
-        container_name: mysql
+            - db
+
+    db:
+        image: postgres:14.1-alpine
+        restart: always
         environment:
-            MYSQL_ROOT_USER: root
-            MYSQL_ROOT_PASSWORD: password
-            MYSQL_DATABASE: test
+            - POSTGRES_USER=root
+            - POSTGRES_PASSWORD=password
         ports:
-            - '3306:3306'
+            - '5432:5432'
+        volumes:
+            - db:/var/lib/postgresql/data
         networks:
             - backend
 
@@ -46,5 +48,5 @@ networks:
         driver: bridge
 
 volumes:
-    data:
+    db:
         driver: local
