@@ -15,3 +15,18 @@ model User {
   email    String @unique
   password String
 }
+
+enum ContestStatus {
+  NOT_PUBLISHED
+  PUBLISHED
+  ARCHIVED
+}
+
+model Contest {
+  year          Int           @id
+  name          String
+  soaringSpotId Int
+  startDate     DateTime
+  endDate       DateTime
+  status        ContestStatus @default(NOT_PUBLISHED)
+}
