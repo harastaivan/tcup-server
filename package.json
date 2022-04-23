@@ -5,9 +5,9 @@
     "author": "Ivan Harasta",
     "license": "MIT",
     "scripts": {
-        "start": "npm run build && cross-env NODE_ENV=production node dist/server.js",
+        "start": "npm run start:prod",
         "start:prod": "npm run build && node dist/server.js",
-        "dev": "cross-env NODE_ENV=development nodemon",
+        "dev": "NODE_ENV=development nodemon",
         "build": "swc src -d dist --source-maps --copy-files",
         "build:tsc": "tsc && tsc-alias",
         "test": "jest --forceExit --detectOpenHandles",
@@ -21,8 +21,6 @@
         "prisma:migrate": "prisma migrate dev --preview-feature",
         "prisma:generate": "prisma generate",
         "prisma:studio": "prisma studio",
-        "deploy:prod": "npm run build && pm2 start ecosystem.config.js --only prod",
-        "deploy:dev": "pm2 start ecosystem.config.js --only dev",
         "version": "yarn changelog && code CHANGELOG.md --wait && git add CHANGELOG.md",
         "changelog": "gitmoji-changelog"
     },
