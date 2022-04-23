@@ -29,7 +29,6 @@
     },
     "dependencies": {
         "@prisma/client": "^3.7.0",
-        "bcrypt": "^5.0.1",
         "class-transformer": "^0.4.0",
         "class-validator": "^0.13.1",
         "compression": "^1.7.4",
@@ -50,7 +49,6 @@
     "devDependencies": {
         "@swc/cli": "^0.1.51",
         "@swc/core": "^1.2.108",
-        "@types/bcrypt": "^5.0.0",
         "@types/compression": "^1.7.1",
         "@types/cookie-parser": "^1.4.2",
         "@types/cors": "^2.8.11",
@@ -76,7 +74,6 @@
         "jest": "^27.0.6",
         "lint-staged": "^11.0.0",
         "node-config": "^0.0.2",
-        "node-gyp": "^8.1.0",
         "nodemon": "^2.0.9",
         "pm2": "^5.1.0",
         "prettier": "^2.3.2",
