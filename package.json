@@ -6,7 +6,7 @@
     "license": "MIT",
     "scripts": {
         "start": "npm run start:prod",
-        "start:prod": "npm run build && node dist/server.js",
+        "start:prod": "yarn prisma:migrate:prod && yarn build && node dist/server.js",
         "dev": "NODE_ENV=development nodemon",
         "build": "swc src -d dist --source-maps --copy-files",
         "build:tsc": "tsc && tsc-alias",
