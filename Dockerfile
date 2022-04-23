@@ -12,4 +12,4 @@ RUN yarn prisma:generate
 EXPOSE 3000
 ENV NODE_ENV production
 
-CMD ["yarn", "start:bro"]
+CMD ["yarn", "start:prod"]
