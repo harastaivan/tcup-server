@@ -19,6 +19,7 @@
         "validate": "npm run format:check && npm run lint && npm run test",
         "prisma:init": "prisma init",
         "prisma:migrate": "prisma migrate dev --preview-feature",
+        "prisma:migrate:prod": "prisma migrate deploy",
         "prisma:generate": "prisma generate",
         "prisma:studio": "prisma studio",
         "version": "yarn changelog && code CHANGELOG.md --wait && git add CHANGELOG.md",
