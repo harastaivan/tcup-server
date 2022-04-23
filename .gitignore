@@ -1,9 +1,0 @@
-node_modules
-.env
-.nyc_output
-documents/
-venv/
-.vscode
-dump/
-scripts/migrate-users/users.json
-src/api/soaring-spot/data/
