@@ -24,11 +24,6 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
 
-            - name: Start MongoDB
-              uses: supercharge/mongodb-github-action@1.7.0
-              with:
-                  mongodb-version: ${{ matrix.mongodb-version }}
-
             - run: yarn install --frozen-lockfile
             - run: yarn lint
             - run: yarn format:check
@@ -47,4 +42,3 @@ jobs:
                   heroku_app_name: tcup-api-new
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
                   usedocker: true
-                  appdir: '.'
