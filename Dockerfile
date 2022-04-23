@@ -6,6 +6,8 @@ COPY . ./app
 WORKDIR /app
 
 RUN yarn install --frozen-lockfile
+# Issue on M1 Mac: https://github.com/prisma/prisma/issues/8478
+# RUN yarn prisma:generate
 
 EXPOSE 3000
 
