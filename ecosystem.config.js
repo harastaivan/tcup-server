@@ -53,7 +53,7 @@ module.exports = {
             ref: 'origin/master',
             repo: 'git@github.com:repo.git',
             path: 'dist/server.js',
-            'post-deploy': 'npm install && npm run build && pm2 reload ecosystem.config.js --only prod',
+            'post-deploy': 'yarn install --frozen-lockfile && yarn build && pm2 reload ecosystem.config.js --only prod',
         },
     },
 };
