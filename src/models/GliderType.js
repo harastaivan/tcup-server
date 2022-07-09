@@ -11,6 +11,9 @@ const GliderTypeSchema = new Schema({
     index: {
         type: Number,
         required: true
+    },
+    handicap: {
+        type: Number
     }
 });
 
