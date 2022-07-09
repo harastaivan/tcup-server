@@ -73,9 +73,7 @@ router.get('/', async (req, res) => {
 // @desc    Get starting list of registered (all) pilots
 // @access  Public
 router.get('/all', admin, async (req, res) => {
-    const registrations = await Registration.find()
-        .populate('user', '-password')
-        .populate(['glider.gliderType']);
+    const registrations = await Registration.find().populate('user', '-password').populate(['glider.gliderType']);
 
     const startingList = await getStartingList(registrations);
 
@@ -176,7 +174,7 @@ router.get('/export/seeyou/:compClass', admin, async (req, res) => {
                 aircraft_model: registration.glider.gliderType.name,
                 contestant_number: registration.glider.startNumber,
                 aircraft_registration: registration.glider.registrationNumber,
-                handicap: registration.glider.gliderType.index,
+                handicap: registration.glider.gliderType.handicap,
                 pure_glider: registration.glider.hasEngine ? 'False' : 'True',
                 flight_recorders: registration.logger,
                 tag: '',
