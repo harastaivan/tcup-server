@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.7.4"></a>
+
+## 1.7.4 (2022-07-09)
+
+### Added
+
+-   ✨ Return handicap in see you exports [[caf583e](https://github.com/harastaivan/tcup-server/commit/caf583e2dbadd3ec2b83d61fec3ba6c37ad4b774)]
+
 <a name="1.7.3"></a>
 
 ## 1.7.3 (2022-04-17)
