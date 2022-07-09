@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.7.5"></a>
+
+## 1.7.5 (2022-07-09)
+
+### Fixed
+
+-   💚 Fix format [[ac65e85](https://github.com/harastaivan/tcup-server/commit/ac65e850b1efad10f0032597008eb6322103753b)]
+
 <a name="1.7.4"></a>
 
 ## 1.7.4 (2022-07-09)
