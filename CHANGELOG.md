@@ -1,5 +1,13 @@
 # Changelog
 
+<a name="1.7.6"></a>
+
+## 1.7.6 (2022-07-09)
+
+### Fixed
+
+-   🐛 Add handicap to GliderType model [[617f690](https://github.com/harastaivan/tcup-server/commit/617f69021793cf9d6242f831ca88f0d98484146d)]
+
 <a name="1.7.5"></a>
 
 ## 1.7.5 (2022-07-09)
