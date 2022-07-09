@@ -73,7 +73,9 @@ router.get('/', async (req, res) => {
 // @desc    Get starting list of registered (all) pilots
 // @access  Public
 router.get('/all', admin, async (req, res) => {
-    const registrations = await Registration.find().populate('user', '-password').populate(['glider.gliderType']);
+    const registrations = await Registration.find()
+        .populate('user', '-password')
+        .populate(['glider.gliderType']);
 
     const startingList = await getStartingList(registrations);
 
