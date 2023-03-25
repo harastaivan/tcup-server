@@ -96,6 +96,11 @@ const RegistrationSchema = new Schema({
         type: Boolean,
         required: false,
         default: false
+    },
+    isReserve: {
+        type: Boolean,
+        required: false,
+        default: false
     }
 });
 

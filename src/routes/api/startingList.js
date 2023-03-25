@@ -36,6 +36,7 @@ const getStartingList = async (registrations) => {
             paid: registration.paid,
             accepted: registration.accepted,
             registrationCompleted: registration.registrationCompleted,
+            isReserve: registration.isReserve,
             competitionClass: registration.competitionClass
         };
     });

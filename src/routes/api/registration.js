@@ -220,7 +220,8 @@ router.put('/:id', admin, async (req, res) => {
             meals,
             note,
             igcId,
-            registrationCompleted
+            registrationCompleted,
+            isReserve,
         } = req.body;
 
         if (
@@ -255,6 +256,7 @@ router.put('/:id', admin, async (req, res) => {
         registration.note = note;
         registration.igcId = igcId;
         registration.registrationCompleted = registrationCompleted;
+        registration.isReserve = isReserve;
 
         await registration.save();
 
