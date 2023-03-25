@@ -221,7 +221,7 @@ router.put('/:id', admin, async (req, res) => {
             note,
             igcId,
             registrationCompleted,
-            isReserve,
+            isReserve
         } = req.body;
 
         if (
