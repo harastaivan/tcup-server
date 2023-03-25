@@ -276,7 +276,7 @@ router.put('/:id/quick-actions', admin, async (req, res) => {
             return res.status(404).json({ msg: 'Registration does not exist for this user' });
         }
 
-        const { paid, accepted } = req.body;
+        const { paid, accepted, isReserve } = req.body;
 
         if (paid !== undefined) {
             registration.paid = paid;
@@ -285,6 +285,11 @@ router.put('/:id/quick-actions', admin, async (req, res) => {
 
         if (accepted !== undefined) {
             registration.accepted = accepted;
+            registration.save();
+        }
+
+        if (isReserve !== undefined) {
+            registration.isReserve = isReserve;
             registration.save();
         }
 
