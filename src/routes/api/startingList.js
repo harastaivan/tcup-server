@@ -110,7 +110,8 @@ router.get('/export', admin, async (req, res) => {
                 accomodationQuantity: registration.accomodation.quantity,
                 meals: registration.meals,
                 note: registration.note,
-                paid: registration.paid ? 'zaplaceno' : 'nezaplaceno'
+                paid: registration.paid ? 'zaplaceno' : 'nezaplaceno',
+                isReserve: registration.isReserve ? 'náhradník' : ''
             };
         });
 
