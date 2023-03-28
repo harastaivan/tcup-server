@@ -8,7 +8,7 @@ import AccomodationType from '../../models/AccomodationType';
 import Region from '../../models/Region';
 import GliderType from '../../models/GliderType';
 import CompetitionClass from '../../models/CompetitionClass';
-import { sendRegistrationSubmittedEmail } from '../../services/email';
+import { sendRegistrationSubmittedEmail, sendRegistrationSubmittedEmailToAdmin } from '../../services/email';
 import { ENV } from '../../../config';
 
 const router = express.Router();
@@ -61,7 +61,8 @@ router.post('/', auth, async (req, res) => {
 
         await newReg.save();
 
-        await sendRegistrationSubmittedEmail(user.email);
+        await sendRegistrationSubmittedEmail(user);
+        await sendRegistrationSubmittedEmailToAdmin(user);
 
         return res.status(201).json(await getRegistrationByUser(req.user.id));
     } catch (e) {
