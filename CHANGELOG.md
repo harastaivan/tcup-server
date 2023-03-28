@@ -1,22 +1,30 @@
 # Changelog
 
+<a name="1.8.1"></a>
+
+## 1.8.1 (2023-03-28)
+
+### Added
+
+-   ✨ Send email to admins after registration is submitted [[707bbdc](https://github.com/harastaivan/tcup-server/commit/707bbdcca0007e72446c2613d7b95cbbe5d7d9fb)]
+
 <a name="1.8.0"></a>
+
 ## 1.8.0 (2023-03-25)
 
 ### Added
 
-- ✨ Add isReserve to export [[cf64457](https://github.com/harastaivan/tcup-server/commit/cf6445714c27da22cad4dc011bd4474981ec34f1)]
-- ✨ Add isReserve to registration quick actions [[86bd072](https://github.com/harastaivan/tcup-server/commit/86bd0729583bd6aa6698f1c666c7b00bdbbb02f3)]
-- ✨ Add is reserveField to registration [[7f7d75a](https://github.com/harastaivan/tcup-server/commit/7f7d75ad7ba854aa0a944af77bef42bbf70a832e)]
+-   ✨ Add isReserve to export [[cf64457](https://github.com/harastaivan/tcup-server/commit/cf6445714c27da22cad4dc011bd4474981ec34f1)]
+-   ✨ Add isReserve to registration quick actions [[86bd072](https://github.com/harastaivan/tcup-server/commit/86bd0729583bd6aa6698f1c666c7b00bdbbb02f3)]
+-   ✨ Add is reserveField to registration [[7f7d75a](https://github.com/harastaivan/tcup-server/commit/7f7d75ad7ba854aa0a944af77bef42bbf70a832e)]
 
 ### Changed
 
-- 🎨 Fix format [[ea8b2de](https://github.com/harastaivan/tcup-server/commit/ea8b2de27542a197e0f4bd57ed9797a755190c37)]
+-   🎨 Fix format [[ea8b2de](https://github.com/harastaivan/tcup-server/commit/ea8b2de27542a197e0f4bd57ed9797a755190c37)]
 
 ### Miscellaneous
 
--  👷 Update deploy production script [[8740f2b](https://github.com/harastaivan/tcup-server/commit/8740f2b82446e4d0c491e62d61b2f4711522ab6f)]
-
+-   👷 Update deploy production script [[8740f2b](https://github.com/harastaivan/tcup-server/commit/8740f2b82446e4d0c491e62d61b2f4711522ab6f)]
 
 <a name="1.7.6"></a>
 
