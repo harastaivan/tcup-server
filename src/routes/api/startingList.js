@@ -1,6 +1,5 @@
 import express from 'express';
 import { parse } from 'json2csv';
-import encoding from 'encoding';
 
 import Registration from '../../models/Registration';
 import CompetitionClass from '../../models/CompetitionClass';
@@ -215,7 +214,7 @@ router.get('/export/seeyou/:compClass', admin, async (req, res) => {
         ];
 
         const opts = { fields };
-        const csv = encoding.convert(parse(docs, opts), 'windows-1250', 'utf-8');
+        const csv = parse(docs, opts);
 
         res.attachment(`export-${competitionClass.name}-${formatDate()}.csv`);
         res.status(200).send(csv);
