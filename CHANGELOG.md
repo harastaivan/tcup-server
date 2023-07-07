@@ -1,5 +1,14 @@
 # Changelog
 
+<a name="1.8.2"></a>
+
+## 1.8.2 (2023-07-07)
+
+### Removed
+
+-   ➖ Remove encoding [[7fd9586](https://github.com/harastaivan/tcup-server/commit/7fd9586f788424e6f398959779920a16fa5f5e63)]
+-   🔥 Remove see you export encoding [[90946e4](https://github.com/harastaivan/tcup-server/commit/90946e45233e1018010860dd7fd5246bf682e045)]
+
 <a name="1.8.1"></a>
 
 ## 1.8.1 (2023-03-28)
