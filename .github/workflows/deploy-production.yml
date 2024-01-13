@@ -46,5 +46,5 @@ jobs:
             - uses: akhileshns/heroku-deploy@v3.12.12
               with:
                   heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-                  heroku_app_name: tcup-2023-api
+                  heroku_app_name: tcup-2024-api
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
