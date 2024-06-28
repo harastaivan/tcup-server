@@ -30,7 +30,7 @@ const getStartingList = async (registrations) => {
             birthDate: registration.birthDate,
             aeroclub: registration.aeroclub,
             startNumber: registration.glider.startNumber,
-            gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.index})`,
+            gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.handicap})`,
             registrationNumber: registration.glider.registrationNumber,
             paid: registration.paid,
             accepted: registration.accepted,
