@@ -22,23 +22,25 @@ const getNationalityByRegion = (region) => {
     }
 };
 
+const getRegistration = (registration) => {
+    return {
+        _id: registration._id,
+        fullName: `${registration.user.name} ${registration.user.surname}`,
+        birthDate: registration.birthDate,
+        aeroclub: registration.aeroclub,
+        startNumber: registration.glider.startNumber,
+        gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.handicap})`,
+        registrationNumber: registration.glider.registrationNumber,
+        paid: registration.paid,
+        accepted: registration.accepted,
+        registrationCompleted: registration.registrationCompleted,
+        isReserve: registration.isReserve,
+        competitionClass: registration.competitionClass
+    };
+};
+
 const getStartingList = async (registrations) => {
-    const simplifiedRegistrations = registrations.map((registration) => {
-        return {
-            _id: registration._id,
-            fullName: `${registration.user.name} ${registration.user.surname}`,
-            birthDate: registration.birthDate,
-            aeroclub: registration.aeroclub,
-            startNumber: registration.glider.startNumber,
-            gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.handicap})`,
-            registrationNumber: registration.glider.registrationNumber,
-            paid: registration.paid,
-            accepted: registration.accepted,
-            registrationCompleted: registration.registrationCompleted,
-            isReserve: registration.isReserve,
-            competitionClass: registration.competitionClass
-        };
-    });
+    const simplifiedRegistrations = registrations.map(getRegistration);
 
     const classes = await CompetitionClass.find({}).sort('name');
 
@@ -65,6 +67,16 @@ router.get('/', async (req, res) => {
         .populate(['glider.gliderType']);
 
     const startingList = await getStartingList(registrations);
+
+    const notAccepted = await Registration.find({ accepted: false })
+        .populate('user', '-password')
+        .populate(['glider.gliderType']);
+
+    startingList.push({
+        _id: 'not-accepted',
+        name: 'not-accepted',
+        registrations: notAccepted.map(getRegistration)
+    });
 
     res.json(startingList);
 });
