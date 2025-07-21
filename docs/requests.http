@@ -1,11 +1,6 @@
-@prodApiUrl = https://api.tcup.cz
-@devApiUrl = http://localhost:5000
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTJmYWJjZGQ1MDVjMDAxODcwMWFmMSIsImlhdCI6MTc1Mjk5ODI2MCwiZXhwIjoxNzUzMDAxODYwfQ.gVCElIQ_LA02OIKNxGWVQu1fPHw7D_Jplm75JzDe7Lg
 
-@apiUrl = {{devApiUrl}}
-
-@email = harasta.ivan@gmail.com
-@password = harasta
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkM2Q3ZTBjYjQ3ZDdmMWQ0ODFkYzMyZiIsImlhdCI6MTU5NDQ5MTMxMCwiZXhwIjoxNTk0NDk0OTEwfQ.B5tI99IdjJrVHqqLxvAI5zV3JEpvEDl_HWYfgu0u6V0
+###
 
 POST {{apiUrl}}/api/auth
 Content-Type: application/json
@@ -57,7 +52,7 @@ Authorization: Bearer {{token}}
 
 {
     "name": "Den 4",
-    "date": "2020-07-14"
+    "date": "2025-07-20"
 }
 
 ###
@@ -72,7 +67,7 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET {{apiUrl}}/api/competitorstatuses/5efce7a13de5543176239dc2
+GET {{apiUrl}}/api/competitorstatuses/687ca19aea224a0015318830
 Content-Type: application/json
 
 ###
@@ -82,7 +77,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "day": "5efde4ff7122fd0017744f98"
+    "day": "687ca19aea224a0015318830"
 }
 
 ###
@@ -107,18 +102,18 @@ Content-Type: application/json
 
 ###
 
-GET {{apiUrl}}/api/tracking/5efce7a13de5543176239dc2
+GET {{apiUrl}}/api/tracking/687ca19aea224a0015318830
 Content-Type: application/json
 
 ###
 
-POST {{apiUrl}}/api/tracking/5efce7a13de5543176239dc2/5d4026c05fa77179689ce31c
+POST {{apiUrl}}/api/tracking/687ca19aea224a0015318830/6403c053c223c102ea1f60a1
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "label": "Tracking Kombi Day 1",
-    "taskUrl": "https://www.soaringspot.com/cs/tcup2020/results"
+    "label": "Tracking Klub Day 4",
+    "taskUrl": "https://www.soaringspot.com/en_gb/tcup2025/tasks/klub/task-3-on-2025-07-20"
 }
 
 ###
