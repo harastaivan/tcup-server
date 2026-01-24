@@ -3,7 +3,7 @@ import { GliderTypeDocument } from './types';
 
 export enum CompetitionClassType {
     CLUB = 'club',
-    KOMBI = '18_meter'
+    KOMBI = '15_meter'
 }
 
 const GliderTypeSchema = new Schema<GliderTypeDocument>({
