@@ -22,7 +22,6 @@ jobs:
               uses: actions/setup-node@v2
               with:
                   node-version: ${{ matrix.node-version }}
-                  cache: 'yarn'
 
             - name: Start MongoDB
               uses: supercharge/mongodb-github-action@1.7.0
@@ -47,5 +46,5 @@ jobs:
             - uses: akhileshns/heroku-deploy@v3.13.15
               with:
                   heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-                  heroku_app_name: tcup-2025-api
+                  heroku_app_name: tcup-2026-api
                   heroku_email: ${{secrets.HEROKU_EMAIL}}
