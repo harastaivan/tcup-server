@@ -1,5 +1,30 @@
 # Changelog
 
+<a name="1.9.0"></a>
+
+## 1.9.0 (2026-02-21)
+
+### Added
+
+-   ✨ Ranked starting list [[0aabc14](https://github.com/harastaivan/tcup-server/commit/0aabc14d6998a13318d8b769c2ce73b9f2a24579)]
+-   ✨ Add not accepted pilots to starting list [[8e3f287](https://github.com/harastaivan/tcup-server/commit/8e3f2872f8a2a91c4d48a086624b2a67c6f8d57a)]
+-   ✨ Show glider handicap instead indexes [[9ddd1e2](https://github.com/harastaivan/tcup-server/commit/9ddd1e23b959c68da096fb5cfe3f58fd80d37bb4)]
+
+### Fixed
+
+-   🐛 Fix kombi competition class type [[9c1cb20](https://github.com/harastaivan/tcup-server/commit/9c1cb20b8681a82e99fae5714c80c92fe4d2e71e)]
+
+### Security
+
+-   🔒 Fix security issues [[b2123ae](https://github.com/harastaivan/tcup-server/commit/b2123ae2d295643272040b905fe66bf66df6a517)]
+
+### Miscellaneous
+
+-   🚀 Deploy 2026 [[883777d](https://github.com/harastaivan/tcup-server/commit/883777d1655503276b6e101373d579d166a56abe)]
+-   📝 Update http docs [[4277488](https://github.com/harastaivan/tcup-server/commit/42774887329b27fcedc3d6b039095991390cffa1)]
+-   🚀 Deploy 2025 [[df358a4](https://github.com/harastaivan/tcup-server/commit/df358a4882dc805126cf842fdca47eca54a4c53b)]
+-   👷 Change app name [[ac171ec](https://github.com/harastaivan/tcup-server/commit/ac171eceed329028778c5406721285ab4ddee77a)]
+
 <a name="1.8.2"></a>
 
 ## 1.8.2 (2023-07-07)
