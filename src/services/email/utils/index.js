@@ -22,9 +22,9 @@ export const sendEmail = (user, pass, from, to, subject, text, html) => {
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
-            // eslint-disable-next-line
+            // eslint-disable-next-line no-console
             console.error('Email not sent:', error);
-            throw error;
+            return;
         }
         // eslint-disable-next-line
         console.log('Email sent:', info.messageId, 'to', to);

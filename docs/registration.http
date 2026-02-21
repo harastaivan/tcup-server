@@ -1,0 +1,46 @@
+### Registration form data
+
+GET {{apiUrl}}/api/registration/form
+Content-Type: application/json
+
+### Create registration
+
+POST {{apiUrl}}/api/registration
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+    "birthDate": "1965-05-21",
+    "phone": "+420723123123",
+    "aeroclub": "Aeroklub",
+    "region": "62458eae56b9350016555e46",
+    "competitionClass": "6403c053c223c102ea1f60a1",
+    "logger": "Logger",
+    "note": "Note",
+    "glider": {
+        "hasEngine": false,
+        "gliderType": "625c1aacdbd554596580f3ef",
+        "registrationNumber": "OK-1777",
+        "startNumber": "HI"
+    },
+    "accomodation": {
+        "accomodationType": "62459a61e81ec0001678c477",
+        "quantity": 1
+    },
+    "meals": 1
+}
+
+### Delete registration
+
+DELETE {{apiUrl}}/api/registration
+Authorization: Bearer {{token}}
+
+### Get registration
+
+GET {{apiUrl}}/api/registration
+Authorization: Bearer {{token}}
+
+### Set ranking positions for all registrations
+
+POST {{apiUrl}}/api/registration/util/set-ranking-positions
+Authorization: Bearer {{token}}

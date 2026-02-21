@@ -32,16 +32,15 @@ const getRegistration = (registration) => {
         gliderType: `${registration.glider.gliderType.name} (${registration.glider.gliderType.handicap})`,
         registrationNumber: registration.glider.registrationNumber,
         paid: registration.paid,
-        accepted: registration.accepted,
         registrationCompleted: registration.registrationCompleted,
-        isReserve: registration.isReserve,
-        competitionClass: registration.competitionClass
+        competitionClass: registration.competitionClass,
+        isWildcard: registration.isWildcard,
+        rankingPosition: registration.rankingPosition,
+        igcId: registration.igcId
     };
 };
 
-const getStartingList = async (registrations) => {
-    const simplifiedRegistrations = registrations.map(getRegistration);
-
+const getStartingList = async (registrations, notAcceptedRegistrations) => {
     const classes = await CompetitionClass.find({}).sort('name');
 
     const startingList = classes.map((one) => {
@@ -49,47 +48,63 @@ const getStartingList = async (registrations) => {
             _id: one._id,
             name: one.name,
             // https://stackoverflow.com/questions/11637353/comparing-mongoose-id-and-strings
-            registrations: simplifiedRegistrations.filter((registration) =>
-                registration.competitionClass._id.equals(one._id)
-            )
+            registrations: registrations
+                .map(getRegistration)
+                .filter((registration) => registration.competitionClass._id.equals(one._id))
         };
+    });
+
+    startingList.push({
+        _id: 'not-accepted',
+        name: 'not-accepted',
+        registrations: notAcceptedRegistrations.map(getRegistration)
     });
 
     return startingList;
 };
 
+export const getRankedStartingList = async ({ populate = ['glider.gliderType'], isFinal = false }) => {
+    const RANKED_POSITIONS = 35;
+    let allRankedRegistrations = await Registration.find({ isWildcard: false })
+        .populate('user', '-password')
+        .populate(populate);
+
+    allRankedRegistrations.sort((a, b) => (a.rankingPosition || 1000) - (b.rankingPosition || 1000));
+
+    let wildcardRegistrations = await Registration.find({ isWildcard: true })
+        .populate('user', '-password')
+        .populate(populate);
+
+    wildcardRegistrations.sort((a, b) => (a.rankingPosition || 1000) - (b.rankingPosition || 1000));
+
+    let notPaidRegistrations = [];
+    if (isFinal) {
+        const paidRankedRegistrations = allRankedRegistrations.filter((registration) => registration.paid);
+        const notPaidRankedRegistrations = allRankedRegistrations.filter((registration) => !registration.paid);
+        const paidWildcardRegistrations = wildcardRegistrations.filter((registration) => registration.paid);
+        const notPaidWildcardRegistrations = wildcardRegistrations.filter((registration) => !registration.paid);
+
+        notPaidRegistrations = [...notPaidRankedRegistrations, ...notPaidWildcardRegistrations];
+        allRankedRegistrations = paidRankedRegistrations;
+        wildcardRegistrations = paidWildcardRegistrations;
+    }
+
+    const acceptedRegistrations = [...allRankedRegistrations.slice(0, RANKED_POSITIONS), ...wildcardRegistrations];
+    const notAcceptedRegistrations = [...allRankedRegistrations.slice(RANKED_POSITIONS), ...notPaidRegistrations];
+
+    return {
+        acceptedRegistrations,
+        notAcceptedRegistrations,
+        startingList: await getStartingList(acceptedRegistrations, notAcceptedRegistrations)
+    };
+};
+
 // @route   GET api/starting-list
-// @desc    Get starting list of registered (accepted) pilots
+// @desc    Get starting list of registered pilots based on ranking position and wildcard status
 // @access  Public
 router.get('/', async (req, res) => {
-    const registrations = await Registration.find({ accepted: true })
-        .populate('user', '-password')
-        .populate(['glider.gliderType']);
-
-    const startingList = await getStartingList(registrations);
-
-    const notAccepted = await Registration.find({ accepted: false })
-        .populate('user', '-password')
-        .populate(['glider.gliderType']);
-
-    startingList.push({
-        _id: 'not-accepted',
-        name: 'not-accepted',
-        registrations: notAccepted.map(getRegistration)
-    });
-
-    res.json(startingList);
-});
-
-// @route   GET api/starting-list/all
-// @desc    Get starting list of registered (all) pilots
-// @access  Public
-router.get('/all', admin, async (req, res) => {
-    const registrations = await Registration.find()
-        .populate('user', '-password')
-        .populate(['glider.gliderType']);
-
-    const startingList = await getStartingList(registrations);
+    const isFinal = req.query.isFinal === 'true';
+    const { startingList } = await getRankedStartingList({ isFinal });
 
     res.json(startingList);
 });
@@ -99,32 +114,64 @@ router.get('/all', admin, async (req, res) => {
 // @access  Admin
 router.get('/export', admin, async (req, res) => {
     try {
-        const registrations = await Registration.find({ accepted: true })
-            .populate('user', '-password')
-            .populate(['glider.gliderType', 'region', 'competitionClass', 'accomodation.accomodationType']);
-
-        const docs = registrations.map((registration) => {
-            return {
-                name: registration.user.name,
-                surname: registration.user.surname,
-                birthDate: registration.birthDate,
-                phone: registration.phone,
-                email: registration.user.email,
-                aeroclub: registration.aeroclub,
-                region: registration.region.name,
-                gliderType: registration.glider.gliderType.name,
-                gliderIndex: registration.glider.gliderType.index,
-                registrationNumber: registration.glider.registrationNumber,
-                startNumber: registration.glider.startNumber,
-                competitionClass: registration.competitionClass.name,
-                accomodationType: registration.accomodation.accomodationType.name,
-                accomodationQuantity: registration.accomodation.quantity,
-                meals: registration.meals,
-                note: registration.note,
-                paid: registration.paid ? 'zaplaceno' : 'nezaplaceno',
-                isReserve: registration.isReserve ? 'náhradník' : ''
-            };
+        const isFinal = req.query.isFinal === 'true';
+        const { acceptedRegistrations, notAcceptedRegistrations } = await getRankedStartingList({
+            isFinal,
+            populate: ['glider.gliderType', 'region', 'competitionClass', 'accomodation.accomodationType']
         });
+
+        const docs = [
+            ...acceptedRegistrations.map((registration) => {
+                return {
+                    name: registration.user.name,
+                    surname: registration.user.surname,
+                    birthDate: registration.birthDate,
+                    phone: registration.phone,
+                    email: registration.user.email,
+                    aeroclub: registration.aeroclub,
+                    region: registration.region.name,
+                    gliderType: registration.glider.gliderType.name,
+                    gliderIndex: registration.glider.gliderType.index,
+                    registrationNumber: registration.glider.registrationNumber,
+                    startNumber: registration.glider.startNumber,
+                    competitionClass: registration.competitionClass.name,
+                    accomodationType: registration.accomodation.accomodationType.name,
+                    accomodationQuantity: registration.accomodation.quantity,
+                    meals: registration.meals,
+                    note: registration.note,
+                    paid: registration.paid ? 'ano' : 'ne',
+                    isWildcard: registration.isWildcard ? 'ano' : 'ne',
+                    rankingPosition: registration.rankingPosition,
+                    igcId: registration.igcId,
+                    isReserve: ''
+                };
+            }),
+            ...notAcceptedRegistrations.map((registration) => {
+                return {
+                    name: registration.user.name,
+                    surname: registration.user.surname,
+                    birthDate: registration.birthDate,
+                    phone: registration.phone,
+                    email: registration.user.email,
+                    aeroclub: registration.aeroclub,
+                    region: registration.region.name,
+                    gliderType: registration.glider.gliderType.name,
+                    gliderIndex: registration.glider.gliderType.index,
+                    registrationNumber: registration.glider.registrationNumber,
+                    startNumber: registration.glider.startNumber,
+                    competitionClass: registration.competitionClass.name,
+                    accomodationType: registration.accomodation.accomodationType.name,
+                    accomodationQuantity: registration.accomodation.quantity,
+                    meals: registration.meals,
+                    note: registration.note,
+                    paid: registration.paid ? 'ano' : 'ne',
+                    isWildcard: registration.isWildcard ? 'ano' : 'ne',
+                    rankingPosition: registration.rankingPosition,
+                    igcId: registration.igcId,
+                    isReserve: 'náhradník'
+                };
+            })
+        ];
 
         const fields = [
             'name',
@@ -143,7 +190,11 @@ router.get('/export', admin, async (req, res) => {
             'accomodationQuantity',
             'meals',
             'note',
-            'paid'
+            'paid',
+            'isWildcard',
+            'rankingPosition',
+            'igcId',
+            'isReserve'
         ];
 
         const opts = { fields };
@@ -169,9 +220,13 @@ router.get('/export/seeyou/:compClass', admin, async (req, res) => {
             return res.status(400).json({ msg: 'Invalid competition class' });
         }
 
-        const registrations = await Registration.find({ competitionClass, accepted: true })
-            .populate('user', '-password')
-            .populate(['glider.gliderType', 'region', 'competitionClass', 'accomodation.accomodationType']);
+        const { acceptedRegistrations } = await getRankedStartingList({
+            isFinal: true,
+            populate: ['glider.gliderType', 'region', 'competitionClass', 'accomodation.accomodationType']
+        });
+        const registrations = acceptedRegistrations.filter((registration) =>
+            registration.competitionClass._id.equals(competitionClass._id)
+        );
 
         const docs = registrations.map((registration) => {
             return {

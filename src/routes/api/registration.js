@@ -9,6 +9,8 @@ import Region from '../../models/Region';
 import GliderType from '../../models/GliderType';
 import CompetitionClass from '../../models/CompetitionClass';
 import { sendRegistrationSubmittedEmail, sendRegistrationSubmittedEmailToAdmin } from '../../services/email';
+import { getRankingPositionForPilot } from '../../services/ranking/ranking';
+import { tryGetIgcId } from '../../services/igcId/getIgcId';
 import { ENV } from '../../../config';
 
 const router = express.Router();
@@ -54,9 +56,13 @@ router.post('/', auth, async (req, res) => {
             return res.status(400).json({ msg: 'Registration already exists by this user' });
         }
 
+        const rankingPosition = await getRankingPositionForPilot(user, req.body.birthDate);
+        const igcId = await tryGetIgcId(user);
         const newReg = new Registration({
             user,
-            ...req.body
+            ...req.body,
+            rankingPosition,
+            igcId
         });
 
         await newReg.save();
@@ -67,6 +73,28 @@ router.post('/', auth, async (req, res) => {
         return res.status(201).json(await getRegistrationByUser(req.user.id));
     } catch (e) {
         return res.status(400).json({ error: e });
+    }
+});
+
+// @route   POST api/registration/util/set-ranking-positions
+// @desc    Set ranking positions for all registrations
+// @access  Admin
+router.post('/util/set-ranking-positions', admin, async (req, res) => {
+    try {
+        const registrations = await Registration.find({}).populate('user', '-password');
+        for (const registration of registrations) {
+            const rankingPosition = await getRankingPositionForPilot(registration.user, registration.birthDate);
+
+            // eslint-disable-next-line no-console
+            console.log(rankingPosition);
+
+            registration.rankingPosition = rankingPosition;
+
+            await registration.save();
+        }
+        return res.status(200).json({ msg: 'Ranking positions set' });
+    } catch (e) {
+        return res.status(500).json({ error: e });
     }
 });
 
@@ -222,7 +250,8 @@ router.put('/:id', admin, async (req, res) => {
             note,
             igcId,
             registrationCompleted,
-            isReserve
+            rankingPosition,
+            isWildcard
         } = req.body;
 
         if (
@@ -257,7 +286,8 @@ router.put('/:id', admin, async (req, res) => {
         registration.note = note;
         registration.igcId = igcId;
         registration.registrationCompleted = registrationCompleted;
-        registration.isReserve = isReserve;
+        registration.rankingPosition = rankingPosition;
+        registration.isWildcard = isWildcard;
 
         await registration.save();
 
@@ -277,20 +307,15 @@ router.put('/:id/quick-actions', admin, async (req, res) => {
             return res.status(404).json({ msg: 'Registration does not exist for this user' });
         }
 
-        const { paid, accepted, isReserve } = req.body;
+        const { paid, isWildcard } = req.body;
 
         if (paid !== undefined) {
             registration.paid = paid;
             registration.save();
         }
 
-        if (accepted !== undefined) {
-            registration.accepted = accepted;
-            registration.save();
-        }
-
-        if (isReserve !== undefined) {
-            registration.isReserve = isReserve;
+        if (isWildcard !== undefined) {
+            registration.isWildcard = isWildcard;
             registration.save();
         }
 

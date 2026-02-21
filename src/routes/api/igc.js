@@ -6,6 +6,7 @@ import CompetitionClass from '../../models/CompetitionClass';
 import igc from '../../services/igc';
 import IgcFile from '../../models/IgcFile';
 import admin from '../../middleware/admin';
+import { getRankedStartingList } from './startingList';
 
 const router = express.Router();
 
@@ -97,10 +98,6 @@ router.post('/', igc.single('igc'), async (req, res) => {
             return res.status(400).json({ msg: 'Invalid pilot' });
         }
 
-        if (!registration.accepted) {
-            return res.status(400).json({ msg: 'Pilot registration is not accepted' });
-        }
-
         const competitionDay = await CompetitionDay.findById(day);
 
         if (!competitionDay) {
@@ -145,9 +142,9 @@ router.post('/', igc.single('igc'), async (req, res) => {
 // @desc    Get form data for igc
 // @access  Public
 router.get('/form', async (req, res) => {
-    const registrations = await Registration.find({ accepted: true }).populate('user', '-password');
+    const { acceptedRegistrations } = await getRankedStartingList({ populate: [], isFinal: true });
 
-    res.status(200).json(registrations.sort(sortRegistrationByStartNumber).map(mapRegistrationForForm));
+    res.status(200).json(acceptedRegistrations.sort(sortRegistrationByStartNumber).map(mapRegistrationForForm));
 });
 
 // @route   GET api/igc/:day

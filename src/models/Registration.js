@@ -15,11 +15,6 @@ const RegistrationSchema = new Schema({
         required: true,
         default: false
     },
-    accepted: {
-        type: Boolean,
-        required: false,
-        default: false
-    },
     birthDate: {
         type: String,
         required: false
@@ -97,9 +92,14 @@ const RegistrationSchema = new Schema({
         required: false,
         default: false
     },
-    isReserve: {
-        type: Boolean,
+    rankingPosition: {
+        type: Number,
         required: false,
+        default: null
+    },
+    isWildcard: {
+        type: Boolean,
+        required: true,
         default: false
     }
 });

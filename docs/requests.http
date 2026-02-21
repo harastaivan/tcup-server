@@ -1,6 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1YTJmYWJjZGQ1MDVjMDAxODcwMWFmMSIsImlhdCI6MTc1Mjk5ODI2MCwiZXhwIjoxNzUzMDAxODYwfQ.gVCElIQ_LA02OIKNxGWVQu1fPHw7D_Jplm75JzDe7Lg
-
-###
+### Login
 
 POST {{apiUrl}}/api/auth
 Content-Type: application/json
@@ -51,8 +49,8 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-    "name": "Den 4",
-    "date": "2025-07-20"
+    "name": "Den 9 - náhradní",
+    "date": "2026-07-19"
 }
 
 ###
@@ -136,3 +134,5 @@ Authorization: Bearer {{token}}
     "processed": true,
     "downloaded": true
 }
+
+

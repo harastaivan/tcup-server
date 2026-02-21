@@ -3,7 +3,7 @@ import express from 'express';
 import admin from '../../middleware/admin';
 import CompetitionDay from '../../models/CompetitionDay';
 import CompetitorStatus from '../../models/CompetitorStatus';
-import Registration from '../../models/Registration';
+import { getRankedStartingList } from './startingList';
 
 const router = express.Router();
 
@@ -57,14 +57,14 @@ router.post('/', admin, async (req, res) => {
         return res.status(400).json({ msg: 'This competition day does not exist' });
     }
 
-    const pilots = await Registration.find({ accepted: true });
+    const { acceptedRegistrations } = await getRankedStartingList({ populate: [], isFinal: true });
 
-    for (const pilot of pilots) {
-        const existing = await CompetitorStatus.findOne({ day: competitionDay, pilot });
+    for (const registration of acceptedRegistrations) {
+        const existing = await CompetitorStatus.findOne({ day: competitionDay, pilot: registration });
         if (existing) {
             continue;
         }
-        const competitorStatus = new CompetitorStatus({ day: competitionDay, pilot });
+        const competitorStatus = new CompetitorStatus({ day: competitionDay, pilot: registration });
         await competitorStatus.save();
     }
 

@@ -1,0 +1,34 @@
+@clubClass = 6403c053c223c102ea1f60a1
+@kombiClass = 6403c052c223c102ea1f60a0
+
+### Get starting list (registrations don't have to be paid)
+
+GET {{apiUrl}}/api/starting-list
+?isFinal=false
+
+### Get starting list (registrations have to be paid)
+
+GET {{apiUrl}}/api/starting-list
+?isFinal=true
+
+### 
+
+GET {{apiUrl}}/api/starting-list/export
+?isFinal=false
+Authorization: Bearer {{token}}
+
+### 
+
+GET {{apiUrl}}/api/starting-list/export
+?isFinal=true
+Authorization: Bearer {{token}}
+
+### 
+
+GET {{apiUrl}}/api/starting-list/export/seeyou/{{clubClass}}
+Authorization: Bearer {{token}}
+
+### 
+
+GET {{apiUrl}}/api/starting-list/export/seeyou/{{kombiClass}}
+Authorization: Bearer {{token}}

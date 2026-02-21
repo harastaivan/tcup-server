@@ -1,0 +1,16 @@
+###
+
+GET https://igcrankings.fai.org/rest/api/rlpilot
+?partialFullname=Ivan+Harašta
+&limit=10
+
+###
+
+GET https://igcrankings.fai.org/rest/api/rlpilot
+?id=1132
+
+###
+
+GET https://igcrankings.fai.org/pilotdetails.php
+?rlid=1132
+
