@@ -53,7 +53,7 @@ router.post('/', auth, async (req, res) => {
         const user = await User.findById(req.user.id).select('-password');
 
         if (await Registration.findOne({ user })) {
-            return res.status(400).json({ msg: 'Registration already exists by this user' });
+            return res.status(403).json({ msg: 'Registration already exists by this user' });
         }
 
         const rankingPosition = await getRankingPositionForPilot(user, req.body.birthDate);
@@ -72,7 +72,9 @@ router.post('/', auth, async (req, res) => {
 
         return res.status(201).json(await getRegistrationByUser(req.user.id));
     } catch (e) {
-        return res.status(400).json({ error: e });
+        // eslint-disable-next-line no-console
+        console.error(e);
+        return res.status(500).json({ msg: e });
     }
 });
 
